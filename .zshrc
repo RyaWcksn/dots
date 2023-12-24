@@ -234,10 +234,26 @@ nuke() {
   fi
 }
 
+# Carriage enter
+function nvim_paste ()
+{
+	# Check for win32yank.exe executable
+if command -v win32yank.exe >/dev/null 2>/dev/null; then
+    # The --lf option pastes data unix style. Which is what I almost always want.
+    win32yank.exe -o --lf
+else
+    # Else rely on PowerShell being installed and available.
+    powershell.exe Get-Clipboard | tr -d '\r' | sed -z '$ s/\n$//'
+fi
+}
+
 # Alias
 
 # Reload
 alias reload="source ~/.zshrc"
+
+# vimdiff
+alias vimdiff="nvim -d"
 
 # Movement
 alias cp="rsync -av -P"
@@ -249,3 +265,7 @@ alias tn="tmux new -s"
 alias ta="tmux attach -t"
 alias td="tmux detach"
 alias tk="tmux kill-session -t"
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
