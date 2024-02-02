@@ -1,0 +1,7 @@
+#!/bin/bash
+
+xrandr --newmode "android-virtual"  74.48  1280 1336 1472 1664  720 721 724 746  -HSync +Vsync\n
+xrandr --addmode VIRTUAL1 android-virtual
+xrandr --output VIRTUAL1 --left-of LVDS1 --mode android-virtual
+x11vnc -clip 1280x720+0+0 -viewonly -passwd "kusoyaro" -defer 3 -wait 3 
+xrandr --output VIRTUAL1 --off

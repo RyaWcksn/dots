@@ -1,0 +1,123 @@
+[colors]
+background = #222833
+foreground = #6c6b84
+
+[global/wm]
+; Adjust bar to hide on fullscreen
+wm-restack = bspwm
+override-redirect = false
+
+[bar/bar]
+fixed-center = true
+bottom = false
+enable-ipc= true
+height = 30
+width = 100%
+offset-y = 10
+radius = 0
+border-size = 3
+border-color = ${colors.foreground}
+module-margin = 5
+border-left-size = 15
+border-right-size = 15
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 1
+
+padding-left = 5
+padding-right = 5
+padding-top = 10
+padding-bottom = 10
+font-0 = "Noto Sans CJK JP:size=9:antialias=false;2"
+font-1 = "Noto Sans CJK JP:size=12;2.5"
+
+modules-left = mpd wifi
+modules-center = bspwm
+modules-right = pulseaudio battery day time
+
+[module/battery]
+type = internal/battery
+full-at = 99
+low-at = 15
+battery = BAT0
+adapter = AC
+poll-interval = 2
+label-charging = [ 電池: %percentage% 充電中 ]
+label-full = [ 電池: %percentage% 十分 ]
+label-discharging = [ 電池: %percentage% ]
+
+[module/wifi]
+type = custom/script
+exec = $HOME/.config/polybar/wifi.sh
+
+[module/mpd]
+type = custom/script
+exec = echo "$(mpc current)"
+format-padding = 1
+
+[module/day]
+type = custom/script
+exec = $HOME/.config/polybar/time.sh
+label = (%output%)
+label-foreground = ${colors.foreground}
+label-background = ${colors.background}
+
+
+[module/time]
+type = internal/date
+interval = 10
+format-margin = 0
+
+time = "%l時%M分"
+date = "%y年%m月%d日"
+
+label = %date%:%time%
+label-foreground = ${colors.foreground}
+label-background = ${colors.background}
+;label-padding = 2
+
+[module/pulseaudio]
+type = internal/pulseaudio
+format-volume = <ramp-volume> <label-volume>
+label-volume = 音量: %percentage:3:3%%
+format-volume-foreground = ${colors.foreground}
+format-volume-background = ${colors.background}
+format-volume-padding = 0
+use-ui-max = false
+interval = 5
+ramp-volume-0 = ""
+label-muted = "無音"   
+label-muted-background = ${colors.background}
+label-muted-foreground = ${colors.foreground}
+ramp-volume-0 = 小
+ramp-volume-1 = 中
+ramp-volume-2 = 高
+
+[settings]
+screenchange-reload = true
+compositing-background = picom
+pseudo-transparency = true
+
+[module/bspwm]
+type = internal/bspwm
+
+label-focused = %name%
+label-focused-background = ${colors.foreground}
+label-focused-foreground = ${colors.background}
+label-focused-padding = 2
+
+label-occupied = %name%
+label-occupied-padding = 2
+
+label-urgent = %name%!
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 2
+
+label-empty = %name%
+label-empty-foreground = ${colors.foreground-alt}
+label-empty-padding = 2
+
+; Separator in between workspaces
+; label-separator = |
