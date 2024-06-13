@@ -16,12 +16,15 @@ plugins=()
 source $ZSH/oh-my-zsh.sh
 
 # Golang
-export GOPATH=/home/aya/go
+export GOPATH=/home/arya/go
 export GOROOT=/usr/local/go
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
+export FZF_DEFAULT_COMMAND="fd --hidden --strio-cwd-prefix --exclude .git"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
-export PATH="$PATH:$HOME/Sandbox/lua-language-server/bin/"
+
+export PATH="$PATH:$HOME/Downloads/bin/"
 
 # NodeJS
 export NVM_DIR="$HOME/.nvm"
@@ -39,50 +42,10 @@ function gpf() {
 	if [[ -n $(git diff --name-only --cached) ]]; then
   		echo "Staged files:"
 		git status --short
-		echo "Commit message: "
-		read message 
-		git commit -m "$message"
 	else
   		echo "No staged files."
 	fi
 
-}
-function gaf() {
-	git add $(git ls-files --modified --others --exclude-standard | fzf -m --preview="git diff --color=always {}")
-	if [[ -n $(git diff --name-only --cached) ]]; then
-  		echo "Staged files:"
-		git status --short
-		echo "Commit message: "
-		read message 
-		git commit -m "$message"
-	else
-  		echo "No staged files."
-	fi
-
-}
-
-
-
-
-function gifz ()
-{
-	local ignore_file=".gitignore"
-	local selected_file
-
-  	selected_file=$(fzf --prompt="Select file to add to .gitignore: " --preview="bat --color=always {}")
-
-  	if [ -n "$selected_file" ]; then
-	  	[ -e "$ignore_file" ] || touch "$ignore_file"
-
-    		if ! grep -q "^$selected_file$" "$ignore_file"; then
-	    		echo "$selected_file" >> "$ignore_file"
-	    		echo "Added '$selected_file' to .gitignore."
-    		else
-	    		echo "'$selected_file' is already in .gitignore."
-    		fi
-	else
-		echo "No file selected."
-  	fi
 }
 
 function gcf(){
@@ -311,6 +274,10 @@ hg()
 
 # Alias
 
+# Foldering
+alias ls="ls -a --color"
+alias mkdir="mkdir -p"
+
 # Reload
 alias reload="source ~/.zshrc"
 
@@ -320,7 +287,7 @@ alias vimdiff="nvim -d"
 # Movement
 alias cp="rsync -av -P"
 alias mv='mv -i'
-alias v="fd --type f --hidden --exclude .git | fzf-tmux -f | xargs nvim"
+alias v="fd --type f --hidden --exclude .git | fzf-tmux -p | xargs nvim"
 
 # Tmux
 alias tn="tmux new -s"
