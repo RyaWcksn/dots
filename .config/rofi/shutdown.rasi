@@ -1,0 +1,67 @@
+* {
+    bg: #282c34;
+    fg: #abb2bf;
+    bgalt: #3e4451;
+    hlbg: #61afef;
+    hlfg: #282c34;
+    separator: #282c34;
+    border: #abb2bf;
+    borderselected: #61afef;
+    borderurgent: #e06c75;
+    scrollbar: #61afef;
+    urgent: #e06c75;
+}
+
+#window {
+    width: 30%;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#mainbox {
+    children: [ inputbar, listview ];
+}
+
+#listview {
+    dynamic: true;
+    padding: 5px 0;
+}
+
+#element {
+    padding: 5px 10px;
+    margin: 3px;
+    border-radius: 5px;
+}
+
+#element.normal.normal {
+    text-color: @fg;
+}
+
+#element.normal.selected {
+    text-color: @hlfg;
+    background-color: @hlbg;
+}
+
+#element.urgent.normal {
+    text-color: @urgent;
+    background-color: @bgalt;
+}
+
+#element.urgent.selected {
+    text-color: @urgent;
+    background-color: @bgalt;
+}
+
+#inputbar {
+    children: [ prompt, entry ];
+}
+
+#prompt {
+    text-color: @fg;
+    padding: 5px;
+}
+
+#entry {
+    text-color: @fg;
+    padding: 5px;
+}

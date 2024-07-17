@@ -11753,3 +11753,7 @@ Feb 02 23:26 : exception: Failed to open /home/aya/.config/mpd/playlists: No suc
 Feb 02 23:30 : player: played "[Nemuri] Death Parade デス・パレード (2015) [FLAC]/[2015.02.25] デス・パレード｜Flyers [OP.1]/01. Flyers.flac"
 Feb 02 23:34 : player: played "[Nemuri] Death Parade デス・パレード (2015) [FLAC]/[2015.02.25] デス・パレード｜Flyers [OP.1]/01. Flyers.flac"
 Feb 02 23:37 : player: played "[Nemuri] Death Parade デス・パレード (2015) [FLAC]/[2015.02.25] デス・パレード｜Flyers [OP.1]/01. Flyers.flac"
+Jul 15 03:49 : exception: Failed to decode /home/arya/Music/[Nemuri] Death Parade デス・パレード (2015) [FLAC]/[2015.02.25] デス・パレード｜Flyers [OP.1]/01. Flyers.flac; Failed to open '/home/arya/Music/[Nemuri] Death Parade デス・パレード (2015) [FLAC]/[2015.02.25] デス・パレード｜Flyers [OP.1]/01. Flyers.flac': No such file or directory
+Jul 15 03:49 : player: played "[Nemuri] Death Parade デス・パレード (2015) [FLAC]/[2015.02.25] デス・パレード｜Flyers [OP.1]/01. Flyers.flac"
+Jul 15 03:49 : server_socket: bind to '0.0.0.0:9001' failed (continuing anyway, because binding to '[::]:9001' succeeded): Failed to bind socket: Address already in use
+Jul 15 03:49 : mixer: Failed to read mixer for 'My ALSA Device': no such mixer control: PCM

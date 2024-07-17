@@ -15,7 +15,7 @@ super + Escape
 	pkill -USR1 -x sxhkd
 
 super + shift + {w,d,e}
-    {chromium, discord, emacsclient -c -a 'emacs'}
+    {google-chrome, discord, emacsclient -c -a 'emacs'}
 
 super + ctrl + shift + h
     dunstctl history-pop
