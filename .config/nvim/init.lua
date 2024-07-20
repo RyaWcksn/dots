@@ -1,0 +1,7 @@
+require('plugins')
+require('mappings')
+require('options')
+require('options.autocmd')
+require('options.statusline')
+require('options.winbar')
+require('options.netrw')
