@@ -13470,3 +13470,31 @@ Jul 19 12:14 : player: played "VTR FLAC/ヴァンパイア (TeddyLoid Remix)/01.
 Jul 19 14:23 : output: Failed to open mixer for 'My ALSA Device': no such mixer control: PCM
 Jul 19 14:26 : player: played "PDM39-F/Disc 2/11 愛言葉.flac"
 Jul 19 14:31 : player: played "VTR FLAC/ヴァンパイア (TeddyLoid Remix)/01. ヴァンパイア (TeddyLoid Remix).flac"
+Jul 22 08:49 : server_socket: bind to '0.0.0.0:9001' failed (continuing anyway, because binding to '[::]:9001' succeeded): Failed to bind socket: Address already in use
+Jul 22 08:50 : mixer: Failed to read mixer for 'My ALSA Device': no such mixer control: PCM
+Jul 22 08:50 : output: Failed to open mixer for 'My ALSA Device': no such mixer control: PCM
+Jul 22 08:56 : player: played "PDM39-F/Disc 5/20 Catch the Wave.flac"
+Jul 22 09:01 : player: played "PDM39-F/Disc 4/15 ありふれたせかいせいふく.flac"
+Jul 22 09:08 : player: played "SW FLAC/Stance on Wave/10. システマティック・ラヴ.flac"
+Jul 22 09:21 : player: played "PDM39-F/Disc 2/16 裏表ラバーズ.flac"
+Jul 22 09:30 : exception: Failed to open /home/arya/.config/mpd/playlists: No such file or directory
+Jul 22 09:30 : exception: Failed to open /home/arya/.config/mpd/playlists: No such file or directory
+Jul 22 09:36 : player: played "PDM39-F/Disc 4/17 ODDS&ENDS.flac"
+Jul 22 09:40 : player: played "PDM39-F/Disc 5/11 ゴーストルール.flac"
+Jul 22 09:46 : player: played "PDM39-F/Disc 2/11 愛言葉.flac"
+Jul 22 09:48 : player: played "PDM39-F/Disc 1/01  みくみくにしてあげる♪【してやんよ】.flac"
+Jul 22 09:52 : player: played "PDM39-F/Disc 3/02 ローリンガール.flac"
+Jul 22 09:55 : player: played "PDM39-F/Disc 2/01 ぽっぴっぽー.flac"
+Jul 22 09:58 : player: played "PDM39-F/Disc 4/04 Hello, Worker.flac"
+Jul 22 10:03 : player: played "SW FLAC/Stance on Wave/14. Dilapidated World.flac"
+Jul 22 10:06 : player: played "PDM39-F/Disc 4/15 ありふれたせかいせいふく.flac"
+Jul 22 10:09 : player: played "PDM39-F/Disc 2/06 ロミオとシンデレラ.flac"
+Jul 22 10:14 : player: played "SW FLAC/Stance on Wave/02. The Beginning of the War.flac"
+Jul 22 10:18 : player: played "PDM39-F/Disc 3/07 ワールズエンド・ダンスホール -Live Dance Edition-.flac"
+Jul 22 10:21 : player: played "PDM39-F/Disc 2/16 裏表ラバーズ.flac"
+Jul 22 10:26 : player: played "ETEDMT FLAC/EXIT TUNES PRESENTS Entrance Dream Music’Turbo/02. ロキ (emon(Tes.) REMIX) - emon feat. 鏡音リン, 鏡音レン.flac"
+Jul 22 10:29 : player: played "PDM39-F/Disc 4/16 Weekender Girl.flac"
+Jul 22 10:32 : player: played "ETEDMT FLAC/EXIT TUNES PRESENTS Entrance Dream Music’Turbo/10. Brain - TeddyLoid feat. galaco.flac"
+Jul 22 10:34 : player: played "SW FLAC/Stance on Wave/15. ／＊decryption＊／.flac"
+Jul 22 10:38 : player: played "PDM39-F/Disc 3/13 ネトゲ廃人シュプレヒコール.flac"
+Jul 22 10:41 : player: played "PDM39-F/Disc 2/10 Just Be Friends.flac"

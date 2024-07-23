@@ -2,8 +2,8 @@ sw_volume: 0
 audio_device_state:1:My ALSA Device
 audio_device_state:1:My HTTP Stream
 state: pause
-current: 8
-time: 1.117000
+current: 36
+time: 80.776000
 random: 1
 repeat: 1
 single: 0
@@ -64,4 +64,15 @@ playlist_begin
 49:PDM39-F/Disc 4/04 Hello, Worker.flac
 50:PDM39-F/Disc 4/15 ありふれたせかいせいふく.flac
 51:PDM39-F/Disc 4/16 Weekender Girl.flac
+52:PDM39-F/Disc 1/01  みくみくにしてあげる♪【してやんよ】.flac
+53:PDM39-F/Disc 1/07 サイハテ.flac
+54:PDM39-F/Disc 1/14 ブラック★ロックシューター.flac
+55:PDM39-F/Disc 1/13 ワールドイズマイン.flac
+56:PDM39-F/Disc 3/20 メテオ.flac
+57:PDM39-F/Disc 4/03 東京テディベア.flac
+58:PDM39-F/Disc 4/08 Tell Your World.flac
+59:PDM39-F/Disc 4/13 shake it!.flac
+60:PDM39-F/Disc 4/17 ODDS&ENDS.flac
+61:PDM39-F/Disc 5/11 ゴーストルール.flac
+62:PDM39-F/Disc 5/15 ヒバナ.flac
 playlist_end
