@@ -128,12 +128,12 @@ local on_attach = function(client, bufnr)
 	end
 
 	if client.server_capabilities.documentFormattingProvider then
-		vim.api.nvim_create_autocmd("BufWritePre", {
-			buffer = bufnr,
-			callback = function()
-				vim.lsp.buf.format()
-			end
-		})
+		-- vim.api.nvim_create_autocmd("BufWritePre", {
+		-- 	buffer = bufnr,
+		-- 	callback = function()
+		-- 		vim.lsp.buf.format()
+		-- 	end
+		-- })
 	end
 
 	if client.server_capabilities.signatureHelpProvider then

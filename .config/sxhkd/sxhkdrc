@@ -29,6 +29,9 @@ super + F4
 super + F1
 	$HOME/.config/bspwm/scripts/wifi.sh
 
+super + F2
+	$HOME/.config/bspwm/scripts/rofi-blt.sh
+
 super + ctrl + l 
       	$HOME/.config/bspwm/scripts/lock.sh
 
@@ -66,11 +69,11 @@ XF86AudioMute
     pactl set-sink-mute @DEFAULT_SINK@ toggle
 
 # Media Control 
-XF86AudioNext
+super + p
     playerctl next
-XF86AudioPrev
+super + i
     playerctl previous
-XF86AudioPlay
+super + o
     playerctl play-pause
 
 # Brigtness

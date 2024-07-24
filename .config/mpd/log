@@ -13498,3 +13498,9 @@ Jul 22 10:32 : player: played "ETEDMT FLAC/EXIT TUNES PRESENTS Entrance Dream Mu
 Jul 22 10:34 : player: played "SW FLAC/Stance on Wave/15. ／＊decryption＊／.flac"
 Jul 22 10:38 : player: played "PDM39-F/Disc 3/13 ネトゲ廃人シュプレヒコール.flac"
 Jul 22 10:41 : player: played "PDM39-F/Disc 2/10 Just Be Friends.flac"
+Jul 23 08:30 : output: Failed to open mixer for 'My ALSA Device': no such mixer control: PCM
+Jul 23 10:32 : output: Failed to open mixer for 'My ALSA Device': no such mixer control: PCM
+Jul 24 16:16 : player: played "PDM39-F/Disc 2/11 愛言葉.flac"
+Jul 24 23:38 : server_socket: bind to '0.0.0.0:9001' failed (continuing anyway, because binding to '[::]:9001' succeeded): Failed to bind socket: Address already in use
+Jul 24 23:38 : mixer: Failed to read mixer for 'My ALSA Device': no such mixer control: PCM
+Jul 24 23:39 : output: Failed to open mixer for 'My ALSA Device': no such mixer control: PCM
