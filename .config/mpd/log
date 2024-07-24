@@ -13504,3 +13504,4 @@ Jul 24 16:16 : player: played "PDM39-F/Disc 2/11 愛言葉.flac"
 Jul 24 23:38 : server_socket: bind to '0.0.0.0:9001' failed (continuing anyway, because binding to '[::]:9001' succeeded): Failed to bind socket: Address already in use
 Jul 24 23:38 : mixer: Failed to read mixer for 'My ALSA Device': no such mixer control: PCM
 Jul 24 23:39 : output: Failed to open mixer for 'My ALSA Device': no such mixer control: PCM
+Jul 25 00:25 : player: played "PDM39-F/Disc 3/01 Sweet Devil.flac"

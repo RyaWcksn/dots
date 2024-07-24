@@ -44,7 +44,7 @@ foreground = "0xa9b1d6"
 style = "beam"
 
 [font]
-size = 10
+size = 9
 
 #[font.normal]
 #family = "MesloLGS NF"
