@@ -17,7 +17,7 @@ git clone https://github.com/RyaWcksn/dots
 ```
 
 ```sh
-sudo apt-get install bspwm ranger neovim git tmux zathura mpd mpv ncmpcpp dunst rofi polybar
+sudo apt-get install bspwm ranger neovim git tmux zathura mpd mpv ncmpcpp dunst rofi polybar xbacklight playerctl arandr
 ```
 
 Additional dependency
