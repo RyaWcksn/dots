@@ -1,9 +1,7 @@
 #!/bin/bash
-# Get the current wallpaper using feh (or the method you use to set wallpapers)
-wallpaper=$(feh --bg-fill --no-fehbg --randomize --quiet --bg-center)
 
 # Take a screenshot
-scrot /tmp/lockscreen.png
+cp $HOME/.config/bspwm/assets/fuyuko2.jpg /tmp/lockscreen.png
 
 # Apply a blur filter to the screenshot
 convert /tmp/lockscreen.png -blur 0x6 /tmp/lockscreen.png

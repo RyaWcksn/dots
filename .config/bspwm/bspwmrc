@@ -32,5 +32,4 @@ feh --no-startup-id feh --bg-scale -Z ~/.config/bspwm/assets/miku_wall.jpg \
 dunst -config $HOME/.config/dunst/dunstrc
 setxkbmap -layout us -option ctrl:swapcaps
 $HOME/.config/polybar/launch.sh
-$HOME/.config/bspwm/scripts/em.sh
 $HOME/.config/bspwm/scripts/low_batt.sh
