@@ -35,9 +35,6 @@ super + F2
 super + ctrl + l 
       	$HOME/.config/bspwm/scripts/lock.sh
 
-super + shift + f 
-	emacsclient -c -e '(dired "~/")'
-
 
 #
 # bspwm hotkeys
@@ -116,9 +113,6 @@ super + {t,ctrl + t,s,f}
 super + ctrl + {m,x,y,z}
 	bspc node -g {marked,locked,sticky,private}
 
-#
-# focus/swap
-#
 
 # focus the node in the given direction
 super + {_,shift + }{h,j,k,l}
@@ -144,10 +138,6 @@ super + {o,i}
 super + {_,shift + }{1-9,0}
 	bspc {desktop -f,node -d} focused:'^{1-9,10}'
 
-#
-# preselect
-#
-
 # preselect the direction
 super + ctrl + {h,j,k,l}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
@@ -164,11 +154,7 @@ super + ctrl + space
 super + ctrl + shift + space
 	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
 
-#
 # move/resize
-#
-#
-#
 ctrl + alt + shift + {Down,Up}
     bspc node -d {prev,next}.local --to-monitor {prev,next}
 

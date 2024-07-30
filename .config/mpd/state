@@ -2,8 +2,8 @@ sw_volume: 0
 audio_device_state:1:My ALSA Device
 audio_device_state:1:My HTTP Stream
 state: pause
-current: 44
-time: 11.634000
+current: 3
+time: 32.963000
 random: 1
 repeat: 1
 single: 0
@@ -75,4 +75,6 @@ playlist_begin
 60:PDM39-F/Disc 4/17 ODDS&ENDS.flac
 61:PDM39-F/Disc 5/11 ゴーストルール.flac
 62:PDM39-F/Disc 5/15 ヒバナ.flac
+63:Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Complete Best [SMCL-117]/01 - Days.flac
+64:Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Complete Best [SMCL-117]/10 - Niji.flac
 playlist_end

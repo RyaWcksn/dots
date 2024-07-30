@@ -13505,3 +13505,149 @@ Jul 24 23:38 : server_socket: bind to '0.0.0.0:9001' failed (continuing anyway, 
 Jul 24 23:38 : mixer: Failed to read mixer for 'My ALSA Device': no such mixer control: PCM
 Jul 24 23:39 : output: Failed to open mixer for 'My ALSA Device': no such mixer control: PCM
 Jul 25 00:25 : player: played "PDM39-F/Disc 3/01 Sweet Devil.flac"
+Jul 25 11:29 : server_socket: bind to '0.0.0.0:9001' failed (continuing anyway, because binding to '[::]:9001' succeeded): Failed to bind socket: Address already in use
+Jul 25 11:29 : mixer: Failed to read mixer for 'My ALSA Device': no such mixer control: PCM
+Jul 25 11:29 : exception: Failed to open /home/arya/.config/mpd/playlists: No such file or directory
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven OP2 Single - Shounen Heart [Home Made Kazoku][KSCL-879]/01 - Shounen Heart.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven OP2 Single - Shounen Heart [Home Made Kazoku][KSCL-879]/02 - Sora to Umi no Deau Tokoro.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven OP2 Single - Shounen Heart [Home Made Kazoku][KSCL-879]/03 - Shounen Heart (Instrumental).flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven OP1 Single - Days [FLOW][KSCL-826]/01 - Days.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven OP1 Single - Days [FLOW][KSCL-826]/02 - Journey.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven OP1 Single - Days [FLOW][KSCL-826]/03 - Fun Time Delivery.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven OP1 Single - Days [FLOW][KSCL-826]/05 - Days (Eureka Opening Mix).flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven OP1 Single - Days [FLOW][KSCL-826]/04 - Days (Vocalless Mix).flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven OP4 Single - Sakura [NIRGILIS][DFCL-1269]/01 - Sakura.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven OP4 Single - Sakura [NIRGILIS][DFCL-1269]/03 - Re; Common Girl.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven OP4 Single - Sakura [NIRGILIS][DFCL-1269]/02 - Sakura (Cherry Blossom).flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven OP4 Single - Sakura [NIRGILIS][DFCL-1269]/04 - Sakura (Original Instrumental).flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven ED4 Single - Canvas [COOLON][SRCL-6225]/01 - Canvas.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven ED4 Single - Canvas [COOLON][SRCL-6225]/02 - Weekend.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven ED4 Single - Canvas [COOLON][SRCL-6225]/03 - &Joy.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven ED4 Single - Canvas [COOLON][SRCL-6225]/04 - Canvas (Instrumental).flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven OP3 Single - Taiyou no Mannaka he [Bivattchee][SRCL-6077]/02 - Kimi to Waratta Kisetsu.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven OP3 Single - Taiyou no Mannaka he [Bivattchee][SRCL-6077]/04 - Taiyou no Mannaka he (Instrumental).flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven OP3 Single - Taiyou no Mannaka he [Bivattchee][SRCL-6077]/01 - Taiyou no Mannaka he.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven OP3 Single - Taiyou no Mannaka he [Bivattchee][SRCL-6077]/03 - Taiyou no Mannaka he (Eureka Opening Mix).flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven ED3 Single - Tip Taps Tip [HALCALI][ESCL-2746]/03 - Pisudori.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven ED3 Single - Tip Taps Tip [HALCALI][ESCL-2746]/02 - Halcali'n'Bass.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven ED3 Single - Tip Taps Tip [HALCALI][ESCL-2746]/04 - Tip Taps Tip (Instrumental).flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven ED3 Single - Tip Taps Tip [HALCALI][ESCL-2746]/01 - Tip Taps Tip.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Complete Best [SMCL-117]/01 - Days.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Complete Best [SMCL-117]/08 - Canvas.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Complete Best [SMCL-117]/07 - Sakura.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Complete Best [SMCL-117]/03 - Shounen Heart.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Complete Best [SMCL-117]/10 - Niji.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Complete Best [SMCL-117]/04 - Fly Away.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Complete Best [SMCL-117]/05 - Taiyou no Mannaka he.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Complete Best [SMCL-117]/06 - Tip Taps Tip.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Complete Best [SMCL-117]/09 - REALIZE.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Complete Best [SMCL-117]/02 - Himitsu Kichi.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven ED1 Single - Himitsu Kichi [Takada Kozue][SECL-193]/02 - Inko.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven ED1 Single - Himitsu Kichi [Takada Kozue][SECL-193]/01 - Himitsu Kichi.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven ED2 Single - Fly Away [Asami Izawa][SECL-210]/01 - Fly Away.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven ED2 Single - Fly Away [Asami Izawa][SECL-210]/03 - Fly Away (Taichi Master Remix).flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven ED2 Single - Fly Away [Asami Izawa][SECL-210]/02 - Circle Of Life.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven ED2 Single - Fly Away [Asami Izawa][SECL-210]/04 - Fly Away (Instrumental).flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 2 [SVWC-7340~1]/CD 1/12 - Corarian Genshutsu.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 2 [SVWC-7340~1]/CD 1/07 - Dian.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 2 [SVWC-7340~1]/CD 1/19 - I've Got It (Eureka New School Acid Mix).flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 2 [SVWC-7340~1]/CD 1/18 - Ninety Three.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 2 [SVWC-7340~1]/CD 1/02 - Tip Taps Tip (Eureka Ending Mix).flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 2 [SVWC-7340~1]/CD 1/08 - Kiokuko.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 2 [SVWC-7340~1]/CD 1/13 - Rengoku no Kajitsu.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 2 [SVWC-7340~1]/CD 1/15 - Hisonaru Ketsui.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 2 [SVWC-7340~1]/CD 1/10 - Inori no Umi.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 2 [SVWC-7340~1]/CD 1/14 - Dui Novaku.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 2 [SVWC-7340~1]/CD 1/04 - Sakura (Eureka Opening Mix).flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 2 [SVWC-7340~1]/CD 1/20 - Second Summer of Love.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 2 [SVWC-7340~1]/CD 1/05 - Hakanai Yume.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 2 [SVWC-7340~1]/CD 1/22 - Niji.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 2 [SVWC-7340~1]/CD 1/16 - Saigo no Kibou.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 2 [SVWC-7340~1]/CD 1/06 - Yakusoku no Chi.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 2 [SVWC-7340~1]/CD 1/01 - Canvas (Eureka Ending  Mix).flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 2 [SVWC-7340~1]/CD 1/09 - Time-lines.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 2 [SVWC-7340~1]/CD 1/21 - Hoshi ni Negai wo.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 2 [SVWC-7340~1]/CD 1/11 - Genzai.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 2 [SVWC-7340~1]/CD 1/03 - Taiyou no Mannaka he (Eureka Opening Mix).flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 2 [SVWC-7340~1]/CD 1/17 - Shissosuru Tamashii .flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 2 [SVWC-7340~1]/CD 2/12 - M20.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 2 [SVWC-7340~1]/CD 2/06 - D.J.CHOICE.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 2 [SVWC-7340~1]/CD 2/15 - M-Ex1.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 2 [SVWC-7340~1]/CD 2/04 - Koitsu.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 2 [SVWC-7340~1]/CD 2/09 - M3.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 2 [SVWC-7340~1]/CD 2/01 - WHITE TIGER NO.24.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 2 [SVWC-7340~1]/CD 2/05 - Chaotic Waltz.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 2 [SVWC-7340~1]/CD 2/10 - M15.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 2 [SVWC-7340~1]/CD 2/07 - Dot.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 2 [SVWC-7340~1]/CD 2/13 - M30.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 2 [SVWC-7340~1]/CD 2/02 - Draft Any Funk.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 2 [SVWC-7340~1]/CD 2/16 - M-Ex-2.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 2 [SVWC-7340~1]/CD 2/11 - M16.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 2 [SVWC-7340~1]/CD 2/14 - M36.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 2 [SVWC-7340~1]/CD 2/08 - Control.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 2 [SVWC-7340~1]/CD 2/03 - L.F.O..flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 1 [SVWC-7294~5]/CD 1/08 - Eureka.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 1 [SVWC-7294~5]/CD 1/21 - GEKKO-GO.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 1 [SVWC-7294~5]/CD 1/18 - Yochou.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 1 [SVWC-7294~5]/CD 1/07 - Shinjitsu.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 1 [SVWC-7294~5]/CD 1/12 - On the Hill.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 1 [SVWC-7294~5]/CD 1/19 - Taidou kara no Chouyaku.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 1 [SVWC-7294~5]/CD 1/05 - Tooi Kioku.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 1 [SVWC-7294~5]/CD 1/23 - Nirvash Type ZERO.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 1 [SVWC-7294~5]/CD 1/27 - Himitsu Kichi (Eureka Ending Mix).flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 1 [SVWC-7294~5]/CD 1/20 - Sentou Kuuiki.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 1 [SVWC-7294~5]/CD 1/10 - Tiger Track.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 1 [SVWC-7294~5]/CD 1/24 - Iru Beki Basho.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 1 [SVWC-7294~5]/CD 1/17 - Yadonashi ga Tsumabiku.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 1 [SVWC-7294~5]/CD 1/26 - Kibou no Sora.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 1 [SVWC-7294~5]/CD 1/04 - Boukyou.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 1 [SVWC-7294~5]/CD 1/06 - Zankoku na Sekai.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 1 [SVWC-7294~5]/CD 1/13 - Hohoemi no Kyoufu.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 1 [SVWC-7294~5]/CD 1/01 - Days (Eureka Opening Mix).flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 1 [SVWC-7294~5]/CD 1/16 - Kindan no Kajitsu.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 1 [SVWC-7294~5]/CD 1/09 - Chi Toiu Kizuna.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 1 [SVWC-7294~5]/CD 1/03 - Nagai Tabiji.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 1 [SVWC-7294~5]/CD 1/02 - STORYWRITER.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 1 [SVWC-7294~5]/CD 1/11 - Acid Track Prototype.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 1 [SVWC-7294~5]/CD 1/14 - Okamochi & Jersey.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 1 [SVWC-7294~5]/CD 1/25 - Sekai no Tada Naka de.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 1 [SVWC-7294~5]/CD 1/15 - Sexy Lady Bluesy.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 1 [SVWC-7294~5]/CD 1/22 - Renton Thruston.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 1 [SVWC-7294~5]/CD 2/01 - Shounen Heart (Eureka Opening Mix).flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 1 [SVWC-7294~5]/CD 2/17 - Kioku no Naka no Umi.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 1 [SVWC-7294~5]/CD 2/13 - Type The END.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 1 [SVWC-7294~5]/CD 2/16 - Kono Hoshi no Doko ni Demo Tsunagatte Iru, Kono Sora no Shita de.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 1 [SVWC-7294~5]/CD 2/03 - Higan wo Fuku Kaze.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 1 [SVWC-7294~5]/CD 2/06 - Skurve Coral.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 1 [SVWC-7294~5]/CD 2/14 - GET IT BY YOUR HANDS.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 1 [SVWC-7294~5]/CD 2/07 - Kaishou Sarenu Gokai.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 1 [SVWC-7294~5]/CD 2/18 - Fly Away (Eureka Ending Mix).flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 1 [SVWC-7294~5]/CD 2/12 - Jiga no Bouhatsu.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 1 [SVWC-7294~5]/CD 2/15 - Trance Ruined.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 1 [SVWC-7294~5]/CD 2/08 - Fuan no Ritsudou.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 1 [SVWC-7294~5]/CD 2/05 - Kyoshoku no Hoshi.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 1 [SVWC-7294~5]/CD 2/09 - Kouwazaru Unmei.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 1 [SVWC-7294~5]/CD 2/10 - Zetsubou no Naka no Nukumori, Shikashi....flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 1 [SVWC-7294~5]/CD 2/11 - Kyoukai Ue ni Te.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 1 [SVWC-7294~5]/CD 2/02 - Kouya ni Hitori.flac
+Jul 25 11:29 : update: added Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Original Soundtrack 1 [SVWC-7294~5]/CD 2/04 - Hisou.flac
+Jul 25 11:29 : exception: Failed to open /home/arya/.config/mpd/playlists: No such file or directory
+Jul 25 11:29 : output: Failed to open mixer for 'My ALSA Device': no such mixer control: PCM
+Jul 26 16:28 : output: Failed to open mixer for 'My ALSA Device': no such mixer control: PCM
+Jul 26 16:32 : player: played "PDM39-F/Disc 4/15 ありふれたせかいせいふく.flac"
+Jul 26 16:36 : player: played "SW FLAC/Stance on Wave/04. 鈍色トリガー.flac"
+Jul 26 16:40 : player: played "PDM39-F/Disc 4/13 shake it!.flac"
+Jul 26 16:43 : player: played "PDM39-F/Disc 2/06 ロミオとシンデレラ.flac"
+Jul 26 16:45 : player: played "SW FLAC/Stance on Wave/15. ／＊decryption＊／.flac"
+Jul 26 16:50 : player: played "SW FLAC/Stance on Wave/02. The Beginning of the War.flac"
+Jul 26 17:05 : output: Failed to open mixer for 'My ALSA Device': no such mixer control: PCM
+Jul 26 17:05 : player: played "SW FLAC/Stance on Wave/10. システマティック・ラヴ.flac"
+Jul 26 17:09 : player: played "VTR FLAC/ヴァンパイア (TeddyLoid Remix)/01. ヴァンパイア (TeddyLoid Remix).flac"
+Jul 26 17:12 : player: played "PDM39-F/Disc 3/13 ネトゲ廃人シュプレヒコール.flac"
+Jul 26 17:17 : player: played "PDM39-F/Disc 1/07 サイハテ.flac"
+Jul 26 17:20 : player: played "PDM39-F/Disc 4/20 Sadistic.Music∞Factory.flac"
+Jul 26 17:25 : output: Failed to open mixer for 'My ALSA Device': no such mixer control: PCM
+Jul 26 17:26 : player: played "PDM39-F/Disc 1/02 えれくとりっく・えんじぇぅ.flac"
+Jul 26 17:30 : player: played "PDM39-F/Disc 3/20 メテオ.flac"
+Jul 26 17:33 : player: played "PDM39-F/Disc 3/02 ローリンガール.flac"
+Jul 26 17:37 : player: played "ETEDMT FLAC/EXIT TUNES PRESENTS Entrance Dream Music’Turbo/06. One more time _ One more time... - かめりあ feat. 初音ミク.flac"
