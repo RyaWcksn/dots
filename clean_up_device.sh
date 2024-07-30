@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # List of directories to clear
-directories=("nltk_data") #"Personal" "Sandbox" "Work" "dots" "Downloads" "Picture" "Musics" "Videos")
+directories=("Clones" "Orgs" "hardir" "redis_data" "ryawcksn.vercel.app" ".emacs.d") #"Personal" "Sandbox" "Work" "dots" "Downloads" "Picture" "Musics" "Videos")
 
 # Number of overwrite passes
 overwrite_passes=3

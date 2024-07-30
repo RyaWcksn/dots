@@ -13651,3 +13651,8 @@ Jul 26 17:26 : player: played "PDM39-F/Disc 1/02 えれくとりっく・えん�
 Jul 26 17:30 : player: played "PDM39-F/Disc 3/20 メテオ.flac"
 Jul 26 17:33 : player: played "PDM39-F/Disc 3/02 ローリンガール.flac"
 Jul 26 17:37 : player: played "ETEDMT FLAC/EXIT TUNES PRESENTS Entrance Dream Music’Turbo/06. One more time _ One more time... - かめりあ feat. 初音ミク.flac"
+Jul 30 10:33 : server_socket: bind to '0.0.0.0:9001' failed (continuing anyway, because binding to '[::]:9001' succeeded): Failed to bind socket: Address already in use
+Jul 30 10:33 : mixer: Failed to read mixer for 'My ALSA Device': no such mixer control: PCM
+Jul 30 10:47 : exception: Failed to enable output "My HTTP Stream" (httpd); Failed to bind to '[::]:9001'; Failed to bind socket: Address already in use
+Jul 30 10:47 : exception: Failed to enable output "My HTTP Stream" (httpd); Failed to bind to '[::]:9001'; Failed to bind socket: Address already in use
+Jul 30 10:47 : exception: Failed to enable output "My HTTP Stream" (httpd); Failed to bind to '[::]:9001'; Failed to bind socket: Address already in use

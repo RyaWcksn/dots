@@ -305,7 +305,7 @@ show_menu() {
 }
 
 # Rofi command to pipe into, can add any options here
-rofi_command="rofi -dmenu $* -p -theme $HOME/.config/rofi/spotlight-wifi.rasi"
+rofi_command="rofi -dmenu $* -p -theme $HOME/.config/rofi/spotlight-bluetooth.rasi"
 
 case "$1" in
     --status)

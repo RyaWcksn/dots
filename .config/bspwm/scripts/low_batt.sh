@@ -32,7 +32,7 @@ while true; do
   then
     play -q -v 0.40 "$alarm" &
     notify-send " Low battery: ${battery_level}% " \
-      " $USER-sama $HOSTNAME's battery running low " -i $HOME/.config/berry/assets/battery.png -t 8001
+      " $USER-sama $HOSTNAME's battery running low " -i $HOME/.config/bspwm/assets/battery.png -t 8001
   fi
   
   sleep ${check_interval}m

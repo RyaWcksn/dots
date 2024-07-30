@@ -32,6 +32,9 @@ super + F1
 super + F2
 	$HOME/.config/bspwm/scripts/rofi-blt.sh
 
+super + F3
+	$HOME/.config/bspwm/scripts/select_audio.sh
+
 super + ctrl + l 
       	$HOME/.config/bspwm/scripts/lock.sh
 
@@ -64,6 +67,14 @@ XF86AudioLowerVolume
     pactl set-sink-volume @DEFAULT_SINK@ -5%
 XF86AudioMute
     pactl set-sink-mute @DEFAULT_SINK@ toggle
+
+
+super + shift + Up
+    pactl set-source-volume @DEFAULT_SOURCE@ +5%
+super + shift + Down
+    pactl set-source-volume @DEFAULT_SOURCE@ -5%
+super + shift + m
+    pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
 # Media Control 
 super + p

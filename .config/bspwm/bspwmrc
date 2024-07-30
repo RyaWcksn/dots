@@ -25,6 +25,7 @@ bspc node -d next.desktop --to-monitor next
 
 xsetroot -cursor_name left_ptr &
 picom &
+mpd &
 #feh --no-startup-id feh --bg-fill -Z ~/.config/bspwm/assets/fuyuko.jpg \
 #feh --no-startup-id feh --bg-scale -Z ~/.config/bspwm/assets/voca.jpg \
 feh --no-startup-id feh --bg-scale -Z ~/.config/bspwm/assets/miku_wall.jpg \
