@@ -30,7 +30,7 @@ while true; do
   if [ $battery_level -lt $warning_level ] &&
      [ $charging -eq 0 ]
   then
-    play -q -v 0.40 "$alarm" &
+    mpv "$alarm" --no-video
     notify-send " Low battery: ${battery_level}% " \
       " $USER-sama $HOSTNAME's battery running low " -i $HOME/.config/bspwm/assets/battery.png -t 8001
   fi
