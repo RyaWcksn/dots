@@ -13656,3 +13656,100 @@ Jul 30 10:33 : mixer: Failed to read mixer for 'My ALSA Device': no such mixer c
 Jul 30 10:47 : exception: Failed to enable output "My HTTP Stream" (httpd); Failed to bind to '[::]:9001'; Failed to bind socket: Address already in use
 Jul 30 10:47 : exception: Failed to enable output "My HTTP Stream" (httpd); Failed to bind to '[::]:9001'; Failed to bind socket: Address already in use
 Jul 30 10:47 : exception: Failed to enable output "My HTTP Stream" (httpd); Failed to bind to '[::]:9001'; Failed to bind socket: Address already in use
+Jul 30 11:04 : exception: Failed to enable output "My HTTP Stream" (httpd); Failed to bind to '[::]:9001'; Failed to bind socket: Address already in use
+Jul 30 11:05 : exception: Failed to enable output "My HTTP Stream" (httpd); Failed to bind to '[::]:9001'; Failed to bind socket: Address already in use
+Jul 30 11:05 : exception: Failed to enable output "My HTTP Stream" (httpd); Failed to bind to '[::]:9001'; Failed to bind socket: Address already in use
+Jul 30 11:05 : exception: Failed to enable output "My HTTP Stream" (httpd); Failed to bind to '[::]:9001'; Failed to bind socket: Address already in use
+Jul 31 21:39 : exception: Failed to enable output "My HTTP Stream" (httpd); Failed to bind to '[::]:9001'; Failed to bind socket: Address already in use
+Jul 31 21:45 : exception: Failed to enable output "My HTTP Stream" (httpd); Failed to bind to '[::]:9001'; Failed to bind socket: Address already in use
+Jul 31 21:56 : exception: Failed to enable output "My HTTP Stream" (httpd); Failed to bind to '[::]:9001'; Failed to bind socket: Address already in use
+Aug 01 10:13 : exception: Failed to enable output "My HTTP Stream" (httpd); Failed to bind to '[::]:9001'; Failed to bind socket: Address already in use
+Aug 01 10:14 : exception: Failed to enable output "My HTTP Stream" (httpd); Failed to bind to '[::]:9001'; Failed to bind socket: Address already in use
+Aug 01 10:14 : exception: Failed to enable output "My HTTP Stream" (httpd); Failed to bind to '[::]:9001'; Failed to bind socket: Address already in use
+Aug 02 07:06 : exception: Failed to commit /home/arya/.config/mpd/state: File exists
+Aug 02 07:06 : player: played "[2024.07.17]初音ミク「マジカルミライ 2024」OFFICIAL ALBUM[FLAC]/12. アンテナ39 (バリカタver.) - 真島ゆろ.flac"
+Aug 02 07:06 : player: played "[2024.07.17]初音ミク「マジカルミライ 2024」OFFICIAL ALBUM[FLAC]/12. アンテナ39 (バリカタver.) - 真島ゆろ.flac"
+Aug 02 07:06 : player: played "[2024.07.17]初音ミク「マジカルミライ 2024」OFFICIAL ALBUM[FLAC]/12. アンテナ39 (バリカタver.) - 真島ゆろ.flac"
+Aug 02 07:06 : exception: Failed to commit /home/arya/.config/mpd/state: File exists
+Aug 02 07:06 : player: played "[2024.07.17]初音ミク「マジカルミライ 2024」OFFICIAL ALBUM[FLAC]/12. アンテナ39 (バリカタver.) - 真島ゆろ.flac"
+Aug 02 07:06 : exception: Failed to commit /home/arya/.config/mpd/state: File exists
+Aug 02 07:06 : exception: Failed to commit /home/arya/.config/mpd/state: File exists
+Aug 02 07:06 : exception: Failed to commit /home/arya/.config/mpd/state: File exists
+Aug 02 07:06 : exception: Failed to commit /home/arya/.config/mpd/state: File exists
+Aug 02 07:06 : player: played "[2024.07.17]初音ミク「マジカルミライ 2024」OFFICIAL ALBUM[FLAC]/12. アンテナ39 (バリカタver.) - 真島ゆろ.flac"
+Aug 02 07:06 : player: played "[2024.07.17]初音ミク「マジカルミライ 2024」OFFICIAL ALBUM[FLAC]/12. アンテナ39 (バリカタver.) - 真島ゆろ.flac"
+Aug 02 07:06 : player: played "[2024.07.17]初音ミク「マジカルミライ 2024」OFFICIAL ALBUM[FLAC]/12. アンテナ39 (バリカタver.) - 真島ゆろ.flac"
+Aug 02 07:06 : player: played "[2024.07.17]初音ミク「マジカルミライ 2024」OFFICIAL ALBUM[FLAC]/12. アンテナ39 (バリカタver.) - 真島ゆろ.flac"
+Aug 02 07:06 : player: played "[2024.07.17]初音ミク「マジカルミライ 2024」OFFICIAL ALBUM[FLAC]/12. アンテナ39 (バリカタver.) - 真島ゆろ.flac"
+Aug 02 07:06 : player: played "[2024.07.17]初音ミク「マジカルミライ 2024」OFFICIAL ALBUM[FLAC]/12. アンテナ39 (バリカタver.) - 真島ゆろ.flac"
+Aug 02 07:06 : player: played "[2024.07.17]初音ミク「マジカルミライ 2024」OFFICIAL ALBUM[FLAC]/12. アンテナ39 (バリカタver.) - 真島ゆろ.flac"
+Aug 02 07:06 : player: played "[2024.07.17]初音ミク「マジカルミライ 2024」OFFICIAL ALBUM[FLAC]/12. アンテナ39 (バリカタver.) - 真島ゆろ.flac"
+Aug 02 07:06 : player: played "[2024.07.17]初音ミク「マジカルミライ 2024」OFFICIAL ALBUM[FLAC]/12. アンテナ39 (バリカタver.) - 真島ゆろ.flac"
+Aug 02 07:06 : player: played "[2024.07.17]初音ミク「マジカルミライ 2024」OFFICIAL ALBUM[FLAC]/12. アンテナ39 (バリカタver.) - 真島ゆろ.flac"
+Aug 02 10:00 : server_socket: bind to '0.0.0.0:9001' failed (continuing anyway, because binding to '[::]:9001' succeeded): Failed to bind socket: Address already in use
+Aug 02 10:00 : exception: Failed to enable output "My HTTP Stream" (httpd); Failed to bind to '[::]:9001'; Failed to bind socket: Address already in use
+Aug 02 10:00 : mixer: Failed to read mixer for 'My ALSA Device': no such mixer control: PCM
+Aug 02 16:42 : output: Failed to open mixer for 'My ALSA Device': no such mixer control: PCM
+Aug 02 16:46 : player: played "PDM39-F/Disc 5/20 Catch the Wave.flac"
+Aug 02 16:50 : player: played "SW FLAC/Stance on Wave/04. 鈍色トリガー.flac"
+Aug 02 16:53 : player: played "PDM39-F/Disc 3/03 白い雪のプリンセスは.flac"
+Aug 02 16:56 : player: played "PDM39-F/Disc 2/16 裏表ラバーズ.flac"
+Aug 02 16:59 : player: played "PDM39-F/Disc 3/01 Sweet Devil.flac"
+Aug 02 17:03 : player: played "VTR FLAC/ヴァンパイア (TeddyLoid Remix)/01. ヴァンパイア (TeddyLoid Remix).flac"
+Aug 02 17:06 : player: played "ETEDMT FLAC/EXIT TUNES PRESENTS Entrance Dream Music’Turbo/07. アンドロイドガール (Osanzi REMIX) - Osanzi feat. 初音ミク.flac"
+Aug 02 17:10 : player: played "PDM39-F/Disc 3/16 キャットフード.flac"
+Aug 02 17:13 : player: played "PDM39-F/Disc 1/14 ブラック★ロックシューター.flac"
+Aug 02 17:17 : player: played "PDM39-F/Disc 1/16 サンドリヨン.flac"
+Aug 02 17:21 : player: played "PDM39-F/Disc 3/04 モノクロ∞ブルースカイ.flac"
+Aug 02 17:24 : player: played "PDM39-F/Disc 5/11 ゴーストルール.flac"
+Aug 02 17:27 : player: played "PDM39-F/Disc 3/15 秘密警察.flac"
+Aug 02 17:31 : player: played "SW FLAC/Stance on Wave/13. Underground Avalanche.flac"
+Aug 02 17:33 : player: played "SW FLAC/Stance on Wave/15. ／＊decryption＊／.flac"
+Aug 02 17:36 : player: played "PDM39-F/Disc 4/10 二次元ドリームフィーバー.flac"
+Aug 02 17:40 : player: played "PDM39-F/Disc 1/02 えれくとりっく・えんじぇぅ.flac"
+Aug 02 17:46 : player: played "PDM39-F/Disc 2/10 Just Be Friends.flac"
+Aug 02 17:49 : player: played "PDM39-F/Disc 4/04 Hello, Worker.flac"
+Aug 02 17:53 : player: played "PDM39-F/Disc 4/15 ありふれたせかいせいふく.flac"
+Aug 02 17:54 : player: played "SW FLAC/Stance on Wave/01. ／＊encryption＊／.flac"
+Aug 02 17:58 : player: played "PDM39-F/Disc 4/01 からくりピエロ.flac"
+Aug 02 18:01 : player: played "PDM39-F/Disc 2/01 ぽっぴっぽー.flac"
+Aug 02 18:04 : player: played "PDM39-F/Disc 4/03 東京テディベア.flac"
+Aug 02 18:08 : player: played "PDM39-F/Disc 3/20 メテオ.flac"
+Aug 02 18:12 : player: played "SW FLAC/Stance on Wave/03. 電子的生死表現.flac"
+Aug 02 18:15 : player: played "PDM39-F/Disc 5/15 ヒバナ.flac"
+Aug 02 18:20 : player: played "ETEDMT FLAC/EXIT TUNES PRESENTS Entrance Dream Music’Turbo/02. ロキ (emon(Tes.) REMIX) - emon feat. 鏡音リン, 鏡音レン.flac"
+Aug 02 18:24 : player: played "PDM39-F/Disc 3/21 アンハッピーリフレイン.flac"
+Aug 02 18:28 : player: played "PDM39-F/Disc 4/13 shake it!.flac"
+Aug 02 18:31 : player: played "PDM39-F/Disc 4/17 ODDS&ENDS.flac"
+Aug 02 18:35 : player: played "PDM39-F/Disc 4/16 Weekender Girl.flac"
+Aug 02 18:38 : player: played "PDM39-F/Disc 3/18 スキキライ.flac"
+Aug 02 18:40 : output: Failed to open mixer for 'My ALSA Device': no such mixer control: PCM
+Aug 02 18:44 : player: played "PDM39-F/Disc 4/18 39.flac"
+Aug 02 18:52 : player: played "SW FLAC/Stance on Wave/10. システマティック・ラヴ.flac"
+Aug 02 18:55 : player: played "PDM39-F/Disc 3/13 ネトゲ廃人シュプレヒコール.flac"
+Aug 02 19:01 : player: played "SW FLAC/Stance on Wave/12. flow arrow.flac"
+Aug 02 19:04 : player: played "PDM39-F/Disc 2/11 愛言葉.flac"
+Aug 02 19:08 : player: played "ETEDMT FLAC/EXIT TUNES PRESENTS Entrance Dream Music’Turbo/13. On Your Side - Yasuha. feat. 初音ミク V4 (English), 初音ミク V4X (Unknown).flac"
+Aug 02 19:13 : player: played "SW FLAC/Stance on Wave/07. Quantum Entanglement.flac"
+Aug 03 19:53 : server_socket: bind to '0.0.0.0:9001' failed (continuing anyway, because binding to '[::]:9001' succeeded): Failed to bind socket: Address already in use
+Aug 03 19:53 : output: Failed to open mixer for 'My ALSA Device': no such mixer control: PCM
+Aug 03 19:53 : exception: Failed to enable output "My HTTP Stream" (httpd); Failed to bind to '[::]:9001'; Failed to bind socket: Address already in use
+Aug 03 19:53 : exception: Failed to enable output "My HTTP Stream" (httpd); Failed to bind to '[::]:9001'; Failed to bind socket: Address already in use
+Aug 03 19:53 : output: Failed to open mixer for 'My ALSA Device': no such mixer control: PCM
+Aug 03 19:54 : output: Failed to open mixer for 'My ALSA Device': no such mixer control: PCM
+Aug 03 19:54 : output: Failed to open mixer for 'My ALSA Device': no such mixer control: PCM
+Aug 03 19:54 : output: Failed to open mixer for 'My ALSA Device': no such mixer control: PCM
+Aug 03 19:55 : server_socket: bind to '0.0.0.0:9001' failed (continuing anyway, because binding to '[::]:9001' succeeded): Failed to bind socket: Address already in use
+Aug 03 19:55 : output: Failed to open mixer for 'My ALSA Device': no such mixer control: PCM
+Aug 03 19:55 : output: Failed to open mixer for 'My ALSA Device': no such mixer control: PCM
+Aug 03 19:55 : output: Failed to open mixer for 'My ALSA Device': no such mixer control: PCM
+Aug 03 19:55 : output: Failed to open mixer for 'My ALSA Device': no such mixer control: PCM
+Aug 03 19:59 : player: played "Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Complete Best [SMCL-117]/01 - Days.flac"
+Aug 03 20:01 : server_socket: bind to '0.0.0.0:9001' failed (continuing anyway, because binding to '[::]:9001' succeeded): Failed to bind socket: Address already in use
+Aug 03 20:01 : mixer: Failed to read mixer for 'My ALSA Device': no such mixer control: PCM
+Aug 03 20:01 : output: Failed to open mixer for 'My ALSA Device': no such mixer control: PCM
+Aug 03 20:04 : player: played "Eureka Seven Lossless Music Collection (FLAC) [w_scans]/Eureka Seven Complete Best [SMCL-117]/01 - Days.flac"
+Aug 03 20:08 : player: played "PDM39-F/Disc 3/16 キャットフード.flac"
+Aug 03 20:25 : output: Failed to open mixer for 'My ALSA Device': no such mixer control: PCM
+Aug 03 20:25 : output: Failed to open mixer for 'My ALSA Device': no such mixer control: PCM
+Aug 03 20:31 : player: played "SW FLAC/Stance on Wave/10. システマティック・ラヴ.flac"

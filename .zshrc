@@ -19,6 +19,7 @@ source $ZSH/oh-my-zsh.sh
 export GOPATH=$HOME/go
 export GOROOT=/usr/local/go
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+export GOPRIVATE=bitbucket.org/ayopop
 
 export FZF_DEFAULT_COMMAND="fd --hidden --strio-cwd-prefix --exclude .git"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
@@ -292,3 +293,7 @@ if [ -f '/home/arya/gcp/google-cloud-sdk/path.zsh.inc' ]; then . '/home/arya/gcp
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/home/arya/gcp/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/arya/gcp/google-cloud-sdk/completion.zsh.inc'; fi
+
+if [ -e /home/$USER/.nix-profile/etc/profile.d/nix.sh ]; then
+  . /home/$USER/.nix-profile/etc/profile.d/nix.sh
+fi

@@ -2,8 +2,8 @@ sw_volume: 0
 audio_device_state:1:My ALSA Device
 audio_device_state:1:My HTTP Stream
 state: pause
-current: 3
-time: 32.963000
+current: 24
+time: 10.561000
 random: 1
 repeat: 1
 single: 0

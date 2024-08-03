@@ -119,7 +119,7 @@ local on_attach = function(client, bufnr)
 		-- 		vim.lsp.codelens.display
 		-- 	end
 		-- end
-		vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
+		vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold" }, {
 			buffer = bufnr,
 			callback = function()
 				vim.lsp.codelens.refresh()
