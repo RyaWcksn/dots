@@ -6,52 +6,26 @@
   home.stateVersion = "23.05";
   programs.home-manager.enable = true;
 
-  home.packages = with pkgs; [
-    noto-fonts
-    noto-fonts-cjk
-    dejavu_fonts
-    liberation_ttf
-    neovim
-    git
-    htop
-    neofetch
-    ncmpcpp
-    rofi
-    dunst
-    mpd
-    mpv
-    stow
-    bspwm
-    tmux
-    zathura
-    polybar
-    playerctl
-    jq
-    tree
+  home.packages = [
+	pkgs.neovim
+        pkgs.git
+        pkgs.htop
+        pkgs.neofetch
+        pkgs.ncmpcpp
+        pkgs.rofi
+        pkgs.dunst
+        pkgs.mpd
+        pkgs.mpv
+        pkgs.stow
+        pkgs.bspwm
+        pkgs.tmux
+        pkgs.zathura
+        pkgs.polybar
+        pkgs.playerctl
+        pkgs.jq
+        pkgs.tree
+        pkgs.atac
+        pkgs.termshark
+	pkgs.wireshark
   ];
-  fonts.fontconfig.enable = true;
-  i18n = {
-	  inputMethod = {
-		  enabled = "fcitx5";
-		  fcitx5.addons = [ pkgs.fcitx5-mozc ];
-	  };
-  };
-  services.fcitx5 = {
-	  enable = true;
-	  startAtStartup = true;
-  };
-
-  services = {
-    ssh-agent = {
-      enable = true;
-    };
-  };
-  programs.git = {
-	  enable = true;
-	  userEmail = "pram.aryawcksn@gmail.com";
-	  userName = "RyaWcksn";
-  };
-  home.sessionVariables = {
-	  EDITOR = "nvim";
-  };
 }
