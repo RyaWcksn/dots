@@ -18,24 +18,6 @@
         allowUnfree = true;
       };
       environment.systemPackages = [
-        pkgs.neovim
-        pkgs.git
-        pkgs.htop
-        pkgs.neofetch
-        pkgs.ncmpcpp
-        pkgs.rofi
-        pkgs.dunst
-        pkgs.mpd
-        pkgs.mpv
-        pkgs.stow
-        pkgs.bspwm
-        pkgs.tmux
-        pkgs.zathura
-        pkgs.polybar
-        pkgs.playerctl
-        pkgs.jq
-        pkgs.tree
-        pkgs.atac
       ];
       services.nix-daemon.enable = true;
       nix.settings.experimental-features = "nix-command flakes";
@@ -44,11 +26,15 @@
       system.stateVersion = 4;
       nix.configureBuildUsers = true;
       nix.useDaemon = true;
+
+      security.pam.enableSudoTouchIdAuth = true;
     };
   in {
-    homeConfigurations.arya = home-manager.lib.homeManagerConfiguration {
-      inherit pkgs;
-      modules = [ ./home.nix ];
+    homeConfigurations = {
+      arya = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        modules = [ ./home.nix ];
+      };
     };
   };
 }

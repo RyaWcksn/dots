@@ -27,5 +27,7 @@
         pkgs.atac
         pkgs.termshark
 	pkgs.wireshark
+	pkgs.xorg.xbacklight
+	pkgs.nixd
   ];
 }
