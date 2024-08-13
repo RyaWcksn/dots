@@ -1,6 +1,7 @@
 { config, pkgs, ... }:
 
 {
+  nixpkgs.config = {allowUnfree = true;};
   home.username = "arya";
   home.homeDirectory = "/home/arya";
   home.stateVersion = "23.05";
@@ -29,5 +30,11 @@
 	pkgs.wireshark
 	pkgs.xorg.xbacklight
 	pkgs.nixd
+	pkgs.android-tools
+	pkgs.alacritty
+	pkgs.zsh
+	pkgs.google-chrome
+	pkgs.kitty
+	pkgs.postman
   ];
 }
