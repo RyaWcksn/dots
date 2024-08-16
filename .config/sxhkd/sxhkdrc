@@ -3,19 +3,17 @@
 #
 
 # terminal emulator
+# super + Return
+# 	alacritty
 super + Return
-	alacritty
-
-# program launcher
-super + @space
-	dmenu_run
+	kitty
 
 # make sxhkd reload its configuration files:
 super + Escape
 	pkill -USR1 -x sxhkd
 
-super + shift + {w,d,e}
-    {google-chrome, discord, emacsclient -c -a 'emacs'}
+super + shift + {w,d}
+    {google-chrome, discord}
 
 super + ctrl + shift + h
     dunstctl history-pop

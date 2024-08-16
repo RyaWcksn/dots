@@ -1,9 +1,9 @@
-{ config, pkgs, ... }:
+{ userSettings, config, pkgs, system, ... }:
 
 {
   nixpkgs.config = {allowUnfree = true;};
-  home.username = "arya";
-  home.homeDirectory = "/home/arya";
+  home.username = "${userSettings.userName}";
+  home.homeDirectory = "/home/${userSettings.userName}";
   home.stateVersion = "23.05";
   programs.home-manager.enable = true;
 
@@ -36,5 +36,7 @@
 	pkgs.google-chrome
 	pkgs.kitty
 	pkgs.postman
+	pkgs.emacs
+	pkgs.mesa
   ];
 }
