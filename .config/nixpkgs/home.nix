@@ -38,5 +38,6 @@
 	pkgs.postman
 	pkgs.emacs
 	pkgs.mesa
+	pkgs.aria2
   ];
 }
