@@ -6,7 +6,7 @@
 # super + Return
 # 	alacritty
 super + Return
-	kitty
+	nixGL kitty
 
 # make sxhkd reload its configuration files:
 super + Escape

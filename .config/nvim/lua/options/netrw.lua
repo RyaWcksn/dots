@@ -10,6 +10,7 @@ function ToggleNetRW()
 end
 
 vim.g.netrw_banner = 0
+vim.g.netrw_keepdir = 0
 vim.g.netrw_winsize = 25
 vim.g.netrw_liststyle = 0
 vim.g.netrw_bufsettings = 'nonu nornu noma nowrap nomod ro nobl'
