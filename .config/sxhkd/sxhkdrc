@@ -36,6 +36,11 @@ super + F3
 super + ctrl + l 
       	$HOME/.config/bspwm/scripts/lock.sh
 
+super + shift + {Left,Down,Up,Right}
+	dir={west,south,north,east}; \
+	bspc node -s "$dir.local" --follow \
+	    || bspc node -m "$dir" --follow
+
 
 #
 # bspwm hotkeys

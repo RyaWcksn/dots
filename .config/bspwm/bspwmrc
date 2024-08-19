@@ -2,6 +2,23 @@
 
 pgrep -x sxhkd > /dev/null || sxhkd &
 
+
+# bspc monitor -r
+
+# # Get the list of connected monitors
+# MONITORS=$(xrandr --query | grep " connected" | cut -d' ' -f1)
+
+# # Assign workspaces based on the number of monitors
+# if [[ $(echo "$MONITORS" | wc -l) -eq 2 ]]; then
+#     # If there are two monitors connected
+#     bspc monitor DP1 -d 一 二 三 四 五 
+#     bspc monitor eDP1 -d 六 七 八 九 十
+# else
+    # If there is only one monitor
+#     bspc monitor -d 一 二 三 四 五 六 七 八 九 十
+# fi
+#
+
 bspc monitor -d 一 二 三 四 五 六 七 八 九 十
 
 bspc config border_width        5

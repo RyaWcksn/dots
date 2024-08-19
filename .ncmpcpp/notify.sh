@@ -20,12 +20,12 @@ function reset_background
     rm -f "$COVER" 
     if [[ -n "$src" ]] ; then
         #resize the image's width to 300px 
-        convert "$src" -resize 300x "$COVER"
+        magick "$src" -resize 300x "$COVER"
         if [[ -f "$COVER" ]] ; then
            #scale down the cover to 30% of the original
            #place it 1% away from left and 50% away from top.
            #printf "\e]20;${COVER};30x30+1+50:op=keep-aspect\a"
-           convert -resize 128x128 "$COVER" /tmp/cover.png
+           magick resize 128x128 "$COVER" /tmp/cover.png
            notify-send "Now Playing ♫" "$(mpc current)" -i "/tmp/cover.png"
         else
             reset_background
