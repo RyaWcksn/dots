@@ -41,7 +41,6 @@ super + shift + {Left,Down,Up,Right}
 	bspc node -s "$dir.local" --follow \
 	    || bspc node -m "$dir" --follow
 
-
 #
 # bspwm hotkeys
 #
@@ -137,15 +136,15 @@ super + {comma,period}
 	bspc desktop -C {backward,forward}
 
 # focus the next/previous desktop in the current monitor
-super + bracket{left,right}
-	bspc desktop -f {prev,next}.local
+# super + bracket{left,right}
+# 	bspc desktop -f {prev,next}.local
 
 # focus the last node/desktop
 super + {grave,Tab}
 	bspc {node,desktop} -f last
 
 # focus the older or newer node in the focus history
-super + {o,i}
+super + bracket{left,right}
 	bspc monitor --focus {prev,next}
 
 # focus or send to the given desktop

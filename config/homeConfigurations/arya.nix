@@ -38,6 +38,7 @@ let
 	  pkgs.keepassxc
 	  pkgs.lazygit
 	  pkgs.lazydocker
+	  pkgs.arandr
         ];
         stateVersion = "24.11";
         username = "arya";
