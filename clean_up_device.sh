@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # List of directories to clear
-directories=("Clones" "Orgs" "hardir" "redis_data" "ryawcksn.vercel.app" ".emacs.d") #"Personal" "Sandbox" "Work" "dots" "Downloads" "Picture" "Musics" "Videos")
+directories=("Clones" "Orgs" "hardir" "redis_data" "ryawcksn.vercel.app" ".emacs.d" "Sandbox" "Downloads" "Pictures" "Videos") #"Personal" "Sandbox" "Work" "dots" "Downloads" "Picture" "Musics" "Videos")
 
 # Number of overwrite passes
 overwrite_passes=3
