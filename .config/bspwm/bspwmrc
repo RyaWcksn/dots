@@ -48,9 +48,8 @@ picom &
 mpd &
 #feh --no-startup-id feh --bg-fill -Z ~/.config/bspwm/assets/fuyuko.jpg \
 #feh --no-startup-id feh --bg-scale -Z ~/.config/bspwm/assets/voca.jpg \
-feh --no-startup-id feh --bg-scale -Z ~/.config/bspwm/assets/miku_wall.jpg \
+feh --no-startup-id feh --bg-scale -Z ~/.config/bspwm/assets/miku_wall.jpg --bg-fill ~/.config/bspwm/assets/fuyuko2.jpg &
 #feh --no-startup-id feh --bg-scale -Z /home/aya/Downloads/maid-set/Photo_1693072337717.jpg \
---bg-fill ~/.config/bspwm/assets/fuyuko2.jpg &
 dunst -config $HOME/.config/dunst/dunstrc
 setxkbmap -layout us -option ctrl:swapcaps
 $HOME/.config/polybar/launch.sh

@@ -39,6 +39,9 @@ let
 	  pkgs.lazygit
 	  pkgs.lazydocker
 	  pkgs.arandr
+	  pkgs.vscode
+	  pkgs.k9s
+	  pkgs.spotify
         ];
         stateVersion = "24.11";
         username = "arya";

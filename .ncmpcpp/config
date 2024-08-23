@@ -29,4 +29,4 @@ main_window_color = "default"
 centered_cursor = "yes"
 enable_window_title = "yes"
 external_editor = "vim"
-execute_on_song_change = ~/.ncmpcpp/notify.sh
+# execute_on_song_change = ~/.ncmpcpp/notify.sh
