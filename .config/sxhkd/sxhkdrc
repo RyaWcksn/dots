@@ -71,12 +71,12 @@ XF86AudioMute
     pactl set-sink-mute @DEFAULT_SINK@ toggle
 
 
-super + shift + Up
-    pactl set-source-volume @DEFAULT_SOURCE@ +5%
-super + shift + Down
-    pactl set-source-volume @DEFAULT_SOURCE@ -5%
-super + shift + m
-    pactl set-source-mute @DEFAULT_SOURCE@ toggle
+# super + shift + Up
+#     pactl set-source-volume @DEFAULT_SOURCE@ +5%
+# super + shift + Down
+#     pactl set-source-volume @DEFAULT_SOURCE@ -5%
+# super + shift + m
+#     pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
 # Media Control 
 super + p
@@ -130,14 +130,6 @@ super + ctrl + {m,x,y,z}
 # focus the node in the given direction
 super + {_,shift + }{h,j,k,l}
 	bspc node -{f,s} {west,south,north,east}
-
-# focus the node for the given path jump
-super + {comma,period}
-	bspc desktop -C {backward,forward}
-
-# focus the next/previous desktop in the current monitor
-# super + bracket{left,right}
-# 	bspc desktop -f {prev,next}.local
 
 # focus the last node/desktop
 super + {grave,Tab}
