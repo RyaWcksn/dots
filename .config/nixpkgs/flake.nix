@@ -16,29 +16,30 @@
 
   outputs = { nixgl, nixpkgs, home-manager, ... }@inputs:
   let
-    username = "arya";
-    linux_path = "/home/${username}";
-    allowUnfree = true;
-    allowUnfreePredicate = (_: true);
+    flakeContext = {
+      inherit inputs;
+    };
+
   in {
     homeConfigurations = {
-      arya = home-manager.lib.homeManagerConfiguration {
+ #      arya = home-manager.lib.homeManagerConfiguration {
           pkgs = import nixpkgs {
             system = "x86_64-linux";
             config.allowUnfree = allowUnfree;
             config.allowUnfreePredicate = allowUnfreePredicate;
             overlays = [nixgl.overlay];
           };
-        extraSpecialArgs = { 
-	  home = linux_path;
-	  username = username;
-          allowUnfree = allowUnfree;
-          allowUnfreePredicate = allowUnfreePredicate;
-	};
-        modules = [ 
-          ./home.nix
-	];
-      };
+ #        extraSpecialArgs = { 
+	#   home = linux_path;
+	#   username = username;
+ #          allowUnfree = allowUnfree;
+ #          allowUnfreePredicate = allowUnfreePredicate;
+	# };
+ #        modules = [ 
+ #          ./home.nix
+	# ];
+ #      };
+      arya = import ./homeConfigurations/arya.nix flakeContext;
     };
   };
 }

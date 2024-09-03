@@ -60,5 +60,6 @@ in
 	pkgs.postman
 	pkgs.emacs
 	pkgs.aria2
+	pkgs.keepassxc
   ];
 }

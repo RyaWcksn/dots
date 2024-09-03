@@ -30,6 +30,8 @@ end
 
 keymap('n', '<bs>', '<c-^>\'”zz', { desc = "Prev buffer" })
 
+keymap('n', '<leader><leader>', ':w<CR>', { desc = "Save" })
+
 -- Stuff
 keymap("n", "J", "mzJ`z", opt)
 keymap("n", "Y", "y$", opt)
