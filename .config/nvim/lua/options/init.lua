@@ -3,8 +3,8 @@ local g = vim.g
 
 opt.fillchars = { eob = " " }
 
-vim.opt.background = "light" -- set this to dark or light
-vim.cmd("colorscheme default")
+vim.opt.background = "dark" -- set this to dark or light
+vim.cmd("colorscheme bluloco")
 vim.opt.termguicolors = true
 
 g.markdown_fenced_languages = { 'html', 'python', 'lua', 'vim', 'typescript', 'javascript' }
