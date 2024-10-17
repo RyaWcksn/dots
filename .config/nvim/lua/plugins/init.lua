@@ -15,6 +15,24 @@ vim.g.mapleader = " "
 
 require("lazy").setup({
 	{
+		"zbirenbaum/copilot-cmp",
+		event = "InsertEnter",
+		config = function() require("copilot_cmp").setup() end,
+		dependencies = {
+			"zbirenbaum/copilot.lua",
+			cmd = "Copilot",
+			config = function()
+				require("copilot").setup({
+					suggestion = { enabled = false },
+					panel = { enabled = false },
+				})
+			end,
+		},
+	},
+	-- {
+	-- 	"github/copilot.vim",
+	-- },
+	{
 		'uloco/bluloco.nvim',
 		lazy = false,
 		priority = 1000,
