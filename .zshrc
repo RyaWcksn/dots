@@ -11,7 +11,9 @@ else
   export EDITOR='nvim'
 fi
 
-plugins=()
+plugins=(vi-mode)
+INSERT_MODE_INDICATOR="%F{yellow}+%f"
+bindkey -M viins 'jk' vi-cmd-mode
 
 source $ZSH/oh-my-zsh.sh
 

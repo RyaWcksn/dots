@@ -6,7 +6,7 @@ wl(){
 	local selected_interface
 	
 	nmcli device wifi rescan > /dev/null
-	ssid=$(nmcli -f SSID,BSSID,MODE,CHAN,RATE,SIGNAL,BARS,SECURITY device wifi list | grep -v -e '^--' | awk '{print $1}' | rofi -dmenu -p "Select WiFi network:" -theme $HOME/.config/rofi/spotlight-wifi.rasi)
+	ssid=$(nmcli -f SSID device wifi list | rofi -dmenu -p "Select WiFi network:" -theme $HOME/.config/rofi/spotlight-wifi.rasi)
 	if [[ -z "$ssid" ]]; then
 		notify-send "No Device Selected" -i $HOME/.config/bspwm/assets/crop_fuyuko.jpg -t 8001
 		echo "Exiting"

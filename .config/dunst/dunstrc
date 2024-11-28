@@ -1,11 +1,12 @@
 [global]
 monitor = 0
 follow = mouse
-geometry = "350x6+19+50"
+geometry = "0x0-30+20"
 indicate_hidden = yes
-shrink = yes
+
+shrink = no
 separator_height = 0
-padding = 32
+padding = 26
 progress_bar = true
 progress_bar_height = 5
 progress_bar_frame_width = 0
@@ -16,12 +17,13 @@ mouse_left_click = do_action
 mouse_middle_click = close_current
 mouse_right_click = close_all
 
+font = JetBrains Mono 14
 
-horizontal_padding = 32
-frame_width = 2
+
+horizontal_padding = 26
+frame_width = 3
 sort = no
 idle_threshold = 120
-font = rissole 8
 line_height = 4
 markup = full
 format = %s\n%b
@@ -48,19 +50,18 @@ context = ctrl+shift+period
 
 [urgency_low]
 timeout = 1
-foreground = "#6c6b84"
+foreground = "#aaaaaa"
 background = "#222833"
 frame_color = "#6c6b84"
 
 [urgency_normal]
 timeout = 1
-foreground = "#6c6b84"
+foreground = "#aaaaaa"
 background = "#222833"
 frame_color = "#6c6b84"
 
 [urgency_critical]
 timeout = 1
-foreground = "#6c6b84"
+foreground = "#aaaaaa"
 background = "#222833"
-frame_color = "#585858"
-frame_color = "#6c6b84"
+frame_color = "#FC0808"

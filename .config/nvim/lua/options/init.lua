@@ -7,6 +7,9 @@ vim.opt.background = "dark" -- set this to dark or light
 vim.cmd("colorscheme bluloco")
 vim.opt.termguicolors = true
 
+
+vim.notify = require("notify")
+
 g.markdown_fenced_languages = { 'html', 'python', 'lua', 'vim', 'typescript', 'javascript' }
 
 opt.hlsearch = false
