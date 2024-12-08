@@ -55,7 +55,7 @@ local function lsp()
 	end
 
 
-	return errors .. warnings .. hints .. info .. "%#Normal#"
+	return errors .. warnings .. hints .. info .. "%#Normal# "
 end
 
 local function lsp_servers()
@@ -84,6 +84,13 @@ local function get_git_branch()
 	return result or '!git'
 end
 
+local function get_project_name()
+	-- Get the current working directory (CWD)
+	local cwd = vim.fn.getcwd()
+	-- Extract the last part of the path (the project name)
+	return vim.fn.fnamemodify(cwd, ":t")
+end
+
 local function statusbar_exec()
 	local statusline = {
 		"%#Normal#",
@@ -94,6 +101,7 @@ local function statusbar_exec()
 		"%#Normal#",
 		lsp_servers(),
 		lsp(),
+		get_project_name(),
 	}
 	vim.o.statusline = table.concat(statusline, '')
 end
