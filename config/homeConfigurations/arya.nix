@@ -42,6 +42,9 @@ let
 	  pkgs.vscode
 	  pkgs.k9s
 	  pkgs.spotify
+	  pkgs.ollama
+	  pkgs.keepassxc
+	  pkgs.pamixer
         ];
         stateVersion = "24.11";
         username = "arya";
