@@ -45,6 +45,8 @@ let
 	  pkgs.ollama
 	  pkgs.keepassxc
 	  pkgs.pamixer
+	  pkgs.xdotool
+	  pkgs.wmctrl
         ];
         stateVersion = "24.11";
         username = "arya";

@@ -5,8 +5,8 @@ ssid=$(iwgetid -r)
 
 # Check if SSID is empty
 if [ -z "$ssid" ]; then
-    echo "無し"
+    echo "[ 無し ]"
 else
-    echo "$ssid"
+    echo "[ $ssid ]"
 fi
 
