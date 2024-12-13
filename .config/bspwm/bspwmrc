@@ -52,3 +52,6 @@ $HOME/.config/polybar/launch.sh &
 
 # Monitor low battery
 $HOME/.config/bspwm/scripts/low_batt.sh &
+
+#libinput-gestures: touchpad gestures
+libinput-gestures-setup restart

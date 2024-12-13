@@ -47,6 +47,7 @@ let
 	  pkgs.pamixer
 	  pkgs.xdotool
 	  pkgs.wmctrl
+	  pkgs.libinput-gestures
         ];
         stateVersion = "24.11";
         username = "arya";
