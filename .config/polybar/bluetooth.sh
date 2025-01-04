@@ -8,7 +8,7 @@ name=$(echo "$data" | grep -oP '^(\t| )*Name: \K.*')
 
 # Check if name is empty and set to "無し" if not found
 if [[ -z "$name" ]]; then
-    name="[ 無し ]"
+    name="無し"
 fi
 
 # Print the extracted name

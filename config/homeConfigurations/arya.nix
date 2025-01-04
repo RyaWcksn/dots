@@ -48,6 +48,11 @@ let
 	  pkgs.xdotool
 	  pkgs.wmctrl
 	  pkgs.libinput-gestures
+	  pkgs.scrcpy
+	  pkgs.picom
+	  pkgs.xwallpaper
+	  pkgs.redshift
+	  pkgs.yt-dlp
         ];
         stateVersion = "24.11";
         username = "arya";
