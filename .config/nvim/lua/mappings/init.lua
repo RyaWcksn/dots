@@ -20,13 +20,8 @@ keymap({ 'n', 'x' }, 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = t
 keymap({ 'n', 'x' }, 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 
 keymap({ 'n' }, '<F3>', "zc", { desc = "Fold" })
-keymap({ 'n' }, '<F4>', "zR", { desc = "Unfold all" })
-keymap({ 'n' }, '<F5>', "zo", { desc = "Unfold" })
-
--- Function to exit visual mode
-local function exit_visual_mode()
-	vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Esc>', true, false, true), 'n', true)
-end
+keymap({ 'n' }, '<F5>', "zR", { desc = "Unfold all" })
+keymap({ 'n' }, '<F4>', "zo", { desc = "Unfold" })
 
 keymap('n', '<bs>', '<c-^>\'”zz', { desc = "Prev buffer" })
 
@@ -75,50 +70,6 @@ keymap("v", "<F5>", ":CarbonNowSh<CR>", opt)
 
 keymap("n", "<Up>", "<C-u>", opt)
 keymap("n", "<Down>", "<C-d>", opt)
-
--- Vim
-
-local mappings = {
-	normal = {
-		['<leader>a'] = {
-			action = '<CMD>lua create_file()<CR>',
-			desc = 'Create new file'
-		}
-	},
-	visual = {
-		['<leader>J'] = {
-			action = ":m '>+1<CR>gv=gv",
-			desc = "Move code down to up"
-		},
-	},
-}
-
-for i, k in pairs(mappings) do
-	for key, command in pairs(k) do
-		local mode
-		if i == 'normal' then
-			mode = 'n'
-		end
-		if i == 'visual' then
-			mode = 'v'
-		end
-		if i == 'insert' then
-			mode = 'i'
-		end
-		if i == 'term' then
-			mode = 't'
-		end
-
-		local bufmap = function(mode, lhs, rhs, desc)
-			local opts = { buffer = true, remap = true, desc = desc }
-			vim.keymap.set(mode, lhs, rhs, opts)
-		end
-
-		bufmap(mode, key, command.action, command.desc)
-	end
-end
-
-
 
 
 -- Search and replace
@@ -181,21 +132,54 @@ end
 keymap('n', '<leader>fR', ":lua search_replace_with_confirmation('global')<CR>", { desc = "Find and replace global" })
 keymap('n', '<leader>fr', ":lua search_replace_with_confirmation('local')<CR>", { desc = "Find and replace local" })
 keymap('n', '<leader>fw', ":Telescope live_grep<CR>", { desc = "Find word global" })
--- keymap('n', '<leader>fw', ":lua search_word('local')<CR>", { desc = "Find word local" })
 keymap('n', '<leader>fo', ":lua search_under_cursor('local')<CR>", { desc = "Find word under cursor local" })
 keymap('n', '<leader>fO', ":lua search_under_cursor('global')<CR>", { desc = "Find word under cursor global" })
+keymap('n', '<leader>fe', ':lua search_word("global")<CR>', {desc = "Find word"})
+
+-- Function to list all buffers and populate the quickfix list
+local function buffers_to_quickfix()
+  local buffers = vim.api.nvim_list_bufs() -- Get all buffers
+  local quickfix_list = {}
+
+  for _, buf in ipairs(buffers) do
+    if vim.api.nvim_buf_is_loaded(buf) then
+      local name = vim.api.nvim_buf_get_name(buf)
+      if name ~= "" then -- Ignore unnamed buffers
+        table.insert(quickfix_list, {
+          filename = name,
+          lnum = 1, -- Line number (default to 1)
+          col = 1,  -- Column number (default to 1)
+          text = "Buffer: " .. name,
+        })
+      end
+    end
+  end
+
+  if #quickfix_list == 0 then
+    print("No active buffers to list.")
+    return
+  end
+
+  -- Set the quickfix list
+  vim.fn.setqflist(quickfix_list, 'r')
+  vim.cmd("copen") -- Open the quickfix list window
+  print("Buffers added to quickfix list.")
+end
+
+-- Map the function to a key (e.g., <leader>bl)
+vim.keymap.set('n', '<leader>bl', buffers_to_quickfix, { desc = "List all buffers in quickfix list" })
 
 
 
 vim.api.nvim_create_autocmd('LspAttach', {
 	group = vim.api.nvim_create_augroup('lsp', { clear = true }),
 	callback = function()
+		local map = function(key, action, desc)
+			vim.keymap.set('n', '<leader>' .. key, action, { desc = "LSP: " .. desc })
+		end
 		keymap("n", "K", ":lua vim.lsp.buf.hover()<CR>", opt)
 		keymap('n', '[', ":lua vim.diagnostic.goto_prev()<CR>", opt)
 		keymap('n', ']', ":lua vim.diagnostic.goto_next()<CR>", opt)
-		map = function(key, action, desc)
-			vim.keymap.set('n', '<leader>' .. key, action, { desc = "LSP: " .. desc })
-		end
 		map('lf', vim.lsp.buf.format, "Format")
 		map('lc', vim.lsp.buf.code_action, "Code Action")
 		map('ls', vim.lsp.buf.signature_help, "Signature Help")
@@ -206,6 +190,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
 		map('lL', vim.lsp.codelens.refresh, "Codelens Refresh")
 		map('lr', vim.lsp.buf.rename, "Rename")
 		map('lr', vim.lsp.buf.rename, "Rename")
-		map('lt', ":Telescope diagnostics<CR>", "Diagnostics")
+		map('lt', vim.diagnostic.setqflist, "Diagnostics")
 	end
 })

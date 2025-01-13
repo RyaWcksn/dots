@@ -10,7 +10,7 @@ function ToggleNetRW()
 end
 
 vim.g.netrw_banner = 0
-vim.g.netrw_keepdir = 0
+vim.g.netrw_keepdir = 1
 vim.g.netrw_winsize = 25
 vim.g.netrw_liststyle = 0
 vim.g.netrw_bufsettings = 'nonu nornu noma nowrap nomod ro nobl'
@@ -48,10 +48,12 @@ vim.api.nvim_create_autocmd('FileType', {
 			vim.api.nvim_command('MT n/a')
 			print('Changed working directory: ' .. vim.fn.expand('%:~:p'))
 		end, { desc = 'Change Directory', buffer = true })
-		vim.keymap.set('n', 'h', '- cd', { desc = 'Go up', remap = true, buffer = true, silent = true })
-		vim.keymap.set('n', 'l', '<CR> cd', { desc = 'Go up', remap = true, buffer = true, silent = true })
+		vim.keymap.set('n', '.', 'gh', { desc = 'Open dotfiles', remap = true, buffer = true, silent = true })
+		vim.keymap.set('n', 'h', '-', { desc = 'Go up', remap = true, buffer = true, silent = true })
+		vim.keymap.set('n', 'l', '<CR>', { desc = 'Go up', remap = true, buffer = true, silent = true })
 		vim.keymap.set('n', 'e', '<CMD>Ex ~<CR>', { desc = 'Go home', buffer = true })
 		vim.keymap.set('n', 'w', '<CMD>Ex ' .. vim.fn.getcwd() .. '<CR>', { desc = 'Go CWD', buffer = true })
+		vim.keymap.set('n', 'r', 'R', { desc = 'Rename', buffer = true })
 		vim.keymap.set('n', 't', function()
 			local target = vim.api.nvim_call_function('netrw#Expose', { 'netrwmftgt' })
 			if target == 'n/a' then

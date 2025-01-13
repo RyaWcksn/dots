@@ -4,9 +4,8 @@ local g = vim.g
 opt.fillchars = { eob = " " }
 
 vim.opt.background = "dark" -- set this to dark or light
-vim.cmd("colorscheme bluloco")
+vim.cmd("colorscheme default")
 vim.opt.termguicolors = true
-
 
 vim.notify = require("notify")
 
@@ -36,6 +35,17 @@ opt.relativenumber = false
 opt.colorcolumn = "90"
 vim.wo.wrap = false
 
+opt.fillchars = { fold = "·" } -- see `:h 'fillchars'`
+opt.foldcolumn = "0"           -- <string> 'auto' or number of columns to use for the fold column
+opt.foldenable = false         -- <true|false> all folds closed on buffer open? (zi to toggle)
+opt.foldtext = "v:lua.myfolds()"
+
+function _G.myfolds()
+	local line = vim.fn.getline(vim.v.foldstart)
+	local line_count = vim.v.foldend - vim.v.foldstart + 1
+	return line .. " --------- " .. line_count .. " lines "
+end
+
 -- Fold
 local vim = vim
 local api = vim.api
@@ -61,9 +71,6 @@ local autoCommands = {
 }
 
 M.nvim_create_augroups(autoCommands)
-
-
-
 
 local disabled_built_ins = {
 	"2html_plugin",

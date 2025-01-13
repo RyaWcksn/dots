@@ -4,8 +4,8 @@ M.lua_ls = function(capabilities, on_attach)
 	local lsp = require('lspconfig')
 	local default_workspace = {
 		library = {
-			[vim.fn.expand("$VIMRUNTIME/lua")] = true,
-			[vim.fn.expand("config" .. "/lua")] = true,
+			vim.env.VIMRUNTIME,
+			"${3rd}/love2d/library",
 		},
 
 		checkThirdParty = false,

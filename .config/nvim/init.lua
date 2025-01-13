@@ -6,4 +6,3 @@ require('options.statusline')
 require('options.winbar')
 require('options.netrw')
 require('options.sholat')
-

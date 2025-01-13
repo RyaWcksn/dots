@@ -5,7 +5,9 @@ local function winbar_exec()
 		local filenames = {}
 		for _, buf in ipairs(vim.api.nvim_list_bufs()) do
 			-- Check if the buffer is associated with a file
-			if vim.api.nvim_buf_is_loaded(buf) and vim.api.nvim_buf_get_option(buf, 'buftype') == '' then
+			if vim.api.nvim_buf_is_loaded(buf)
+			    and vim.api.nvim_buf_get_option(buf, 'buftype') == ''
+			    and vim.api.nvim_buf_get_option(buf, 'filetype') ~= 'netrw' then
 				local name = vim.fn.bufname(buf)
 				-- Extract the filename from the full path
 				local filename = vim.fn.fnamemodify(name, ':t')

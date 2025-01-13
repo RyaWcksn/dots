@@ -26,12 +26,10 @@ local new_maker = function(filepath, bufnr, opts)
 	}):sync()
 end
 
--- require('telescope').extensions.packer.plugins(opts)
 telescope.setup({
 	defaults = {
 		prompt_prefix = "+ ",
 		selection_caret = "= ",
-
 		vimgrep_arguments = {
 			"rg",
 			"--color=never",
@@ -92,7 +90,6 @@ telescope.setup({
 		file_previewer = require("telescope.previewers").vim_buffer_cat.new,
 		grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
 		qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
-		-- Developer configurations: Not meant for general override
 		buffer_previewer_maker = new_maker,
 		mappings = {
 			i = {
@@ -113,10 +110,8 @@ telescope.setup({
 			theme = "ivy",
 			mappings = {
 				["i"] = {
-					-- your custom insert mode mappings
 				},
 				["n"] = {
-					-- your custom normal mode mappings
 				},
 			},
 		},
@@ -131,8 +126,6 @@ telescope.setup({
 })
 
 local extensions = { "themes", "terms", "fzf" }
-local packer_repos = [["extensions", "telescope-fzf-native.nvim"]]
-
 
 pcall(function()
 	for _, ext in ipairs(extensions) do
@@ -140,5 +133,3 @@ pcall(function()
 	end
 end)
 require("telescope").load_extension("fzf")
-
-require("telescope").load_extension("flutter")

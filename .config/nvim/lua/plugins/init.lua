@@ -23,62 +23,6 @@ require("lazy").setup({
 			})
 		end,
 	},
-	-- {
-	-- 	"zbirenbaum/copilot-cmp",
-	-- 	event = "InsertEnter",
-	-- 	config = function() require("copilot_cmp").setup() end,
-	-- 	dependencies = {
-	-- 		"zbirenbaum/copilot.lua",
-	-- 		cmd = "Copilot",
-	-- 		config = function()
-	-- 			require("copilot").setup({
-	-- 				suggestion = { enabled = false },
-	-- 				panel = { enabled = false },
-	-- 			})
-	-- 		end,
-	-- 	},
-	-- },
-	{
-		"CopilotC-Nvim/CopilotChat.nvim",
-		branch = "canary",
-		dependencies = {
-			{ "zbirenbaum/copilot.lua" }, -- or github/copilot.vim
-			{ "nvim-lua/plenary.nvim" }, -- for curl, log wrapper
-		},
-		build = "make tiktoken", -- Only on MacOS or Linux
-		opts = {
-			debug = true, -- Enable debugging
-			-- See Configuration section for rest
-		},
-		-- See Commands section for default commands if you want to lazy load on them
-	},
-	-- {
-	-- 	"github/copilot.vim",
-	-- },
-	{
-		'uloco/bluloco.nvim',
-		lazy = false,
-		priority = 1000,
-		dependencies = { 'rktjmp/lush.nvim' },
-		config = function()
-			require('configs.bluloco')
-		end,
-	},
-	{
-		"mfussenegger/nvim-jdtls",
-		ft = "java"
-	},
-	{
-		"simrat39/rust-tools.nvim",
-		ft = " rust"
-	},
-	{
-		"saecki/crates.nvim",
-		config = function()
-			require('configs.crates')
-		end,
-	},
-
 	{
 		"numToStr/Comment.nvim",
 		config = function()
@@ -96,46 +40,12 @@ require("lazy").setup({
 		end,
 	},
 	{
-		"akinsho/flutter-tools.nvim",
-		ft = "dart",
-		dependencies = { "nvim-lua/plenary.nvim" },
-		config = function()
-			require("configs.flutter")
-		end,
-	},
-	{
 		"folke/which-key.nvim",
 		config = function()
 			require('configs.whichkey')
 		end,
 		cmd = "WhichKey",
 		event = "VeryLazy",
-	},
-	-- {
-	-- 	'nvim-treesitter/nvim-treesitter',
-	-- 	config = function()
-	-- 		require('configs.treesitter')
-	-- 	end,
-	-- 	cmd = {
-	-- 		"TSInstall",
-	-- 		"TSUninstall",
-	-- 		"TSUpdate",
-	-- 		"TSUpdateSync",
-	-- 		"TSInstallInfo",
-	-- 		"TSInstallSync",
-	-- 		"TSInstallFromGrammar",
-	-- 	},
-	-- 	event = "User FileOpened",
-	-- },
-	{ 'nvim-treesitter/playground' },
-	{
-		'nvim-tree/nvim-tree.lua',
-		dependencies = 'nvim-tree/nvim-web-devicons',
-		cmd = { "NvimTreeToggle", "NvimTreeOpen", "NvimTreeFocus", "NvimTreeFindFileToggle" },
-		config = function()
-			require('configs/nvim-tree')
-		end,
-		event = "User DirOpened",
 	},
 	{ 'nvim-lua/plenary.nvim' },
 	{
@@ -182,10 +92,6 @@ require("lazy").setup({
 		end
 	},
 	{
-		'leoluz/nvim-dap-go',
-		ft = "go"
-	},
-	{
 		"olexsmir/gopher.nvim",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
@@ -195,6 +101,16 @@ require("lazy").setup({
 			require("configs.gopher")
 		end,
 		ft = "go"
+	},
+	{
+		"nvim-treesitter/nvim-treesitter",
+		event = {
+			"BufReadPost",
+			"BufNewFile",
+		},
+		config = function()
+			require('configs.treesitter')
+		end
 	},
 	{
 		"akinsho/toggleterm.nvim",
