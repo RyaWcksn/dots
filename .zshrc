@@ -26,6 +26,10 @@ export GOPRIVATE=bitbucket.org/ayopop
 export FZF_DEFAULT_COMMAND="fd --hidden --strio-cwd-prefix --exclude .git"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
+# Java
+export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
+export PATH=$JAVA_HOME/bin:$PATH
+
 
 export PATH="$PATH:$HOME/Downloads/bin/"
 

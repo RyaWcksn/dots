@@ -53,6 +53,8 @@ let
 	  pkgs.xwallpaper
 	  pkgs.redshift
 	  pkgs.yt-dlp
+	  pkgs.pass
+	  pkgs.maven
         ];
         stateVersion = "24.11";
         username = "arya";

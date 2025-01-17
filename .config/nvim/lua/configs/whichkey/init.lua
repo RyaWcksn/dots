@@ -18,15 +18,11 @@ wk.setup {
 				g = true, -- bindings for prefixed with g
 			},
 		},
-		-- add operators that will trigger motion and text object completion
-		-- to enable all native operators, set the preset / operators plugin above
 		operators = { gc = "Comments" },
 		key_labels = {
-			-- override the label used to display some keys. It doesn't effect WK in any other way.
-			-- For example:
-			-- ["<space>"] = "SPC",
-			-- ["<cr>"] = "RET",
-			-- ["<tab>"] = "TAB",
+			["<space>"] = "SPC",
+			["<cr>"] = "RET",
+			["<tab>"] = "TAB",
 		},
 		motions = {
 			count = true,
@@ -59,28 +55,20 @@ wk.setup {
 		show_help = true,                                                   -- show a help message in the command line for using WhichKey
 		show_keys = true,                                                   -- show the currently pressed key and its label as a message in the command line
 		triggers = "auto",                                                  -- automatically setup triggers
-		-- triggers = {"<leader>"} -- or specifiy a list manually
-		-- list of triggers, where WhichKey should not wait for timeoutlen and show immediately
 		triggers_nowait = {
 			-- marks
 			"`",
 			"'",
 			"g`",
 			"g'",
-			-- registers
 			'"',
 			"<c-r>",
-			-- spelling
 			"z=",
 		},
 		triggers_blacklist = {
-			-- list of mode / prefixes that should never be hooked by WhichKey
-			-- this is mostly relevant for keymaps that start with a native binding
 			i = { "j", "k" },
 			v = { "j", "k" },
 		},
-		-- disable the WhichKey popup for certain buf types and file types.
-		-- Disabled by default for Telescope
 		disable = {
 			buftypes = {},
 			filetypes = {},
@@ -91,78 +79,25 @@ wk.setup {
 wk.register({
 	b = {
 		name = "+Buffer",
-		b = { ":Telescope buffers<CR>", "Open Buffers" },
-		d = { ":bd<CR>", "Delete This Buffer" },
-		a = { ":w <bar> %bd <bar> e# <bar> bd# <CR>", "Delete All But This Buffer" },
 	},
 	w = {
 		name = "+Window",
-		k = { "<c-w>k", "Switch Up" },
-		j = { "<c-w>j", "Switch Down" },
-		h = { "<c-w>h", "Switch Leff" },
-		l = { "<c-w>l", "Switch Right" },
-		K = { ":res +5<CR>", "Resize Up" },
-		J = { ":res -5<CR>", "Resize Down" },
-		H = { ":vertical res -5<CR>", "Resize Left" },
-		L = { ":vertical res +5<CR>", "Resize Right" },
-		q = { ":q<CR>", "Kill Window" },
-		["<Leader>"] = {
-			name = "+Split",
-			k = { ":vs<CR>", "Split Vertically" },
-			j = { ":sp<CR>", "Split Horizontally" },
-		},
 	},
 	f = {
 		name = "+Finds",
-		f = { ":Telescope find_files theme=dropdown<CR>", "Find Files" },
-	},
-	p = {
-		name = "+Packer",
-		s = { ":PackerSync<CR>", "Sync plugins" },
-		i = { ":PackerInstall<CR>", "Install plugins" }
 	},
 	o = {
 		name = "+Open",
-		i = { ":Lexplore %:p:h<CR>", "Filetree" },
-		e = { ":NvimTreeToggle<CR>", "Filetree" },
-		t = { ":ToggleTerm<CR>", "ToggleTerm" },
 	},
 	l = {
 		name = "+LSP",
 	},
 	d = {
 		name = "Debug",
-		R = { "<cmd>lua require'dap'.run_to_cursor()<cr>", "Run to Cursor" },
-		E = { "<cmd>lua require'dapui'.eval(vim.fn.input '[Expression] > ')<cr>", "Evaluate Input" },
-		C = { "<cmd>lua require'dap'.set_breakpoint(vim.fn.input '[Condition] > ')<cr>", "Conditional Breakpoint" },
-		U = { "<cmd>lua require'dapui'.toggle()<cr>", "Toggle UI" },
-		b = { "<cmd>lua require'dap'.step_back()<cr>", "Step Back" },
-		c = { "<cmd>lua require'dap'.continue()<cr>", "Continue" },
-		d = { "<cmd>lua require'dap'.disconnect()<cr>", "Disconnect" },
-		e = { "<cmd>lua require'dapui'.eval()<cr>", "Evaluate" },
-		g = { "<cmd>lua require'dap'.session()<cr>", "Get Session" },
-		h = { "<cmd>lua require'dap.ui.widgets'.hover()<cr>", "Hover Variables" },
-		S = { "<cmd>lua require'dap.ui.widgets'.scopes()<cr>", "Scopes" },
-		i = { "<cmd>lua require'dap'.step_into()<cr>", "Step Into" },
-		o = { "<cmd>lua require'dap'.step_over()<cr>", "Step Over" },
-		p = { "<cmd>lua require'dap'.pause.toggle()<cr>", "Pause" },
-		q = { "<cmd>lua require'dap'.close()<cr>", "Quit" },
-		r = { "<cmd>lua require'dap'.repl.toggle()<cr>", "Toggle Repl" },
-		s = { "<cmd>lua require'dap'.continue()<cr>", "Start" },
-		t = { "<cmd>lua require'dap'.toggle_breakpoint()<cr>", "Toggle Breakpoint" },
-		x = { "<cmd>lua require'dap'.terminate()<cr>", "Terminate" },
-		u = { "<cmd>lua require'dap'.step_out()<cr>", "Step Out" },
 	},
 	s = {
-
 		name = "+DB",
-		u = { ':DBUIToggle<CR>', 'Toggle DBUI' },
-		f = { ':DBUIFindBuffer<CR>', 'Find Buffer in DBUI' },
-		r = { ':DBUIRenameBuffer<CR>', 'Rename Buffer in DBUI' },
-		l = { ':DBUILastQueryInfo<CR>', 'Show Last Query Info in DBUI' }
 	},
-	K = { ":lua vim.lsp.buf.hover()<CR>", "Hover" },
-	[";"] = { ":", "Command" }
 }, { prefix = "<leader>", mode = "n", noremap = true })
 
 wk.register({

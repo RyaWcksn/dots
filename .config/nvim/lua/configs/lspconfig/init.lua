@@ -42,10 +42,6 @@ function force_signature_help()
 	vim.lsp.buf.signature_help()
 end
 
-local key = vim.keymap.set
-key('n', '<C-k>', '<cmd>lua force_signature_help()<CR>', opts)
-key('i', '<C-k>', '<cmd>lua force_signature_help()<CR>', opts)
-
 local on_attach = function(client, bufnr)
 	vim.o.updatetime = 250
 	vim.api.nvim_create_autocmd("CursorHold", {
@@ -170,3 +166,32 @@ local servers = {
 for server, cfg in pairs(servers) do
 	lsp[server].setup(cfg)
 end
+
+vim.api.nvim_create_autocmd('LspAttach', {
+	group = vim.api.nvim_create_augroup('lsp', { clear = true }),
+	callback = function()
+		local opt = { silent = true, noremap = true }
+		local map = function(key, action, desc)
+			vim.keymap.set('n', '<leader>' .. key, action, { desc = "LSP: " .. desc })
+		end
+
+		local key = vim.keymap.set
+		key('n', '<C-k>', '<cmd>lua force_signature_help()<CR>', opt)
+		key('i', '<C-k>', '<cmd>lua force_signature_help()<CR>', opt)
+
+		map("K", vim.lsp.buf.hover, "Hover")
+		map('[', vim.diagnostic.goto_prev, "Prev diag")
+		map(']', vim.diagnostic.goto_next, "Next diag")
+		map('lf', vim.lsp.buf.format, "Format")
+		map('lc', vim.lsp.buf.code_action, "Code Action")
+		map('ls', vim.lsp.buf.signature_help, "Signature Help")
+		map('ld', vim.lsp.buf.definition, "Goto Definition")
+		map('li', vim.lsp.buf.implementation, "Code Implementation")
+		map('lw', vim.lsp.buf.references, "Code References")
+		map('ll', vim.lsp.codelens.run, "Codelens Run")
+		map('lL', vim.lsp.codelens.refresh, "Codelens Refresh")
+		map('lr', vim.lsp.buf.rename, "Rename")
+		map('lr', vim.lsp.buf.rename, "Rename")
+		map('lt', vim.diagnostic.setqflist, "Diagnostics")
+	end
+})

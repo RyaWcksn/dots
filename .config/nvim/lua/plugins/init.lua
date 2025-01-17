@@ -103,16 +103,6 @@ require("lazy").setup({
 		ft = "go"
 	},
 	{
-		"nvim-treesitter/nvim-treesitter",
-		event = {
-			"BufReadPost",
-			"BufNewFile",
-		},
-		config = function()
-			require('configs.treesitter')
-		end
-	},
-	{
 		"akinsho/toggleterm.nvim",
 		config = function()
 			require("configs.toggleterm")

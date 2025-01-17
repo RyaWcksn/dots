@@ -32,7 +32,7 @@ local jdlts_cmd = {
 	'-jar', jar_path,
 	'-configuration', get_config_dir(),
 	'-data', workspace_dir,
-	'--add-modules=ALL-SYSTEM --add-opens java.base/java.util=ALL-UNNAMED --add-opens java.base/java.lang=ALL-UNNAMED'
+	'--add-modules=jdk.incubator.foreign,jdk.incubator.vector',
 }
 
 
@@ -52,6 +52,15 @@ M.jdtls = function(capabilities, on_attach)
 			},
 			init_options = {
 			},
+			java = {
+				project = {
+					sourcePaths = {
+						"src/main/java",
+						"target/generated-sources/protobuf/java",
+						"target/generated-sources/protobuf/grpc-java",
+					}
+				}
+			}
 		},
 		signatureHelp = { enabled = true },
 		contentProvider = { preferred = 'fernflower' },
@@ -109,7 +118,9 @@ M.jdtls = function(capabilities, on_attach)
 			},
 			useBlocks = true,
 		},
-		extendedClientCapabilities = extendedClientCapabilities
+		flags = {
+			allow_incremental_sync = true,
+		},
 	}
 
 	return setup
