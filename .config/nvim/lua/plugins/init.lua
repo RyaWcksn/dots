@@ -14,6 +14,29 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
 
 require("lazy").setup({
+
+	-- AI companion
+	{
+		"nomnivore/ollama.nvim",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+		},
+
+		-- All the user commands added by the plugin
+		cmd = { "Ollama", "OllamaModel", "OllamaServe", "OllamaServeStop" },
+		keys = {
+			{
+				"<leader>oG",
+				":<c-u>lua require('ollama').prompt('Generate_Code')<cr>",
+				desc = "ollama Generate Code",
+				mode = { "n", "v" },
+			},
+		},
+		config = function ()
+			require('configs.ollama')
+		end
+	},
+
 	{
 		"rcarriga/nvim-notify",
 		config = function()

@@ -55,6 +55,8 @@ let
 	  pkgs.yt-dlp
 	  pkgs.pass
 	  pkgs.maven
+	  pkgs.firefox
+	  pkgs.eww
         ];
         stateVersion = "24.11";
         username = "arya";
