@@ -163,6 +163,7 @@ local servers = {
 	protols = require('configs.lspconfig.languages.protols').protols(capabilities, on_attach)
 }
 
+require('configs.lspconfig.languages.rust-analyzer').rust_tools(capabilities, on_attach)
 for server, cfg in pairs(servers) do
 	lsp[server].setup(cfg)
 end

@@ -93,11 +93,14 @@ wk.register({
 		name = "+LSP",
 	},
 	d = {
-		name = "Debug",
+		name = "+Debug",
 	},
 	s = {
 		name = "+DB",
 	},
+	n = {
+		name = "+Notes"
+	}
 }, { prefix = "<leader>", mode = "n", noremap = true })
 
 wk.register({

@@ -14,7 +14,10 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
 
 require("lazy").setup({
-
+	{
+		"simrat39/rust-tools.nvim",
+		ft = " rust"
+	},
 	-- AI companion
 	{
 		"nomnivore/ollama.nvim",
@@ -32,7 +35,7 @@ require("lazy").setup({
 				mode = { "n", "v" },
 			},
 		},
-		config = function ()
+		config = function()
 			require('configs.ollama')
 		end
 	},

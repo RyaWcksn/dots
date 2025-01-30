@@ -92,7 +92,8 @@ keymap('n', '<leader>oo', ':Lexplore %:p:h<CR>', { desc = "Filetree" })
 -- DAP
 keymap('n', '<leader>dR', "<cmd>lua require'dap'.run_to_cursor()<CR>", { desc = "Run to Cursor" })
 keymap('n', '<leader>dE', "<cmd>lua require'dapui'.eval(vim.fn.input '[Expression] > ')<CR>", { desc = "Evaluate Input" })
-keymap('n', '<leader>dC', "<cmd>lua require'dap'.set_breakpoint(vim.fn.input '[Condition] > ')<CR>", { desc = "Conditional Breakpoint" })
+keymap('n', '<leader>dC', "<cmd>lua require'dap'.set_breakpoint(vim.fn.input '[Condition] > ')<CR>",
+	{ desc = "Conditional Breakpoint" })
 keymap('n', '<leader>dU', "<cmd>lua require'dapui'.toggle()<CR>", { desc = "Toggle UI" })
 keymap('n', '<leader>db', "<cmd>lua require'dap'.step_back()<CR>", { desc = "Step Back" })
 keymap('n', '<leader>dc', "<cmd>lua require'dap'.continue()<CR>", { desc = "Continue" })
@@ -111,7 +112,7 @@ keymap('n', '<leader>dt', "<cmd>lua require'dap'.toggle_breakpoint()<CR>", { des
 keymap('n', '<leader>dx', "<cmd>lua require'dap'.terminate()<CR>", { desc = "Terminate" })
 keymap('n', '<leader>du', "<cmd>lua require'dap'.step_out()<CR>", { desc = "Step Out" })
 
--- Window 
+-- Window
 keymap('n', '<leader>wk', "<c-w>k", { desc = "Switch Up" })
 keymap('n', '<leader>wj', "<c-w>j", { desc = "Switch Down" })
 keymap('n', '<leader>wh', "<c-w>h", { desc = "Switch Left" })
@@ -126,7 +127,7 @@ keymap('n', '<leader>wq', ":q<CR>", { desc = "Kill Window" })
 keymap('n', '<leader>w<leader>k', ":vs<CR>", { desc = "Split Vertically" })
 keymap('n', '<leader>w<leader>j', ":sp<CR>", { desc = "Split Horizontally" })
 
--- Database 
+-- Database
 keymap('n', '<leader>mu', ":DBUIToggle<CR>", { desc = "Toggle DBUI" })
 keymap('n', '<leader>mf', ":DBUIFindBuffer<CR>", { desc = "Find Buffer in DBUI" })
 keymap('n', '<leader>mr', ":DBUIRenameBuffer<CR>", { desc = "Rename Buffer in DBUI" })
@@ -168,3 +169,22 @@ keymap('n', '<leader>bl', buffers_to_quickfix, { desc = "List all buffers in qui
 keymap('n', '<leader>bd', ":bd<CR>", { desc = "Delete This Buffer" })
 keymap('n', '<leader>ba', ":w <bar> %bd <bar> e# <bar> bd# <CR>", { desc = "Delete All But This Buffer" })
 
+-- Note taking
+local function open_daily_note()
+	local notes_dir = vim.fn.expand("~/Notes/Journal") -- Change this to your Notes directory
+	local date = os.date("%y-%m-%d")
+	local filepath = notes_dir .. "/" .. date .. ".md"
+	local timestamp = "## " .. os.date("%H:%M:%S")
+	local datestamp = "# " .. date
+
+	vim.cmd("edit " .. filepath)
+	if vim.fn.filereadable(filepath) == 0 then
+		vim.api.nvim_put({ datestamp, timestamp }, "l", true, true)
+	else
+		vim.cmd("normal G")
+		vim.api.nvim_put({ timestamp }, "l", true, true)
+		vim.cmd("normal o")
+	end
+end
+
+keymap("n", "<leader>nd", open_daily_note, { noremap = true, silent = false, desc = "Journal time" })
