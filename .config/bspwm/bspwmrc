@@ -38,7 +38,7 @@ mpd &
 
 # Set wallpaper with feh
 feh \
-    --bg-scale -Z ~/.config/bspwm/assets/miku_wall.jpg \
+    --bg-scale -Z ~/.config/bspwm/assets/sakuya_6.jpg \
     --bg-fill ~/.config/bspwm/assets/miku_rotate.jpg &
 
 # Notifications

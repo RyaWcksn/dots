@@ -168,6 +168,8 @@ end
 keymap('n', '<leader>bl', buffers_to_quickfix, { desc = "List all buffers in quickfix list" })
 keymap('n', '<leader>bd', ":bd<CR>", { desc = "Delete This Buffer" })
 keymap('n', '<leader>ba', ":w <bar> %bd <bar> e# <bar> bd# <CR>", { desc = "Delete All But This Buffer" })
+keymap('n', '<tab>', ":bn<CR>", { desc = "Next Buffer" })
+keymap('n', '<s-tab>', ":bn<CR>", { desc = "Prev Buffer" })
 
 -- Note taking
 local function open_daily_note()
@@ -183,7 +185,8 @@ local function open_daily_note()
 	else
 		vim.cmd("normal G")
 		vim.api.nvim_put({ timestamp }, "l", true, true)
-		vim.cmd("normal o")
+		vim.cmd("normal G")
+
 	end
 end
 
