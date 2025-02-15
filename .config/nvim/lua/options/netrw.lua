@@ -19,6 +19,23 @@ vim.g.netrw_altfile = 0
 vim.g.netrw_list_hide = '^\\.\\.\\?/$,\\(^\\|\\s\\s\\)\\zs\\.\\S\\+' -- ALSO HIDE ./ and ../ when hidden files are shown
 -- vim.g.netrw_list_hide = '\\(^\\|\\s\\s\\)\\zs\\.\\S\\+'
 --
+local function netrw_create_file()
+  -- Get current netrw directory
+  local netrw_dir = vim.fn.expand("%:p:h") .. "/"
+
+  -- Prompt user for file path
+  local file_path = vim.fn.input("New file: ", netrw_dir, "file")
+
+  -- Ensure a filename was entered
+  if file_path == "" then return end
+
+  -- Create parent directory if it doesn't exist
+  vim.fn.mkdir(vim.fn.fnamemodify(file_path, ":h"), "p")
+
+  -- Open file in the right pane
+  vim.cmd("wincmd l")  -- Move to the right window
+  vim.cmd("edit " .. vim.fn.fnameescape(file_path))
+end
 vim.api.nvim_create_autocmd('FileType', {
 	pattern = 'netrw',
 	callback = function()
@@ -38,8 +55,7 @@ vim.api.nvim_create_autocmd('FileType', {
 			vim.keymap.set('n', value, '<CMD>lua print("Keybind \'' .. value .. '\' has been removed")<CR>',
 				{ noremap = true, silent = true, buffer = true })
 		end
-		vim.keymap.set('n', 'c', '%',
-			{ desc = "Create File", noremap = true, silent = true, buffer = true })
+		vim.keymap.set("n", "c", netrw_create_file, { desc = "Create file", buffer = true, silent = true })
 		vim.keymap.set('n', 'mt', '<CMD>MT<CR>',
 			{ desc = 'Mark Target', noremap = true, silent = true, buffer = true })
 		vim.keymap.set('n', '<tab>', 'mfj', { desc = 'Mark File', remap = true, silent = true, buffer = true })
@@ -54,6 +70,7 @@ vim.api.nvim_create_autocmd('FileType', {
 		vim.keymap.set('n', 'e', '<CMD>Ex ~<CR>', { desc = 'Go home', buffer = true })
 		vim.keymap.set('n', 'w', '<CMD>Ex ' .. vim.fn.getcwd() .. '<CR>', { desc = 'Go CWD', buffer = true })
 		vim.keymap.set('n', 'r', 'R', { desc = 'Rename', buffer = true })
+		vim.keymap.set('n', 'p', 'mc', { desc = 'Paste file(s)', buffer = true })
 		vim.keymap.set('n', 't', function()
 			local target = vim.api.nvim_call_function('netrw#Expose', { 'netrwmftgt' })
 			if target == 'n/a' then

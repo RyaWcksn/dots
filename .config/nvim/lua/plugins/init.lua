@@ -15,6 +15,9 @@ vim.g.mapleader = " "
 
 require("lazy").setup({
 	{
+		"nyoom-engineering/oxocarbon.nvim"
+	},
+	{
 		"simrat39/rust-tools.nvim",
 		ft = " rust"
 	},
