@@ -161,7 +161,8 @@ local servers = {
 	jdtls = require('configs.lspconfig.languages.jdtls').jdtls(capabilities, on_attach),
 	nixd = require('configs.lspconfig.languages.nixd').nixd(capabilities, on_attach),
 	protols = require('configs.lspconfig.languages.protols').protols(capabilities, on_attach),
-	pyright = require('configs.lspconfig.languages.pyright').pyright(capabilities, on_attach)
+	pyright = require('configs.lspconfig.languages.pyright').pyright(capabilities, on_attach),
+	dartls = require('configs.lspconfig.languages.dartls').dartls(capabilities, on_attach)
 }
 
 require('configs.lspconfig.languages.rust-analyzer').rust_tools(capabilities, on_attach)

@@ -7,6 +7,8 @@ vim.opt.background = "dark" -- set this to dark or light
 vim.cmd("colorscheme default")
 vim.opt.termguicolors = true
 
+vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+
 vim.notify = require("notify")
 
 g.markdown_fenced_languages = { 'html', 'python', 'lua', 'vim', 'typescript', 'javascript' }

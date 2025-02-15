@@ -17,11 +17,38 @@ cmp.setup({
 	},
 
 	formatting = {
-		fields = { "abbr", "kind", "menu" },
+		fields = {
+			cmp.ItemField.Abbr,
+			cmp.ItemField.Kind,
+			cmp.ItemField.Menu,
+			cmp.ItemField.Info,
+		},
+		sorting = {
+			priority_weight = 2,
+			comparators = {
+				cmp.config.compare.offset,
+				cmp.config.compare.exact,
+				cmp.config.compare.score,
+				cmp.config.compare.recently_used,
+				cmp.config.compare.locality,
+				cmp.config.compare.kind,
+				cmp.config.compare.sort_text,
+				cmp.config.compare.length,
+				cmp.config.compare.order,
+			},
+		},
 	},
 	window = {
-		completion = cmp_window.bordered(),
-		documentation = cmp_window.bordered()
+		completion = {
+			border = 'rounded',
+			col_offset = 0,
+			side_padding = 1,
+			scrollbar = false,
+		},
+		documentation = {
+			border = 'rounded',
+			scrollbar = false,
+		},
 	},
 
 	mapping = cmp.mapping.preset.insert {
@@ -57,18 +84,12 @@ cmp.setup({
 			end
 		end, { "i", "s" }),
 	},
+
 	sources = {
-		{ name = "copilot" },
-		{ name = "luasnip" },
 		{ name = 'nvim_lsp' },
+		{ name = "luasnip" },
+		{ name = "buffer" },
 		{ name = "path" },
-		{ name = "cmp_tabnine" },
-		{ name = "nvim_lua" },
-		{ name = "calc" },
-		{ name = "emoji" },
-		{ name = "treesitter" },
-		{ name = "crates" },
-		{ name = "tmux" },
 	},
 	confirm_opts = {
 		behavior = cmp.ConfirmBehavior.Replace,

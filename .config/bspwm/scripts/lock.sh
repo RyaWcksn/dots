@@ -1,47 +1,25 @@
 #!/bin/bash
 
-# Path to the wallpaper image
-wallpaper=$HOME/.config/bspwm/assets/fuyuko2.jpg
+# Set wallpaper path
+wallpaper="$HOME/.config/bspwm/assets/gazette.webp"
+temp_dir="/tmp/lockscreen"
+mkdir -p "$temp_dir"
 
-# Create a temporary directory to store the combined wallpaper
-mkdir -p /tmp/lockscreen
+# Get screen resolution
+resolution=$(xdpyinfo | grep dimensions | awk '{print $2}')  # Example: "1920x1080"
 
-# Get the resolution of all connected monitors and combine wallpapers
-screens=$(xrandr --query | grep ' connected' | awk '{print $3}' | grep -oP '\d+x\d+\+\d+\+\d+')
-final_wallpaper="/tmp/lockscreen/lockscreen_combined.png"
+# Temporary resized and blurred wallpaper
+resized_wallpaper="$temp_dir/lockscreen_resized.png"
+blurred_wallpaper="$temp_dir/lockscreen_blur.png"
 
-monitors=$(xrandr --listactivemonitors | grep -oP '\d+: \+\*\d+ \+\K[\d,x+]+')
+# Resize the wallpaper to match screen resolution
+convert "$wallpaper" -resize "$resolution" "$resized_wallpaper"
 
-# Parse the resolutions and positions
-IFS=$'\n' read -r -d '' -a monitor_data <<< "$monitors"
+# Apply a blur effect
+convert "$resized_wallpaper" -blur 0x8 "$blurred_wallpaper"
 
-# Determine which monitor is on the left and which is on the right
-if [[ ${monitor_data[0]} == *"+0+0"* ]]; then
-  left_monitor="${monitor_data[0]}"
-  right_monitor="${monitor_data[1]}"
-else
-  left_monitor="${monitor_data[1]}"
-  right_monitor="${monitor_data[0]}"
-fi
+# Lock the screen with the fullscreen blurred wallpaper
+i3lock -i "$blurred_wallpaper"
 
-# Extract resolutions (before the '+' character)
-left_resolution=$(echo $left_monitor | grep -oP '^\d+x\d+')
-right_resolution=$(echo $right_monitor | grep -oP '^\d+x\d+')
-
-# Resize the images to match the monitor resolutions
-convert $HOME/.config/bspwm/assets/fuyuko2.jpg -resize $left_resolution! left_resized.png
-convert $HOME/.config/bspwm/assets/fuyuko2.jpg -resize $right_resolution! right_resized.png
-
-# Combine the resized images side by side
-convert left_resized.png right_resized.png +append $final_wallpaper
-
-echo "Combined image created as combined_output.png"
-
-# Apply a blur filter to the combined wallpaper
-convert $final_wallpaper -blur 0x6 $final_wallpaper
-
-# Lock the screen with i3lock using the combined blurred wallpaper
-i3lock -i $final_wallpaper
-
-# Clean up the temporary files
-rm -r /tmp/lockscreen
+# Cleanup temp files
+rm -r "$temp_dir"

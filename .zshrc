@@ -23,12 +23,25 @@ export GOROOT=/usr/local/go
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 export GOPRIVATE=bitbucket.org/ayopop
 
-export FZF_DEFAULT_COMMAND="fd --hidden --strio-cwd-prefix --exclude .git"
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # Java
 export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
 export PATH=$JAVA_HOME/bin:$PATH
+
+# Android
+export ANDROID=$HOME/Android
+export PATH=$ANDROID/cmdline-tools:$PATH
+export PATH=$ANDROID/cmdline-tools/latest:$PATH
+export PATH=$ANDROID/cmdline-tools/latest/bin:$PATH
+export PATH=$ANDROID/platform-tools:$PATH
+# Android SDK
+export ANDROID_SDK=$HOME/ANDROID
+export PATH=$ANDROID_SDK:$PATH
+
+# Flutter
+PATH="$HOME/Flutter/flutter/bin:$PATH"
 
 
 export PATH="$PATH:$HOME/Downloads/bin/"
@@ -267,6 +280,11 @@ hg()
 	fi
 }
 
+cx() { cd "$@" && l; }
+fcd() { cd "$(find . -type d -not -path '*/.*' | fzf)" && l; }
+f() { echo "$(find . -type f -not -path '*/.*' | fzf)" | pbcopy }
+fv() { nvim "$(find . -type f -not -path '*/.*' | fzf)" }
+
 # Alias
 
 # Foldering
@@ -289,10 +307,6 @@ alias tn="tmux new -s"
 alias ta="tmux attach -t"
 alias td="tmux detach"
 alias tk="tmux kill-session -t"
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/home/arya/gcp/google-cloud-sdk/path.zsh.inc' ]; then . '/home/arya/gcp/google-cloud-sdk/path.zsh.inc'; fi

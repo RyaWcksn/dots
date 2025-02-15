@@ -57,6 +57,10 @@ let
 	  pkgs.maven
 	  pkgs.firefox
 	  pkgs.eww
+	  pkgs.trivy
+	  pkgs.neomutt
+	  pkgs.sonar-scanner-cli
+	  pkgs.ninja
         ];
         stateVersion = "24.11";
         username = "arya";
