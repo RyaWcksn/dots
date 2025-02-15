@@ -20,21 +20,40 @@ vim.g.netrw_list_hide = '^\\.\\.\\?/$,\\(^\\|\\s\\s\\)\\zs\\.\\S\\+' -- ALSO HID
 -- vim.g.netrw_list_hide = '\\(^\\|\\s\\s\\)\\zs\\.\\S\\+'
 --
 local function netrw_create_file()
-  -- Get current netrw directory
-  local netrw_dir = vim.fn.expand("%:p:h") .. "/"
+	-- Get current netrw directory
+	local netrw_dir = vim.fn.expand("%:p:h") .. "/"
 
-  -- Prompt user for file path
-  local file_path = vim.fn.input("New file: ", netrw_dir, "file")
+	-- Prompt user for file path
+	local file_path = vim.fn.input("New file: ", netrw_dir, "file")
 
-  -- Ensure a filename was entered
-  if file_path == "" then return end
+	-- Ensure a filename was entered
+	if file_path == "" then return end
 
-  -- Create parent directory if it doesn't exist
-  vim.fn.mkdir(vim.fn.fnamemodify(file_path, ":h"), "p")
+	-- Create parent directory if it doesn't exist
+	vim.fn.mkdir(vim.fn.fnamemodify(file_path, ":h"), "p")
 
-  -- Open file in the right pane
-  vim.cmd("wincmd l")  -- Move to the right window
-  vim.cmd("edit " .. vim.fn.fnameescape(file_path))
+	-- Open file in the right pane
+	vim.cmd("wincmd l") -- Move to the right window
+	vim.cmd("edit " .. vim.fn.fnameescape(file_path))
+end
+
+
+local function netrw_fzf_search()
+	local cwd = vim.fn.expand("%:p:h") -- Get current netrw directory
+	local fzf_command = "rg --files --hidden --glob '!.git' " .. vim.fn.shellescape(cwd) .. " | fzf"
+
+	-- Run fzf and capture selected file
+	local selected_file = vim.fn.systemlist(fzf_command)[1]
+
+	-- If no file was selected, return
+	if selected_file == nil or selected_file == "" then
+		print("No file selected")
+		return
+	end
+
+	-- Open file in the right window (keeping netrw on the left)
+	vim.cmd("wincmd l") -- Move to the right window
+	vim.cmd("edit " .. vim.fn.fnameescape(selected_file))
 end
 vim.api.nvim_create_autocmd('FileType', {
 	pattern = 'netrw',
@@ -42,6 +61,7 @@ vim.api.nvim_create_autocmd('FileType', {
 		vim.api.nvim_command('setlocal buftype=nofile')
 		vim.api.nvim_command('setlocal bufhidden=wipe')
 		vim.opt_local.winbar = '%!v:lua.WinBarNetRW()'
+		vim.opt_local.laststatus = 0
 
 		-- MAPPINGS
 		local unbinds = {
@@ -55,6 +75,8 @@ vim.api.nvim_create_autocmd('FileType', {
 			vim.keymap.set('n', value, '<CMD>lua print("Keybind \'' .. value .. '\' has been removed")<CR>',
 				{ noremap = true, silent = true, buffer = true })
 		end
+
+		vim.keymap.set("n", "f", netrw_fzf_search, { desc = "Search file", buffer = true, silent = true })
 		vim.keymap.set("n", "c", netrw_create_file, { desc = "Create file", buffer = true, silent = true })
 		vim.keymap.set('n', 'mt', '<CMD>MT<CR>',
 			{ desc = 'Mark Target', noremap = true, silent = true, buffer = true })

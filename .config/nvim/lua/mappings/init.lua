@@ -3,6 +3,75 @@ vim.g.mapleader = " "
 local opt = { silent = true, noremap = true }
 local keymap = vim.keymap.set
 
+
+local function fzf_ripgrep_dynamic_buffer()
+	-- Prompt user for search pattern
+	local search_pattern = vim.fn.input("Search file: ")
+
+	-- Base command to list files
+	local cmd = "rg --files --hidden --glob '!.git'"
+
+	-- Append search pattern if provided
+	if search_pattern ~= "" then
+		cmd = cmd .. " | rg " .. vim.fn.shellescape(search_pattern)
+	end
+
+	-- Run command and get file list
+	local files = vim.fn.systemlist(cmd)
+
+	if #files == 0 then
+		print("No matching files")
+		return
+	end
+
+	local buf = vim.api.nvim_create_buf(false, true) -- Unlisted, scratch buffer
+
+	vim.api.nvim_set_option_value("buftype", "nofile", { buf = buf })
+	vim.api.nvim_set_option_value("bufhidden", "wipe", { buf = buf })
+	vim.api.nvim_set_option_value("swapfile", false, { buf = buf })
+
+	vim.api.nvim_buf_set_lines(buf, 0, -1, false, files)
+
+	vim.cmd("vsplit")
+	vim.api.nvim_win_set_buf(0, buf)
+
+	vim.api.nvim_buf_set_keymap(buf, "n", "<CR>", [[<cmd>lua OpenFileFromBuffer()<CR>]],
+		{ noremap = true, silent = true })
+
+	vim.api.nvim_buf_set_keymap(buf, "n", "r", [[<cmd>lua RefreshFileSearchBuffer()<CR>]],
+		{ noremap = true, silent = true })
+
+	vim.g.file_search_buffer = buf
+end
+
+function RefreshFileSearchBuffer()
+	if not vim.g.file_search_buffer then return end
+
+	local search_pattern = vim.fn.input("New search: ")
+	local cmd = "rg --files --hidden --glob '!.git'"
+	if search_pattern ~= "" then
+		cmd = cmd .. " | rg " .. vim.fn.shellescape(search_pattern)
+	end
+
+	local files = vim.fn.systemlist(cmd)
+	if #files == 0 then
+		print("No matching files")
+		return
+	end
+
+	vim.api.nvim_buf_set_lines(vim.g.file_search_buffer, 0, -1, false, files)
+end
+
+function OpenFileFromBuffer()
+	local line = vim.api.nvim_get_current_line()
+	if line ~= "" then
+		vim.cmd("edit " .. vim.fn.fnameescape(line))
+	end
+end
+
+-- Keybinding to trigger search
+vim.keymap.set("n", "<leader>F", fzf_ripgrep_dynamic_buffer, { desc = "Search files (wildcard buffer)", silent = true })
+
 -- Resize split panes
 keymap('n', '<M-UP>', '<cmd>resize +2<cr>', opt)
 keymap('n', '<M-DOWN>', '<cmd>resize -2<cr>', opt)
@@ -87,7 +156,7 @@ keymap('n', '<leader>fe', ':lua search_word("global")<CR>', { desc = "Find word"
 keymap('n', '<leader>ff', ":Telescope find_files theme=dropdown<CR>", { desc = "Find Files" })
 
 -- Open stuff
-keymap('n', '<leader>oo', ':Lexplore %:p:h<CR>', { desc = "Filetree" })
+keymap('n', '<leader>oo', ':Explore %:p:h<CR>', { desc = "Filetree" })
 
 -- DAP
 keymap('n', '<leader>dR', "<cmd>lua require'dap'.run_to_cursor()<CR>", { desc = "Run to Cursor" })
@@ -186,7 +255,6 @@ local function open_daily_note()
 		vim.cmd("normal G")
 		vim.api.nvim_put({ timestamp }, "l", true, true)
 		vim.cmd("normal G")
-
 	end
 end
 

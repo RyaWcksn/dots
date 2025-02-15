@@ -111,3 +111,16 @@ vim.api.nvim_create_autocmd({ "DiagnosticChanged", "VimEnter", "BufWinEnter" }, 
 		statusbar_exec()
 	end
 })
+
+local function hide_statusline_in_netrw()
+  if vim.bo.filetype == "netrw" then
+    vim.opt.laststatus = 0 -- Hide statusline
+  else
+    vim.opt.laststatus = 2 -- Show statusline for other buffers
+  end
+end
+
+-- Auto command to toggle statusline dynamically
+vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {
+  callback = hide_statusline_in_netrw,
+})
