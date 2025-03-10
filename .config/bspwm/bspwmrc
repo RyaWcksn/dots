@@ -38,8 +38,8 @@ mpd &
 
 # Set wallpaper with feh
 feh \
-    --bg-scale -Z ~/.config/bspwm/assets/sakuya_6.jpg \
-    --bg-fill ~/.config/bspwm/assets/miku_rotate.jpg &
+    --bg-scale -Z ~/.config/bspwm/assets/sakuya_4.jpg \
+    --bg-fill ~/.config/bspwm/assets/space.jpg &
 
 # Notifications
 dunst -config $HOME/.config/dunst/dunstrc &
@@ -55,3 +55,6 @@ $HOME/.config/bspwm/scripts/low_batt.sh &
 
 #libinput-gestures: touchpad gestures
 libinput-gestures-setup restart
+
+# Kde connect
+kdeconnect-indicator &

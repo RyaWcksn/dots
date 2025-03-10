@@ -196,5 +196,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
 		map('lr', vim.lsp.buf.rename, "Rename")
 		map('lr', vim.lsp.buf.rename, "Rename")
 		map('lt', vim.diagnostic.setqflist, "Diagnostics")
+		map('lo', vim.lsp.buf.document_symbol, "Diagnostics")
 	end
 })

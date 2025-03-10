@@ -3,7 +3,6 @@ vim.g.mapleader = " "
 local opt = { silent = true, noremap = true }
 local keymap = vim.keymap.set
 
-
 local function fzf_ripgrep_dynamic_buffer()
 	-- Prompt user for search pattern
 	local search_pattern = vim.fn.input("Search file: ")
@@ -156,7 +155,7 @@ keymap('n', '<leader>fe', ':lua search_word("global")<CR>', { desc = "Find word"
 keymap('n', '<leader>ff', ":Telescope find_files theme=dropdown<CR>", { desc = "Find Files" })
 
 -- Open stuff
-keymap('n', '<leader>oo', ':Explore %:p:h<CR>', { desc = "Filetree" })
+keymap('n', '<leader>oo', ':Vexplore<CR>', { desc = "Filetree" })
 
 -- DAP
 keymap('n', '<leader>dR', "<cmd>lua require'dap'.run_to_cursor()<CR>", { desc = "Run to Cursor" })

@@ -1,21 +1,29 @@
 local function winbar_exec()
-	---format buffer list
+	--- Format buffer list with highlight on current buffer
 	---@return string
 	local function format_buffer_list()
 		local filenames = {}
+		local current_buf = vim.api.nvim_get_current_buf()
+
 		for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-			-- Check if the buffer is associated with a file
 			if vim.api.nvim_buf_is_loaded(buf)
 			    and vim.api.nvim_buf_get_option(buf, 'buftype') == ''
 			    and vim.api.nvim_buf_get_option(buf, 'filetype') ~= 'netrw' then
 				local name = vim.fn.bufname(buf)
-				-- Extract the filename from the full path
 				local filename = vim.fn.fnamemodify(name, ':t')
-				table.insert(filenames, filename)
+
+				-- Highlight the currently open buffer
+				if buf == current_buf then
+					table.insert(filenames, "%#IncSearch#" .. filename .. "%#Normal#")
+				else
+					table.insert(filenames, filename)
+				end
 			end
 		end
+
 		return string.format(" [ %s ] ", table.concat(filenames, ' | '))
 	end
+
 	local winbar = {
 		"%#Normal#",
 		format_buffer_list()

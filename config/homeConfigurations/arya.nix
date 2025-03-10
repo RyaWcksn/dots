@@ -61,6 +61,8 @@ let
 	  pkgs.neomutt
 	  pkgs.sonar-scanner-cli
 	  pkgs.ninja
+	  pkgs.fzf
+	  pkgs.ntfy
         ];
         stateVersion = "24.11";
         username = "arya";

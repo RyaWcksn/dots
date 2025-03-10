@@ -12,7 +12,7 @@ end
 vim.g.netrw_banner = 0
 vim.g.netrw_keepdir = 1
 vim.g.netrw_winsize = 25
-vim.g.netrw_liststyle = 0
+vim.g.netrw_liststyle = 2
 vim.g.netrw_bufsettings = 'nonu nornu noma nowrap nomod ro nobl'
 vim.g.netrw_browse_split = 0                                         -- (4 to open in other window)
 vim.g.netrw_altfile = 0

@@ -1,12 +1,15 @@
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="keita"
 
+zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
+
+
 export EDITOR="nvim"
 export TERM=xterm-256color
 
 
 if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='nvim'
+  export EDITOR='vim'
 else
   export EDITOR='nvim'
 fi
@@ -16,6 +19,7 @@ INSERT_MODE_INDICATOR="%F{yellow}+%f"
 bindkey -M viins 'jk' vi-cmd-mode
 
 source $ZSH/oh-my-zsh.sh
+source <(fzf --zsh)
 
 # Golang
 export GOPATH=$HOME/go
@@ -107,6 +111,12 @@ function glf(){
 						done
 					fi
 				done
+}
+
+function h 
+{
+	command=$(history | grep -i "$1" | sed 's/.[ ]*.[0-9]*.[ ]*//' | uniq | fzf)
+	bash -c $command
 }
 
 
