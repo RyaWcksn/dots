@@ -17,7 +17,12 @@ git clone https://github.com/RyaWcksn/dots
 ```
 
 ```sh
-sudo apt-get install bspwm ranger neovim git tmux zathura mpd mpv ncmpcpp dunst rofi polybar xbacklight playerctl arandr
+sudo apt install curl
+sh <(curl -L https://nixos.org/nix/install) --daemon
+nix flake update
+nix run home-manager -- switch --flake .#arya
+nix-channel --add https://github.com/nix-community/nixGL/archive/main.tar.gz nixgl && nix-channel --update
+nix-env -iA nixgl.auto.nixGLDefault
 ```
 
 Additional dependency

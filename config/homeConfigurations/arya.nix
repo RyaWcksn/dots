@@ -3,7 +3,7 @@ let
   homeModule = { config, lib, pkgs, ... }: {
     config = {
       home = {
-        homeDirectory = "/home/arya";
+        homeDirectory = "/home/aya";
         packages = [
 	  pkgs.neovim
           pkgs.git
@@ -63,9 +63,14 @@ let
 	  pkgs.ninja
 	  pkgs.fzf
 	  pkgs.ntfy
+	  pkgs.gnome-tweaks
+	  pkgs.dbeaver-bin
+	  pkgs.discord
+	  pkgs.unrar
+	  pkgs.zip
         ];
         stateVersion = "24.11";
-        username = "arya";
+        username = "aya";
       };
       nixpkgs = {
         config = {
