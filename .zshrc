@@ -31,7 +31,9 @@ export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # Java
-export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
+# export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
+# export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
 export PATH=$JAVA_HOME/bin:$PATH
 
 # Android
@@ -300,6 +302,7 @@ fv() { nvim "$(find . -type f -not -path '*/.*' | fzf)" }
 # Foldering
 alias ls="ls -a --color"
 alias mkdir="mkdir -p"
+alias fd="fdfind"
 
 # Reload
 alias reload="source ~/.zshrc"

@@ -155,7 +155,7 @@ keymap('n', '<leader>fe', ':lua search_word("global")<CR>', { desc = "Find word"
 keymap('n', '<leader>ff', ":Telescope find_files theme=dropdown<CR>", { desc = "Find Files" })
 
 -- Open stuff
-keymap('n', '<leader>oo', ':Vexplore<CR>', { desc = "Filetree" })
+keymap('n', '<leader>oo', ':edit .<CR>', { desc = "Filetree" })
 
 -- DAP
 keymap('n', '<leader>dR', "<cmd>lua require'dap'.run_to_cursor()<CR>", { desc = "Run to Cursor" })

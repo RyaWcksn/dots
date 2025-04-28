@@ -27,12 +27,8 @@ let
 	  pkgs.wireshark
 	  pkgs.xorg.xbacklight
 	  pkgs.nixd
-	  pkgs.android-tools
-	  pkgs.alacritty
 	  pkgs.zsh
-	  pkgs.google-chrome
 	  pkgs.kitty
-	  pkgs.postman
 	  pkgs.emacs
 	  pkgs.aria2
 	  pkgs.keepassxc
@@ -65,7 +61,6 @@ let
 	  pkgs.ntfy
 	  pkgs.gnome-tweaks
 	  pkgs.dbeaver-bin
-	  pkgs.discord
 	  pkgs.unrar
 	  pkgs.zip
         ];

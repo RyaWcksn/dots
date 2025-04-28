@@ -21,28 +21,59 @@ require("lazy").setup({
 		"simrat39/rust-tools.nvim",
 		ft = " rust"
 	},
-	-- AI companion
+	-- -- AI companion
+	-- {
+	-- 	"nomnivore/ollama.nvim",
+	-- 	dependencies = {
+	-- 		"nvim-lua/plenary.nvim",
+	-- 	},
+
+	-- 	-- All the user commands added by the plugin
+	-- 	cmd = { "Ollama", "OllamaModel", "OllamaServe", "OllamaServeStop" },
+	-- 	keys = {
+	-- 		{
+	-- 			"<leader>oG",
+	-- 			":<c-u>lua require('ollama').prompt('Generate_Code')<cr>",
+	-- 			desc = "ollama Generate Code",
+	-- 			mode = { "n", "v" },
+	-- 		},
+	-- 	},
+	-- 	config = function()
+	-- 		require('configs.ollama')
+	-- 	end
+	-- },
+	-- Simple, minimal Lazy.nvim configuration
 	{
-		"nomnivore/ollama.nvim",
+		"huynle/ogpt.nvim",
+		event = "VeryLazy",
+		opts = {
+			default_provider = "ollama",
+			providers = {
+				openrouter = {
+					enabled = true,
+					model = "google/gemma-3-27b-it:free",
+					api_host = os.getenv("OPENROUTER_API_HOST") or "https://openrouter.ai/api",
+					api_key = os.getenv("OPENROUTER_API_KEY") or
+					    "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",
+					api_params = {
+						temperature = 0.5,
+						top_p = 0.99,
+					},
+					api_chat_params = {
+						frequency_penalty = 0.8,
+						presence_penalty = 0.5,
+						temperature = 0.8,
+						top_p = 0.99,
+					},
+				},
+			}
+		},
 		dependencies = {
+			"MunifTanjim/nui.nvim",
 			"nvim-lua/plenary.nvim",
-		},
-
-		-- All the user commands added by the plugin
-		cmd = { "Ollama", "OllamaModel", "OllamaServe", "OllamaServeStop" },
-		keys = {
-			{
-				"<leader>oG",
-				":<c-u>lua require('ollama').prompt('Generate_Code')<cr>",
-				desc = "ollama Generate Code",
-				mode = { "n", "v" },
-			},
-		},
-		config = function()
-			require('configs.ollama')
-		end
+			"nvim-telescope/telescope.nvim"
+		}
 	},
-
 	{
 		"rcarriga/nvim-notify",
 		config = function()
@@ -118,6 +149,13 @@ require("lazy").setup({
 		},
 		config = function()
 			require("configs.dap")
+		end
+	},
+	{
+		"nvim-treesitter/nvim-treesitter",
+		build = ":TSUpdate",
+		config = function()
+			require('configs.treesitter')
 		end
 	},
 	{

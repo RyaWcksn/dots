@@ -7,6 +7,7 @@ require 'nvim-treesitter.configs'.setup {
 		"tsx",
 		"rust",
 		"python",
+		"templ",
 	},
 	sync_install = false,
 	auto_install = true,
@@ -22,7 +23,5 @@ require 'nvim-treesitter.configs'.setup {
 			node_decremental = "g ",
 		},
 	},
-	highlight = {
-		enable = true,
-	},
+	additional_vim_regex_highlighting = false,
 }
