@@ -237,7 +237,7 @@ keymap('n', '<leader>bl', buffers_to_quickfix, { desc = "List all buffers in qui
 keymap('n', '<leader>bd', ":bd<CR>", { desc = "Delete This Buffer" })
 keymap('n', '<leader>ba', ":w <bar> %bd <bar> e# <bar> bd# <CR>", { desc = "Delete All But This Buffer" })
 keymap('n', '<tab>', ":bn<CR>", { desc = "Next Buffer" })
-keymap('n', '<s-tab>', ":bn<CR>", { desc = "Prev Buffer" })
+keymap('n', '<s-tab>', ":bp<CR>", { desc = "Prev Buffer" })
 
 -- Note taking
 local function open_daily_note()

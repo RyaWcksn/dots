@@ -4,7 +4,8 @@ local g = vim.g
 opt.fillchars = { eob = " " }
 
 vim.opt.background = "dark" -- set this to dark or light
-vim.cmd("colorscheme oxocarbon")
+-- vim.cmd("colorscheme oxocarbon")
+vim.cmd("colorscheme base16-default-dark")
 vim.opt.termguicolors = true
 
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }

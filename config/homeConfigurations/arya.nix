@@ -25,34 +25,17 @@ let
           pkgs.atac
           pkgs.termshark
 	  pkgs.wireshark
-	  pkgs.xorg.xbacklight
 	  pkgs.nixd
+	  pkgs.alacritty
 	  pkgs.zsh
 	  pkgs.kitty
-	  pkgs.emacs
 	  pkgs.aria2
-	  pkgs.keepassxc
 	  pkgs.lazygit
 	  pkgs.lazydocker
-	  pkgs.arandr
 	  pkgs.vscode
 	  pkgs.k9s
 	  pkgs.spotify
-	  pkgs.ollama
 	  pkgs.keepassxc
-	  pkgs.pamixer
-	  pkgs.xdotool
-	  pkgs.wmctrl
-	  pkgs.libinput-gestures
-	  pkgs.scrcpy
-	  pkgs.picom
-	  pkgs.xwallpaper
-	  pkgs.redshift
-	  pkgs.yt-dlp
-	  pkgs.pass
-	  pkgs.maven
-	  pkgs.firefox
-	  pkgs.eww
 	  pkgs.trivy
 	  pkgs.neomutt
 	  pkgs.sonar-scanner-cli

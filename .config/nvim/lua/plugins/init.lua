@@ -21,6 +21,9 @@ require("lazy").setup({
 		"simrat39/rust-tools.nvim",
 		ft = " rust"
 	},
+	{
+		"RRethy/base16-nvim"
+	},
 	-- -- AI companion
 	-- {
 	-- 	"nomnivore/ollama.nvim",

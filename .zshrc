@@ -62,6 +62,28 @@ source "$HOME/.cargo/env"
 
 # Functions
 
+# Scrcpy
+
+function scr ()
+{
+flag="$1"
+
+case "$flag" in
+    --app)
+	PKG=$(adb shell 'pm list packages' | sed 's/.*://g' | fzf)
+	[ -z "$PKG" ] && echo "No app selected" && exit 1
+	scrcpy --shortcut-mod=lctrl -b 1M --max-fps=60 -K --new-display --start-app="$PKG"
+        ;;
+    --sound)
+	scrcpy --shortcut-mod=lctrl --audio-codec=flac --audio-bit-rate=64K -S -b 1M --no-video
+        ;;
+    *)
+	scrcpy --shortcut-mod=lctrl --audio-codec=flac --audio-bit-rate=64K --audio-output-buffer=10 -S -b 1M --max-size 1024 --max-fps=60 -K
+        ;;
+esac
+}
+
+
 # Git 
 function gpf() {
 	git add $(git ls-files --modified --others --exclude-standard | fzf -m --preview="git diff --color=always {}")
