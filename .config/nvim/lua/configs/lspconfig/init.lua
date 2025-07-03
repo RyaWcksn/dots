@@ -163,7 +163,8 @@ local servers = {
 	protols = require('configs.lspconfig.languages.protols').protols(capabilities, on_attach),
 	pyright = require('configs.lspconfig.languages.pyright').pyright(capabilities, on_attach),
 	dartls = require('configs.lspconfig.languages.dartls').dartls(capabilities, on_attach),
-	templ = require('configs.lspconfig.languages.templ').templ(capabilities, on_attach)
+	templ = require('configs.lspconfig.languages.templ').templ(capabilities, on_attach),
+	kotlin_language_server = require('configs.lspconfig.languages.kotlin').kotlin(capabilities, on_attach)
 }
 
 require('configs.lspconfig.languages.rust-analyzer').rust_tools(capabilities, on_attach)

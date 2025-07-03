@@ -15,29 +15,141 @@ vim.g.mapleader = " "
 
 require("lazy").setup({
 	{
+		"yetone/avante.nvim",
+		-- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
+		-- ⚠️ must add this setting! ! !
+		build = function()
+			-- conditionally use the correct build system for the current OS
+			if vim.fn.has("win32") == 1 then
+				return "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
+			else
+				return "make"
+			end
+		end,
+		event = "VeryLazy",
+		version = false, -- Never set this value to "*"! Never!
+		---@module 'avante'
+		---@type avante.Config
+		opts = {
+			-- add any opts here
+			-- for example
+			provider = "gemini",
+			-- providers = {
+			-- 	gemini = {
+			-- 	},
+			-- },
+		},
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"MunifTanjim/nui.nvim",
+			--- The below dependencies are optional,
+			"echasnovski/mini.pick", -- for file_selector provider mini.pick
+			"nvim-telescope/telescope.nvim", -- for file_selector provider telescope
+			"hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
+			"ibhagwan/fzf-lua", -- for file_selector provider fzf
+			"stevearc/dressing.nvim", -- for input provider dressing
+			"folke/snacks.nvim", -- for input provider snacks
+			"nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
+			"zbirenbaum/copilot.lua", -- for providers='copilot'
+			{
+				-- support for image pasting
+				"HakonHarnes/img-clip.nvim",
+				event = "VeryLazy",
+				opts = {
+					-- recommended settings
+					default = {
+						embed_image_as_base64 = false,
+						prompt_for_file_name = false,
+						drag_and_drop = {
+							insert_mode = true,
+						},
+						-- required for Windows users
+						use_absolute_path = true,
+					},
+				},
+			},
+			{
+				-- Make sure to set this up properly if you have lazy=true
+				'MeanderingProgrammer/render-markdown.nvim',
+				opts = {
+					file_types = { "markdown", "Avante" },
+				},
+				ft = { "markdown", "Avante" },
+			},
+		},
+	},
+	{
 		"nyoom-engineering/oxocarbon.nvim"
+	},
+	{
+		"olimorris/codecompanion.nvim",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-treesitter/nvim-treesitter",
+		},
+		opts = {
+			strategies = {
+				chat = {
+					adapter = "gemini",
+				},
+				inline = {
+					adapter = "gemini",
+				},
+			},
+			gemini = function()
+				return require("codecompanion.adapters").extend("gemini", {
+					schema = {
+						model = {
+							default = "gemini-2.0-flash-lite",
+						},
+					},
+					env = {
+						api_key = "AIzaSyB7OC5PmZe5T8WhaHUGznJNpTRuoWroC0g",
+					},
+				})
+			end,
+			display = {
+				diff = {
+					provider = "mini_diff",
+				},
+			},
+		},
+	},
+	{
+		"MeanderingProgrammer/render-markdown.nvim",
+		ft = { "markdown", "codecompanion" }
+	},
+	{
+		"echasnovski/mini.diff",
+		config = function()
+			local diff = require("mini.diff")
+			diff.setup({
+				-- Disabled by default
+				source = diff.gen_source.none(),
+			})
+		end,
 	},
 	{
 		"simrat39/rust-tools.nvim",
 		ft = " rust"
 	},
 	{
-		"RRethy/base16-nvim"
+		"rrethy/base16-nvim"
 	},
-	-- -- AI companion
+	-- -- ai companion
 	-- {
 	-- 	"nomnivore/ollama.nvim",
 	-- 	dependencies = {
 	-- 		"nvim-lua/plenary.nvim",
 	-- 	},
 
-	-- 	-- All the user commands added by the plugin
-	-- 	cmd = { "Ollama", "OllamaModel", "OllamaServe", "OllamaServeStop" },
+	-- 	-- all the user commands added by the plugin
+	-- 	cmd = { "ollama", "ollamamodel", "ollamaserve", "ollamaservestop" },
 	-- 	keys = {
 	-- 		{
-	-- 			"<leader>oG",
-	-- 			":<c-u>lua require('ollama').prompt('Generate_Code')<cr>",
-	-- 			desc = "ollama Generate Code",
+	-- 			"<leader>og",
+	-- 			":<c-u>lua require('ollama').prompt('generate_code')<cr>",
+	-- 			desc = "ollama generate code",
 	-- 			mode = { "n", "v" },
 	-- 		},
 	-- 	},
@@ -45,38 +157,7 @@ require("lazy").setup({
 	-- 		require('configs.ollama')
 	-- 	end
 	-- },
-	-- Simple, minimal Lazy.nvim configuration
-	{
-		"huynle/ogpt.nvim",
-		event = "VeryLazy",
-		opts = {
-			default_provider = "ollama",
-			providers = {
-				openrouter = {
-					enabled = true,
-					model = "google/gemma-3-27b-it:free",
-					api_host = os.getenv("OPENROUTER_API_HOST") or "https://openrouter.ai/api",
-					api_key = os.getenv("OPENROUTER_API_KEY") or
-					    "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",
-					api_params = {
-						temperature = 0.5,
-						top_p = 0.99,
-					},
-					api_chat_params = {
-						frequency_penalty = 0.8,
-						presence_penalty = 0.5,
-						temperature = 0.8,
-						top_p = 0.99,
-					},
-				},
-			}
-		},
-		dependencies = {
-			"MunifTanjim/nui.nvim",
-			"nvim-lua/plenary.nvim",
-			"nvim-telescope/telescope.nvim"
-		}
-	},
+	-- simple, minimal lazy.nvim configuration
 	{
 		"rcarriga/nvim-notify",
 		config = function()
@@ -87,14 +168,14 @@ require("lazy").setup({
 		end,
 	},
 	{
-		"numToStr/Comment.nvim",
+		"numtostr/comment.nvim",
 		config = function()
 			require('configs.comment')
 		end,
 	},
 
 	{
-		"APZelos/blamer.nvim"
+		"apzelos/blamer.nvim"
 	},
 	{
 		'neovim/nvim-lspconfig',
@@ -107,8 +188,8 @@ require("lazy").setup({
 		config = function()
 			require('configs.whichkey')
 		end,
-		cmd = "WhichKey",
-		event = "VeryLazy",
+		cmd = "whichkey",
+		event = "verylazy",
 	},
 	{ 'nvim-lua/plenary.nvim' },
 	{
@@ -117,7 +198,7 @@ require("lazy").setup({
 			require('configs.telescope')
 		end,
 		lazy = true,
-		cmd = "Telescope",
+		cmd = "telescope",
 	},
 	{ 'nvim-telescope/telescope-fzf-native.nvim', make = 'make' },
 	{
@@ -125,7 +206,7 @@ require("lazy").setup({
 		config = function()
 			require('configs.cmp')
 		end,
-		event = { "InsertEnter", "CmdlineEnter" },
+		event = { "insertenter", "cmdlineenter" },
 		dependencies = {
 			{ "hrsh7th/cmp-nvim-lsp",         lazy = true },
 			{ "saadparwaiz1/cmp_luasnip",     lazy = true },
@@ -134,11 +215,11 @@ require("lazy").setup({
 		},
 	},
 	{
-		'L3MON4D3/LuaSnip',
+		'l3mon4d3/luasnip',
 		config = function()
 			require('configs.snippet')
 		end,
-		event = "InsertEnter",
+		event = "insertenter",
 		dependencies = {
 			"friendly-snippets",
 		},
@@ -156,7 +237,7 @@ require("lazy").setup({
 	},
 	{
 		"nvim-treesitter/nvim-treesitter",
-		build = ":TSUpdate",
+		build = ":tsupdate",
 		config = function()
 			require('configs.treesitter')
 		end

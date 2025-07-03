@@ -3,9 +3,16 @@ local g = vim.g
 
 opt.fillchars = { eob = " " }
 
-vim.opt.background = "dark" -- set this to dark or light
+local hour = tonumber(os.date("%H"))
+
+if hour >= 22 or hour < 6 then
+	vim.opt.background = "light"
+	vim.cmd("colorscheme base16-default-light")
+else
+	vim.opt.background = "dark"
+	vim.cmd("colorscheme base16-default-dark")
+end
 -- vim.cmd("colorscheme oxocarbon")
-vim.cmd("colorscheme base16-default-dark")
 vim.opt.termguicolors = true
 
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }

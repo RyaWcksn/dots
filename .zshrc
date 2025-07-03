@@ -27,14 +27,17 @@ export GOROOT=/usr/local/go
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 export GOPRIVATE=bitbucket.org/ayopop
 
+export PATH="/usr/local/bin:$PATH"
+
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # Java
 # export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
 # export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
-export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+export JAVA_HOME="$HOME/.sdkman/candidates/java/current"
 export PATH=$JAVA_HOME/bin:$PATH
+export PATH="$PATH:$HOME/Downloads/server/bin"
 
 # Android
 export ANDROID=$HOME/Android
@@ -67,18 +70,56 @@ source "$HOME/.cargo/env"
 function scr ()
 {
 flag="$1"
+app="$2"
 
 case "$flag" in
     --app)
-	PKG=$(adb shell 'pm list packages' | sed 's/.*://g' | fzf)
-	[ -z "$PKG" ] && echo "No app selected" && exit 1
-	scrcpy --shortcut-mod=lctrl -b 1M --max-fps=60 -K --new-display --start-app="$PKG"
+	    if [[ -n "$app" ]]; then
+		    scrcpy --shortcut-mod=lctrl -b 1M --max-fps=60 -K --new-display --start-app="+?$app"
+	    else
+		    PKG=$(adb shell 'pm list packages' | sed 's/.*://g' | fzf)
+		    [ -z "$PKG" ] && echo "No app selected"
+		    scrcpy --shortcut-mod=lctrl -b 1M --max-fps=60 -K --new-display --start-app="$PKG"
+	    fi
         ;;
     --sound)
-	scrcpy --shortcut-mod=lctrl --audio-codec=flac --audio-bit-rate=64K -S -b 1M --no-video
+	scrcpy --shortcut-mod=lctrl --audio-codec=flac --audio-bit-rate=64K -b 1M --audio-buffer=125 --no-video
         ;;
+    --wireless)
+        echo "[*] Switching device to TCP/IP mode on port 5555..."
+  	adb tcpip 5555 || { echo "[!] Failed to switch to TCP mode"; exit 1; }
+
+  	echo "[*] Getting device IP address..."
+  	IP=$(adb shell ip addr show | grep 'inet ' | grep '192\.168\.' | awk '{print $2}' | cut -d/ -f1)
+
+  	if [[ -z "$IP" ]]; then
+    		echo "[!] Failed to get IP address of device. Is Wi-Fi enabled?"
+  	fi
+
+  	echo "[*] Connecting to $IP:5555..."
+  	adb connect "$IP:5555"
+
+  	echo "[*] Waiting for device to be authorized..."
+  	for i in {1..10}; do
+    		STATE=$(adb devices | grep "$IP" | awk '{print $2}')
+    		echo "    Try $i: Device state = $STATE"
+    		if [[ "$STATE" == "device" ]]; then
+      			echo "[✓] Device authorized."
+      			break
+    		fi
+    		sleep 1
+  	done
+
+	if [[ "$STATE" != "device" ]]; then
+		echo "[!] Device not authorized or still offline. Please check your phone for authorization prompt."
+	fi
+
+	echo "[*] Launching scrcpy..."
+	scrcpy --audio-bit-rate=128K --audio-buffer=125 -S -b 4M --max-size=1024 --max-fps=30 -K
+  	;;
+
     *)
-	scrcpy --shortcut-mod=lctrl --audio-codec=flac --audio-bit-rate=64K --audio-output-buffer=10 -S -b 1M --max-size 1024 --max-fps=60 -K
+	scrcpy --audio-codec=flac --audio-bit-rate=64K --audio-output-buffer=10 -S -b 1M --max-size 1024 --max-fps=60 -K
         ;;
 esac
 }
@@ -187,7 +228,7 @@ function dex() {
 	CONTAINER=`docker ps | rg -v CONTAINER | awk '-F ' ' {print $NF}' | fzf`
 	if [ ! -z $CONTAINER ]
 	then
-		docker exec -it $CONTAINER bash
+		docker exec -it $CONTAINER sh
 	fi
 }
 
@@ -352,3 +393,7 @@ if [ -f '/home/arya/gcp/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/ar
 if [ -e /home/$USER/.nix-profile/etc/profile.d/nix.sh ]; then
   . /home/$USER/.nix-profile/etc/profile.d/nix.sh
 fi
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"

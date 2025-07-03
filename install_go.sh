@@ -32,6 +32,7 @@ architecture ()
         i686)   architecture="386" ;;
         x86_64) architecture="amd64" ;;
         aarch64) architecture="arm64" ;;
+        arm64) architecture="arm64" ;;
         arm)    dpkg --print-architecture | grep -q "arm64" && architecture="arm64" || architecture="arm" ;;
         *) echo "Unknown architecture" break
     esac
