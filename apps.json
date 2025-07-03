@@ -1,0 +1,35 @@
+{
+  "apps": [
+    "neovim",
+    "htop",
+    "tmux",
+    "curl",
+    "wget",
+    "zsh",
+    "git",
+    "alacritty",
+    "lazygit",
+    "lazydocker",
+    "postman",
+    "keepassxc",
+    "google-cloud-sdk",
+    "stow",
+    "ripgrep",
+    "fzf",
+    "discord",
+    "mpv",
+    "rar",
+    "unzip",
+    "android-platform-tools",
+    "scrcpy",
+    "spotify",
+    "dbeaver-community",
+    "nvm",
+    "ngrok",
+    "docker",
+    "docker-compose",
+    "ffmpeg",
+    "sqlc"
+  ]
+}
+
