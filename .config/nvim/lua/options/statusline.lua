@@ -60,8 +60,10 @@ end
 
 local function lsp_servers()
 	local msg = 'No Active Lsp'
-	local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
-	local clients = vim.lsp.get_active_clients()
+	local buf_ft = vim.api.nvim_get_option_value('filetype', {
+		buf = 0
+	})
+	local clients = vim.lsp.get_clients()
 	local names = {}
 	for _, client in ipairs(clients) do
 		local filetypes = client.config.filetypes
@@ -113,14 +115,14 @@ vim.api.nvim_create_autocmd({ "DiagnosticChanged", "VimEnter", "BufWinEnter" }, 
 })
 
 local function hide_statusline_in_netrw()
-  if vim.bo.filetype == "netrw" then
-    vim.opt.laststatus = 0 -- Hide statusline
-  else
-    vim.opt.laststatus = 2 -- Show statusline for other buffers
-  end
+	if vim.bo.filetype == "netrw" then
+		vim.opt.laststatus = 0 -- Hide statusline
+	else
+		vim.opt.laststatus = 2 -- Show statusline for other buffers
+	end
 end
 
 -- Auto command to toggle statusline dynamically
-vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {
-  callback = hide_statusline_in_netrw,
+vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
+	callback = hide_statusline_in_netrw,
 })

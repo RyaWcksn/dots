@@ -7,6 +7,7 @@ zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
 export EDITOR="nvim"
 export TERM=xterm-256color
 
+gsettings set org.gnome.desktop.input-sources xkb-options "['ctrl:nocaps']"
 
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
@@ -29,8 +30,18 @@ export GOPRIVATE=bitbucket.org/ayopop
 
 export PATH="/usr/local/bin:$PATH"
 
-export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow'
+# Foldering
+alias ls="ls -a --color"
+alias mkdir="mkdir -p"
+alias fd="fdfind"
+
+alias fn="fdfind . -type f | fzf"
+
+export FZF_DEFAULT_COMMAND='fdfind . --hidden --follow --exclude .git --exclude node_modules --exclude go'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_CTRL_T_OPTS="--preview 'cat -n {} | head -500'"
+# Automatically use popup in tmux
+export FZF_TMUX_OPTS='-p 80%,60%'  # Width x Height
 
 # Java
 # export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
@@ -55,13 +66,26 @@ PATH="$HOME/Flutter/flutter/bin:$PATH"
 
 export PATH="$PATH:$HOME/Downloads/bin/"
 
+
+# BUN
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+export PATH="/home/aya/.bun/bin:$PATH"
+
+
+export PNPM_HOME="/home/aya/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+
 # NodeJS
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # Rust
-source "$HOME/.cargo/env"
+[ -f "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
 
 # Functions
 
@@ -86,40 +110,100 @@ case "$flag" in
 	scrcpy --shortcut-mod=lctrl --audio-codec=flac --audio-bit-rate=64K -b 1M --audio-buffer=125 --no-video
         ;;
     --wireless)
-        echo "[*] Switching device to TCP/IP mode on port 5555..."
-  	adb tcpip 5555 || { echo "[!] Failed to switch to TCP mode"; exit 1; }
+	# Check if a device is already connected via Wi-Fi and is authorized
+        if adb devices | grep -E "\b[0-9]{1,3}(\.[0-9]{1,3}){3}:5555\b" | grep -q "device"; then
+            echo "[✓] Wi-Fi device already connected and authorized."
+        else
+            echo "[*] No authorized Wi-Fi device found. Attempting to connect..."
 
-  	echo "[*] Getting device IP address..."
-  	IP=$(adb shell ip addr show | grep 'inet ' | grep '192\.168\.' | awk '{print $2}' | cut -d/ -f1)
+            echo "[*] Switching device to TCP/IP mode on port 5555..."
+            TCP_OUTPUT=$(adb tcpip 5555 2>&1)
+            if [[ $TCP_OUTPUT == *"error"* ]]; then
+                echo "[!] Failed to switch to TCP mode. Is a device connected via USB?"
+                echo "    ADB Output: $TCP_OUTPUT"
+                return 1
+            fi
 
-  	if [[ -z "$IP" ]]; then
-    		echo "[!] Failed to get IP address of device. Is Wi-Fi enabled?"
-  	fi
+            echo "[*] Getting device IP address..."
+            IP=$(adb shell ip addr show | grep 'inet ' | grep '192\.168\.' | awk '{print $2}' | cut -d/ -f1)
 
-  	echo "[*] Connecting to $IP:5555..."
-  	adb connect "$IP:5555"
 
-  	echo "[*] Waiting for device to be authorized..."
-  	for i in {1..10}; do
-    		STATE=$(adb devices | grep "$IP" | awk '{print $2}')
-    		echo "    Try $i: Device state = $STATE"
-    		if [[ "$STATE" == "device" ]]; then
-      			echo "[✓] Device authorized."
-      			break
-    		fi
-    		sleep 1
-  	done
+	    echo "[*] Got IP address $IP"
 
-	if [[ "$STATE" != "device" ]]; then
-		echo "[!] Device not authorized or still offline. Please check your phone for authorization prompt."
-	fi
+            if [[ -z "$IP" ]]; then
+                echo "[!] Failed to get IP address of device. Is Wi-Fi enabled?"
+                return 1
+            fi
+
+            echo "[*] Found IP: $IP"
+            echo "[*] You can now disconnect the USB cable."
+
+            echo "[*] Connecting to $IP:5555..."
+            adb connect "$IP:5555" > /dev/null
+
+            sleep 1
+
+            echo "[*] Checking device authorization status..."
+            STATE=$(adb devices | grep "$IP" | awk '{print $2}')
+
+            if [[ "$STATE" != "device" ]]; then
+                echo "[!] Device not authorized or offline. Please check authorization prompt on your phone and try again."
+                return 1
+            fi
+            echo "[✓] Device authorized."
+        fi
 
 	echo "[*] Launching scrcpy..."
-	scrcpy --audio-bit-rate=128K --audio-buffer=125 -S -b 4M --max-size=1024 --max-fps=30 -K
+	scrcpy --shortcut-mod=lctrl --audio-bit-rate=64K --audio-buffer=20 -b 1M --max-size=800 --max-fps=45 -K
   	;;
 
+    --mic)
+        local LATENCY=20
+        local PIPE_FILE="/tmp/scrcpy_audio.raw"
+        local SOURCE_NAME="ScrcpyMic"
+        local MODULE_ID
+
+        # This function will be called when the script exits.
+        function cleanup() {
+            echo -e "\n[*] Cleaning up..."
+            if [[ -n "$PAREC_PID" ]]; then
+                echo "[*] Stopping dummy recording process..."
+                kill "$PAREC_PID" 2>/dev/null
+            fi
+            if [[ -n "$MODULE_ID" ]]; then
+                echo "[*] Unloading PulseAudio module $MODULE_ID..."
+                pactl unload-module "$MODULE_ID"
+            fi
+            if [ -p "$PIPE_FILE" ]; then
+                rm "$PIPE_FILE"
+            fi
+            # Remove the traps to avoid multiple executions.
+            trap - INT TERM EXIT
+        }
+
+        # Trap signals to run the cleanup function upon exit or interruption.
+        trap cleanup INT TERM EXIT
+
+        # Create the pipe if it doesn't exist
+        [ -p "$PIPE_FILE" ] || mkfifo "$PIPE_FILE"
+
+        echo "[*] Creating virtual microphone '$SOURCE_NAME'..."
+        MODULE_ID=$(pactl load-module module-pipe-source source_name="$SOURCE_NAME" file="$PIPE_FILE" channels=2 format=s16le rate=48000)
+
+        # Check if module loaded successfully
+        if ! [[ "$MODULE_ID" =~ ^[0-9]+$ ]]; then
+            echo "[!] Failed to load PulseAudio module. Make sure PulseAudio is running."
+            return 1
+        fi
+
+        echo "[✓] Virtual microphone created. You can now select it in other apps."
+        echo "[*] Starting scrcpy audio capture. Press Ctrl+C to stop."
+
+	scrcpy --no-video --no-window --no-playback --audio-source=mic --audio-codec=raw --record-format=wav --record=/tmp/scrcpy_pipe --audio-buffer=$LATENCY --audio-output-buffer=10 
+        ;;
+
     *)
-	scrcpy --audio-codec=flac --audio-bit-rate=64K --audio-output-buffer=10 -S -b 1M --max-size 1024 --max-fps=60 -K
+	scrcpy --audio-bit-rate=64K --audio-output-buffer=10 -S -b 1M --max-size 1024 --max-fps=60 -K
         ;;
 esac
 }
@@ -278,43 +362,6 @@ cj() {
 	fi
 }
 
-# Extract
-function ex {
- if [ -z "$1" ]; then
-    # display usage if no parameters given
-    echo "Usage: extract <path/file_name>.<zip|rar|bz2|gz|tar|tbz2|tgz|Z|7z|xz|ex|tar.bz2|tar.gz|tar.xz>"
-    echo "       extract <path/file_name_1.ext> [path/file_name_2.ext] [path/file_name_3.ext]"
- else
-    for n in "$@"
-    do
-      if [ -f "$n" ] ; then
-          case "${n%,}" in
-            *.cbt|*.tar.bz2|*.tar.gz|*.tar.xz|*.tbz2|*.tgz|*.txz|*.tar)
-                         tar xvf "$n"       ;;
-            *.lzma)      unlzma ./"$n"      ;;
-            *.bz2)       bunzip2 ./"$n"     ;;
-            *.cbr|*.rar)       unrar x -ad ./"$n" ;;
-            *.gz)        gunzip ./"$n"      ;;
-            *.cbz|*.epub|*.zip)       unzip ./"$n"       ;;
-            *.z)         uncompress ./"$n"  ;;
-            *.7z|*.arj|*.cab|*.cb7|*.chm|*.deb|*.dmg|*.iso|*.lzh|*.msi|*.pkg|*.rpm|*.udf|*.wim|*.xar)
-                         7z x ./"$n"        ;;
-            *.xz)        unxz ./"$n"        ;;
-            *.exe)       cabextract ./"$n"  ;;
-            *.cpio)      cpio -id < ./"$n"  ;;
-            *.cba|*.ace)      unace x ./"$n"      ;;
-            *)
-                         echo "extract: '$n' - unknown archive method"
-                         return 1
-                         ;;
-          esac
-      else
-          echo "'$n' - file does not exist"
-          return 1
-      fi
-    done
-fi
-}
 
 
 # File 
@@ -362,10 +409,6 @@ fv() { nvim "$(find . -type f -not -path '*/.*' | fzf)" }
 
 # Alias
 
-# Foldering
-alias ls="ls -a --color"
-alias mkdir="mkdir -p"
-alias fd="fdfind"
 
 # Reload
 alias reload="source ~/.zshrc"
@@ -384,16 +427,16 @@ alias ta="tmux attach -t"
 alias td="tmux detach"
 alias tk="tmux kill-session -t"
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/arya/gcp/google-cloud-sdk/path.zsh.inc' ]; then . '/home/arya/gcp/google-cloud-sdk/path.zsh.inc'; fi
+# # The next line updates PATH for the Google Cloud SDK.
+# if [ -f '/home/arya/gcp/google-cloud-sdk/path.zsh.inc' ]; then . '/home/arya/gcp/google-cloud-sdk/path.zsh.inc'; fi
 
-# The next line enables shell command completion for gcloud.
-if [ -f '/home/arya/gcp/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/arya/gcp/google-cloud-sdk/completion.zsh.inc'; fi
+# # The next line enables shell command completion for gcloud.
+# if [ -f '/home/arya/gcp/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/arya/gcp/google-cloud-sdk/completion.zsh.inc'; fi
 
-if [ -e /home/$USER/.nix-profile/etc/profile.d/nix.sh ]; then
-  . /home/$USER/.nix-profile/etc/profile.d/nix.sh
-fi
+# fi
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"

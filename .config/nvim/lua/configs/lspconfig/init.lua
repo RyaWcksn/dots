@@ -37,13 +37,10 @@ local config = {
 }
 vim.diagnostic.config(config)
 
-function force_signature_help()
-	_G.signature_help_forced = true
-	vim.lsp.buf.signature_help()
-end
 
 local on_attach = function(client, bufnr)
 	vim.o.updatetime = 250
+
 	vim.api.nvim_create_autocmd("CursorHold", {
 		buffer = bufnr,
 		callback = function()
@@ -53,7 +50,7 @@ local on_attach = function(client, bufnr)
 				border = 'rounded',
 				source = 'always',
 				prefix = ' ',
-				scope = 'cursor',
+				scope = 'line',
 			}
 			vim.diagnostic.open_float(nil, opts)
 		end
@@ -83,22 +80,24 @@ local on_attach = function(client, bufnr)
 		})
 	end
 	if client.server_capabilities.definitionProvider then
-		vim.lsp.handlers["textDocument/definition"] = function(_, result, ctx)
+		vim.lsp.handlers["textDocument/definition"] = function(_, result, _)
 			if not result or vim.tbl_isempty(result) then
 				return vim.api.nvim_echo({ { "Lsp: Could not find definition" } }, false, {})
 			end
 
 			if vim.isarray(result) then
-				local results = vim.lsp.util.locations_to_items(result, client.offset_encoding)
+						local encoding = type(client.offset_encoding) == 'string' and client.offset_encoding or 'utf-16'
+						local results = vim.lsp.util.locations_to_items(result, encoding)
 				local lnum, filename = results[1].lnum, results[1].filename
 				for _, val in pairs(results) do
 					if val.lnum ~= lnum or val.filename ~= filename then
 						return require("telescope.builtin").lsp_definitions()
 					end
 				end
-				vim.lsp.util.jump_to_location(result[1], client.offset_encoding, false)
+						-- vim.lsp.util.jump_to_location(result[1], encoding, false)
+				vim.lsp.util.show_document(result[1], { focusable = true }, encoding)
 			else
-				vim.lsp.util.jump_to_location(result, client.offset_encoding, false)
+				vim.lsp.util.show_document(result, { focusable = true }, encoding)
 			end
 		end
 	end
@@ -139,16 +138,6 @@ local on_attach = function(client, bufnr)
 		}
 	end
 end
-vim.lsp.util.apply_text_document_edit = function(text_document_edit, index, offset_encoding)
-	local text_document = text_document_edit.textDocument
-	local bufnr = vim.uri_to_bufnr(text_document.uri)
-	if offset_encoding == nil then
-		vim.notify_once('apply_text_document_edit must be called with valid offset encoding', vim.log.levels
-			.WARN)
-	end
-
-	vim.lsp.util.apply_text_edits(text_document_edit.edits, bufnr, offset_encoding)
-end
 
 local servers = {
 	gopls = require('configs.lspconfig.languages.gopls').gopls(capabilities, on_attach),
@@ -175,18 +164,11 @@ end
 vim.api.nvim_create_autocmd('LspAttach', {
 	group = vim.api.nvim_create_augroup('lsp', { clear = true }),
 	callback = function()
-		local opt = { silent = true, noremap = true }
 		local map = function(key, action, desc)
 			vim.keymap.set('n', '<leader>' .. key, action, { desc = "LSP: " .. desc })
 		end
 
-		local key = vim.keymap.set
-		key('n', '<C-k>', '<cmd>lua force_signature_help()<CR>', opt)
-		key('i', '<C-k>', '<cmd>lua force_signature_help()<CR>', opt)
-
 		map("K", vim.lsp.buf.hover, "Hover")
-		map('[', vim.diagnostic.goto_prev, "Prev diag")
-		map(']', vim.diagnostic.goto_next, "Next diag")
 		map('lf', vim.lsp.buf.format, "Format")
 		map('lc', vim.lsp.buf.code_action, "Code Action")
 		map('ls', vim.lsp.buf.signature_help, "Signature Help")
@@ -195,7 +177,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
 		map('lw', vim.lsp.buf.references, "Code References")
 		map('ll', vim.lsp.codelens.run, "Codelens Run")
 		map('lL', vim.lsp.codelens.refresh, "Codelens Refresh")
-		map('lr', vim.lsp.buf.rename, "Rename")
 		map('lr', vim.lsp.buf.rename, "Rename")
 		map('lt', vim.diagnostic.setqflist, "Diagnostics")
 		map('lo', vim.lsp.buf.document_symbol, "Diagnostics")

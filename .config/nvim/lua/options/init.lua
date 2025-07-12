@@ -7,12 +7,11 @@ local hour = tonumber(os.date("%H"))
 
 if hour >= 22 or hour < 6 then
 	vim.opt.background = "light"
-	vim.cmd("colorscheme base16-default-light")
+	vim.cmd("colorscheme base16-one-light")
 else
 	vim.opt.background = "dark"
-	vim.cmd("colorscheme base16-default-dark")
+	vim.cmd("colorscheme base16-ayu-dark")
 end
--- vim.cmd("colorscheme oxocarbon")
 vim.opt.termguicolors = true
 
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
