@@ -26,10 +26,10 @@ end
 local function lsp()
 	local count = {}
 	local levels = {
-		errors = "Error",
-		warnings = "Warn",
-		info = "Info",
-		hints = "Hint",
+		errors = vim.diagnostic.severity.ERROR,
+		warnings = vim.diagnostic.severity.WARN,
+		info = vim.diagnostic.severity.INFO,
+		hints = vim.diagnostic.severity.HINT,
 	}
 
 	for k, level in pairs(levels) do
@@ -67,7 +67,7 @@ local function lsp_servers()
 	local names = {}
 	for _, client in ipairs(clients) do
 		local filetypes = client.config.filetypes
-		if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
+		if filetypes and type(filetypes) == 'table' and vim.fn.index(filetypes, buf_ft) ~= -1 then
 			table.insert(names, client.name)
 		end
 	end
