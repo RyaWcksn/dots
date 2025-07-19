@@ -35,8 +35,6 @@ alias ls="ls -a --color"
 alias mkdir="mkdir -p"
 alias fd="fdfind"
 
-alias fn="fdfind . -type f | fzf"
-
 export FZF_DEFAULT_COMMAND='fdfind . --hidden --follow --exclude .git --exclude node_modules --exclude go'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_CTRL_T_OPTS="--preview 'cat -n {} | head -500'"
@@ -44,10 +42,8 @@ export FZF_CTRL_T_OPTS="--preview 'cat -n {} | head -500'"
 export FZF_TMUX_OPTS='-p 80%,60%'  # Width x Height
 
 # Java
-# export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
-# export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
 export JAVA_HOME="$HOME/.sdkman/candidates/java/current"
-export PATH=$JAVA_HOME/bin:$PATH
+export PATH="$JAVA_HOME/bin:$PATH"
 export PATH="$PATH:$HOME/Downloads/server/bin"
 
 # Android
@@ -109,26 +105,36 @@ case "$flag" in
     --sound)
 	scrcpy --shortcut-mod=lctrl --audio-codec=flac --audio-bit-rate=64K -b 1M --audio-buffer=125 --no-video
         ;;
+
     --wireless)
-	# Check if a device is already connected via Wi-Fi and is authorized
+        # Check if a device is already connected via Wi-Fi and is authorized
         if adb devices | grep -E "\b[0-9]{1,3}(\.[0-9]{1,3}){3}:5555\b" | grep -q "device"; then
             echo "[✓] Wi-Fi device already connected and authorized."
         else
             echo "[*] No authorized Wi-Fi device found. Attempting to connect..."
 
             echo "[*] Switching device to TCP/IP mode on port 5555..."
-            TCP_OUTPUT=$(adb tcpip 5555 2>&1)
-            if [[ $TCP_OUTPUT == *"error"* ]]; then
-                echo "[!] Failed to switch to TCP mode. Is a device connected via USB?"
-                echo "    ADB Output: $TCP_OUTPUT"
-                return 1
-            fi
+            adb tcpip 5555
+	    sleep 2
 
             echo "[*] Getting device IP address..."
-            IP=$(adb shell ip addr show | grep 'inet ' | grep '192\.168\.' | awk '{print $2}' | cut -d/ -f1)
 
+            # Determine local subnet prefix (e.g., 192.168.1)
+            LOCAL_SUBNET=$(ip route get 1 | awk '/src/ {print $7}' | cut -d. -f1-3)
 
-	    echo "[*] Got IP address $IP"
+	    echo "local subnet = $LOCAL_SUBNET "
+
+            # Get matching IP from Android device
+	    IP=$(adb shell ip addr show | grep 'inet ' | awk '{print $2}' | while read ip; do
+                ip_clean=$(echo "$ip" | cut -d/ -f1)
+                subnet_prefix=$(echo "$ip_clean" | cut -d. -f1-3)
+                if [[ "$subnet_prefix" == "$LOCAL_SUBNET" ]]; then
+                    echo "$ip_clean"
+                    break
+                fi
+            done)
+
+            echo "[*] Got IP address $IP"
 
             if [[ -z "$IP" ]]; then
                 echo "[!] Failed to get IP address of device. Is Wi-Fi enabled?"
@@ -139,7 +145,7 @@ case "$flag" in
             echo "[*] You can now disconnect the USB cable."
 
             echo "[*] Connecting to $IP:5555..."
-            adb connect "$IP:5555" > /dev/null
+            adb connect "$IP:5555"
 
             sleep 1
 
@@ -150,12 +156,14 @@ case "$flag" in
                 echo "[!] Device not authorized or offline. Please check authorization prompt on your phone and try again."
                 return 1
             fi
+
             echo "[✓] Device authorized."
         fi
 
-	echo "[*] Launching scrcpy..."
-	scrcpy --shortcut-mod=lctrl --audio-bit-rate=64K --audio-buffer=20 -b 1M --max-size=800 --max-fps=45 -K
-  	;;
+        echo "[*] Launching scrcpy..."
+        scrcpy --shortcut-mod=lctrl --audio-bit-rate=64K --audio-buffer=20 -b 1M --max-size=800 --max-fps=45 -K
+        ;;
+
 
     --mic)
         local LATENCY=20
@@ -203,7 +211,7 @@ case "$flag" in
         ;;
 
     *)
-	scrcpy --audio-bit-rate=64K --audio-output-buffer=10 -S -b 1M --max-size 1024 --max-fps=60 -K
+	scrcpy --shortcut-mod=lctrl --audio-bit-rate=64K --audio-output-buffer=10 -b 1M --max-size 1024 --max-fps=60 -K
         ;;
 esac
 }
@@ -439,4 +447,4 @@ alias tk="tmux kill-session -t"
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+. "$HOME/.local/bin/env"
