@@ -12,6 +12,38 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 vim.g.mapleader = " "
+local role_map = {
+	user = "human",
+	assistant = "assistant",
+	system = "system",
+}
+
+local parse_messages = function(opts)
+	local messages = {
+		{ role = "system", content = opts.system_prompt },
+	}
+	vim
+	    .iter(opts.messages)
+	    :each(function(msg) table.insert(messages, { speaker = role_map[msg.role], text = msg.content }) end)
+	return messages
+end
+
+local parse_response = function(data_stream, event_state, opts)
+	if event_state == "done" then
+		opts.on_complete()
+		return
+	end
+
+	if data_stream == nil or data_stream == "" then return end
+
+	local json = vim.json.decode(data_stream)
+	local delta = json.deltaText
+	local stopReason = json.stopReason
+
+	if stopReason == "end_turn" then return end
+
+	opts.on_chunk(delta)
+end
 
 require("lazy").setup({
 	{
@@ -22,8 +54,6 @@ require("lazy").setup({
 	},
 	{
 		"yetone/avante.nvim",
-		-- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
-		-- ⚠️ must add this setting! ! !
 		build = function()
 			-- conditionally use the correct build system for the current OS
 			if vim.fn.has("win32") == 1 then
@@ -39,7 +69,7 @@ require("lazy").setup({
 		opts = {
 			-- add any opts here
 			-- for example
-			provider = "gemini",
+			provider = "openrouter",
 			providers = {
 				ollama = {
 					model = "deepseek-coder:latest",
@@ -47,6 +77,43 @@ require("lazy").setup({
 				gemini = {
 					model = "gemini-2.5-flash",
 				},
+				openrouter = {
+					__inherited_from = 'openai',
+					endpoint = 'https://openrouter.ai/api/v1',
+					api_key_name =
+					'OPENROUTER_API_KEY',
+					model = 'deepseek/deepseek-chat',
+				},
+				---@type AvanteProvider
+				custom = {
+					endpoint = "https://accesstesting.onrender.com/ai/deepseek/chat/completions",
+					model = "deepseek-chat",
+					api_key_name = "CUSTOM_API_KEY",
+					---@type fun(opts: AvanteProvider, code_opts: AvantePromptOptions): AvanteCurlOutput
+					parse_curl_args = function(opts, code_opts)
+						local headers = {
+							["Content-Type"] = "application/json",
+							["Authorization"] = "Bearer " .. os.getenv(opts.api_key_name),
+						}
+
+						return {
+							url = opts.endpoint,
+							insecure = false,
+							headers = headers,
+							body = vim.tbl_deep_extend("force", {
+								model = opts.model,
+								temperature = 0,
+								topK = -1,
+								topP = -1,
+								maxTokensToSample = 4000,
+								stream = true,
+								messages = parse_messages(code_opts),
+							}, {}),
+						}
+					end,
+					parse_response = parse_response,
+					parse_messages = parse_messages,
+				}
 			},
 		},
 		dependencies = {

@@ -7,8 +7,8 @@ local function fzf_ripgrep_dynamic_buffer()
 	-- Prompt user for search pattern
 	local search_pattern = vim.fn.input("Search file: ")
 
-	-- Base command to list files
 	local cmd = "rg --files --hidden --glob '!.git'"
+	-- Base command to list files
 
 	-- Append search pattern if provided
 	if search_pattern ~= "" then
@@ -155,7 +155,13 @@ keymap('n', '<leader>fe', ':lua search_word("global")<CR>', { desc = "Find word"
 keymap('n', '<leader>ff', ":Telescope find_files theme=dropdown<CR>", { desc = "Find Files" })
 
 -- Open stuff
-keymap('n', '<leader>oo', ':edit .<CR>', { desc = "Filetree" })
+-- keymap('n', '<leader>oo', ':edit .<CR>', { desc = "Filetree" })
+-- keymap('n', '<leader>oo', '<Cmd>topleft vsplit | edit .<CR>', { desc = "Filetree (left split)" })
+keymap('n', '<leader>oo', function()
+	vim.cmd('topleft vsplit') -- create split on the left
+	vim.cmd('vertical resize 30') -- resize to 30 columns (adjust as needed)
+	vim.cmd('edit .')       -- open filetree using netrw
+end, { desc = "Filetree (left narrow split)" })
 
 -- DAP
 keymap('n', '<leader>dR', "<cmd>lua require'dap'.run_to_cursor()<CR>", { desc = "Run to Cursor" })

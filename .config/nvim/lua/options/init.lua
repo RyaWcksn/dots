@@ -1,5 +1,6 @@
 local opt = vim.opt
 local g = vim.g
+opt.completeopt = "menuone,noselect"
 
 opt.fillchars = { eob = " " }
 

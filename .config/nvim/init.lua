@@ -1,8 +1,10 @@
-require('plugins')
-require('mappings')
-require('options')
-require('options.autocmd')
-require('options.statusline')
-require('options.winbar')
-require('options.netrw')
-require('options.sholat')
+local success, module_loader = pcall(require, 'module_loader')
+if not success then
+  vim.notify('Failed to load module_loader', vim.log.levels.ERROR)
+  return
+end
+
+local success, err = pcall(module_loader.load_modules)
+if not success then
+  vim.notify('Failed to load modules: ' .. err, vim.log.levels.ERROR)
+end

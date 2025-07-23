@@ -1,7 +1,6 @@
 local M = {}
 
 M.tsserver = function(capabilities, on_attach)
-	local lsp = require('lspconfig')
 	local setup = {
 		capabilities = capabilities,
 		filetypes = { "typescript", "javascript", "vue", "typescriptreact" },

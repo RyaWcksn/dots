@@ -14,7 +14,7 @@ vim.g.netrw_keepdir = 1
 vim.g.netrw_winsize = 25
 vim.g.netrw_liststyle = 4
 vim.g.netrw_bufsettings = 'nonu nornu noma nowrap nomod ro nobl'
-vim.g.netrw_browse_split = 0                                         -- (4 to open in other window)
+vim.g.netrw_browse_split = 4                                         -- (4 to open in other window)
 vim.g.netrw_altfile = 0
 vim.g.netrw_list_hide = '^\\.\\.\\?/$,\\(^\\|\\s\\s\\)\\zs\\.\\S\\+' -- ALSO HIDE ./ and ../ when hidden files are shown
 -- vim.g.netrw_list_hide = '\\(^\\|\\s\\s\\)\\zs\\.\\S\\+'
@@ -76,6 +76,7 @@ vim.api.nvim_create_autocmd('FileType', {
 				{ noremap = true, silent = true, buffer = true })
 		end
 
+		vim.keymap.set("n", "q", ":close<CR>", { buffer = true, silent = true })
 		vim.keymap.set("n", "f", netrw_fzf_search, { desc = "Search file", buffer = true, silent = true })
 		vim.keymap.set("n", "c", netrw_create_file, { desc = "Create file", buffer = true, silent = true })
 		vim.keymap.set('n', 'mt', '<CMD>MT<CR>',

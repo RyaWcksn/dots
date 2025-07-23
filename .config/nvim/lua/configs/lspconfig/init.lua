@@ -1,10 +1,4 @@
-local lsp = require('lspconfig')
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-capabilities.textDocument.completion.completionItem.resolveSupport = {
-	properties = { "documentation", "detail", "additionalTextEdits" },
-}
 
 vim.lsp.set_log_level(vim.log.levels.ERROR)
 
@@ -86,15 +80,16 @@ local on_attach = function(client, bufnr)
 			end
 
 			if vim.isarray(result) then
-						local encoding = type(client.offset_encoding) == 'string' and client.offset_encoding or 'utf-16'
-						local results = vim.lsp.util.locations_to_items(result, encoding)
+				local encoding = type(client.offset_encoding) == 'string' and client.offset_encoding or
+				    'utf-16'
+				local results = vim.lsp.util.locations_to_items(result, encoding)
 				local lnum, filename = results[1].lnum, results[1].filename
 				for _, val in pairs(results) do
 					if val.lnum ~= lnum or val.filename ~= filename then
 						return require("telescope.builtin").lsp_definitions()
 					end
 				end
-						-- vim.lsp.util.jump_to_location(result[1], encoding, false)
+				-- vim.lsp.util.jump_to_location(result[1], encoding, false)
 				vim.lsp.util.show_document(result[1], { focusable = true }, encoding)
 			else
 				vim.lsp.util.show_document(result, { focusable = true }, encoding)
@@ -139,31 +134,30 @@ local on_attach = function(client, bufnr)
 	end
 end
 
+
+vim.lsp.config.gopls = require('configs.lspconfig.languages.gopls').gopls(capabilities, on_attach)
+vim.lsp.config.golangci_lint_ls = require('configs.lspconfig.languages.golang-ci').golangci(capabilities, on_attach)
+vim.lsp.config.lua_ls = require('configs.lspconfig.languages.lua-ls').lua_ls(capabilities, on_attach)
+vim.lsp.config.rust_analyzer = require('configs.lspconfig.languages.rust-analyzer').rust_analyzer(capabilities, on_attach)
+vim.lsp.config.ts_ls = require('configs.lspconfig.languages.tsserver').tsserver(capabilities, on_attach)
+vim.lsp.config.tailwindcss = require('configs.lspconfig.languages.tailwindcss').tailwind(capabilities, on_attach)
+
+
 local servers = {
-	gopls = require('configs.lspconfig.languages.gopls').gopls(capabilities, on_attach),
-	golangci_lint_ls = require('configs.lspconfig.languages.golang-ci').golangci(capabilities, on_attach),
-	rust_analyzer = require('configs.lspconfig.languages.rust-analyzer').rust_analyzer(capabilities, on_attach),
-	ts_ls = require('configs.lspconfig.languages.tsserver').tsserver(capabilities, on_attach),
-	tailwindcss = require('configs.lspconfig.languages.tailwindcss').tailwind(capabilities, on_attach),
-	lua_ls = require('configs.lspconfig.languages.lua-ls').lua_ls(capabilities, on_attach),
-	texlab = require('configs.lspconfig.languages.texlab').texlab(capabilities, on_attach),
-	jdtls = require('configs.lspconfig.languages.jdtls').jdtls(capabilities, on_attach),
-	nixd = require('configs.lspconfig.languages.nixd').nixd(capabilities, on_attach),
-	protols = require('configs.lspconfig.languages.protols').protols(capabilities, on_attach),
-	pyright = require('configs.lspconfig.languages.pyright').pyright(capabilities, on_attach),
-	dartls = require('configs.lspconfig.languages.dartls').dartls(capabilities, on_attach),
-	templ = require('configs.lspconfig.languages.templ').templ(capabilities, on_attach),
-	kotlin_language_server = require('configs.lspconfig.languages.kotlin').kotlin(capabilities, on_attach)
+	'gopls',
+	'golangci_lint_ls',
+	'lua_ls',
+	'tail',
+	'ts_ls',
+	'rust_analyzer',
 }
 
-require('configs.lspconfig.languages.rust-analyzer').rust_tools(capabilities, on_attach)
-for server, cfg in pairs(servers) do
-	lsp[server].setup(cfg)
-end
+vim.lsp.enable(servers, true)
+
 
 vim.api.nvim_create_autocmd('LspAttach', {
 	group = vim.api.nvim_create_augroup('lsp', { clear = true }),
-	callback = function()
+	callback = function(ev)
 		local map = function(key, action, desc)
 			vim.keymap.set('n', '<leader>' .. key, action, { desc = "LSP: " .. desc })
 		end
