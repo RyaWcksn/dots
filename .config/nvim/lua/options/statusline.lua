@@ -59,23 +59,15 @@ local function lsp()
 end
 
 local function lsp_servers()
-	local msg = 'No Active Lsp'
-	local buf_ft = vim.api.nvim_get_option_value('filetype', {
-		buf = 0
-	})
-	local clients = vim.lsp.get_clients()
+	local clients = vim.lsp.get_clients({ bufnr = 0 })
+	if not clients or #clients == 0 then
+		return 'No Active Lsp'
+	end
 	local names = {}
 	for _, client in ipairs(clients) do
-		local filetypes = client.config.filetypes
-		if filetypes and type(filetypes) == 'table' and vim.fn.index(filetypes, buf_ft) ~= -1 then
-			table.insert(names, client.name)
-		end
+		table.insert(names, client.name)
 	end
-	if #names == 0 then
-		return msg
-	else
-		return string.format(" LSP [ %s ]", table.concat(names, ', '))
-	end
+	return string.format(" LSP [ %s ]", table.concat(names, ', '))
 end
 
 local function get_git_branch()
@@ -93,7 +85,7 @@ local function get_project_name()
 	return vim.fn.fnamemodify(cwd, ":t")
 end
 
-local function statusbar_exec()
+local function statusbar_exec(ev)
 	local statusline = {
 		"%#Normal#",
 		mode(),
@@ -101,25 +93,34 @@ local function statusbar_exec()
 		filepath() .. filename() .. "%r",
 		"%=%#Extra#",
 		"%#Normal#",
-		lsp_servers(),
+		lsp_servers(ev),
 		lsp(),
 		get_project_name(),
 	}
 	vim.o.statusline = table.concat(statusline, '')
 end
 
-vim.api.nvim_create_autocmd({ "DiagnosticChanged", "VimEnter", "BufWinEnter" }, {
-	callback = function()
-		statusbar_exec()
+vim.api.nvim_create_autocmd({ "DiagnosticChanged", "VimEnter", "BufWinEnter", "LspAttach" }, {
+	callback = function(ev)
+		statusbar_exec(ev)
 	end
 })
 
+
+local winbar_filetype_exclude = {
+	"help",
+	"toggleterm",
+	"AvanteInput",
+	"Avante",
+	"AvanteSelectedFiles"
+}
+
 local function hide_statusline_in_netrw()
-	if vim.bo.filetype == "netrw" then
-		vim.opt.laststatus = 0 -- Hide statusline
-	else
-		vim.opt.laststatus = 2 -- Show statusline for other buffers
+	if vim.tbl_contains(winbar_filetype_exclude, vim.bo.filetype) then
+		vim.opt.laststatus = 0
+		return
 	end
+	vim.opt.laststatus = 2 -- Show statusline for other buffers
 end
 
 -- Auto command to toggle statusline dynamically

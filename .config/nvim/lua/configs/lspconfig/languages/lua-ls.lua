@@ -1,7 +1,6 @@
 local M = {}
 
 M.lua_ls = function(capabilities, on_attach)
-	local lsp = require('lspconfig')
 	local default_workspace = {
 		library = {
 			vim.env.VIMRUNTIME,
@@ -15,6 +14,8 @@ M.lua_ls = function(capabilities, on_attach)
 	local setup = {
 		capabilities = capabilities,
 		on_attach = on_attach,
+		cmd = { 'lua-language-server' },
+		filetypes = { 'lua' },
 		codeLens = { enabled = true },
 		root_markers = { ".luarc.json", ".luarc.jsonc", ".luacheckrc", ".stylua.toml",
 			"stylua.toml", "selene.toml", "selene.yml", ".git" },

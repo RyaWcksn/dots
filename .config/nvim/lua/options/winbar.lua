@@ -1,4 +1,26 @@
-local function winbar_exec()
+local winbar_filetype_exclude = {
+	"help",
+	"toggleterm",
+	"netrw",
+	"AvanteInput",
+	"Avante",
+	"AvanteSelectedFiles"
+}
+
+
+local excludes = function()
+	if vim.tbl_contains(winbar_filetype_exclude, vim.bo.filetype) then
+		vim.o.winbar = nil
+		return true
+	end
+	return false
+end
+
+local winbar_exec = function()
+	if excludes() then
+		return
+	end
+
 	--- Format buffer list with highlight on current buffer
 	---@return string
 	local function format_buffer_list()
@@ -33,8 +55,6 @@ local function winbar_exec()
 end
 
 
-vim.api.nvim_create_autocmd("BufEnter", {
-	callback = function()
-		winbar_exec()
-	end
+vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
+	callback = winbar_exec
 })

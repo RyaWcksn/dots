@@ -69,7 +69,7 @@ require("lazy").setup({
 		opts = {
 			-- add any opts here
 			-- for example
-			provider = "openrouter",
+			provider = "gemini",
 			providers = {
 				ollama = {
 					model = "deepseek-coder:latest",
@@ -214,12 +214,12 @@ require("lazy").setup({
 	{
 		"apzelos/blamer.nvim"
 	},
-	{
-		'neovim/nvim-lspconfig',
-		config = function()
-			require('configs.lspconfig')
-		end,
-	},
+	-- {
+	-- 	'neovim/nvim-lspconfig',
+	-- 	config = function()
+	-- 		require('configs.lspconfig')
+	-- 	end,
+	-- },
 	{
 		"folke/which-key.nvim",
 		config = function()

@@ -1,15 +1,15 @@
 local function load_modules()
-  require('plugins')
-  require('mappings')
-  require('options')
-  require('options.autocmd')
-  require('options.statusline')
-  require('options.winbar')
-  require('options.netrw')
-  require('options.sholat')
+	require('plugins')
+	require('mappings')
+	require('options')
+	require('options.autocmd')
+	require('options.statusline')
+	require('options.winbar')
+	require('options.netrw')
+	require('options.sholat')
+	require('configs.lspconfig')
 end
 
 return {
-  load_modules = load_modules
+	load_modules = load_modules
 }
-

@@ -19,6 +19,10 @@ plugins=(vi-mode)
 INSERT_MODE_INDICATOR="%F{yellow}+%f"
 bindkey -M viins 'jk' vi-cmd-mode
 
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey '^Xe' edit-command-line
+
 source $ZSH/oh-my-zsh.sh
 source <(fzf --zsh)
 
