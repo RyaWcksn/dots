@@ -23,6 +23,7 @@ o.foldtext = "v:lua.myfolds()"
 
 
 vim.opt.termguicolors = true
+vim.o.termguicolors = true
 
 vim.opt.clipboard = "unnamed"
 vim.opt.clipboard:append { "unnamedplus" }

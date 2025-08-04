@@ -107,16 +107,17 @@ vim.api.nvim_create_autocmd({ "DiagnosticChanged", "VimEnter", "BufWinEnter", "L
 })
 
 
-local winbar_filetype_exclude = {
+local statusline_filetype_exclude = {
 	"help",
 	"toggleterm",
 	"AvanteInput",
 	"Avante",
-	"AvanteSelectedFiles"
+	"AvanteSelectedFiles",
+	"qf",
 }
 
 local function hide_statusline_in_netrw()
-	if vim.tbl_contains(winbar_filetype_exclude, vim.bo.filetype) then
+	if vim.tbl_contains(statusline_filetype_exclude, vim.bo.filetype) then
 		vim.opt.laststatus = 0
 		return
 	end

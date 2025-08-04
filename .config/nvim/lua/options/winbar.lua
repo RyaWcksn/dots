@@ -4,13 +4,15 @@ local winbar_filetype_exclude = {
 	"netrw",
 	"AvanteInput",
 	"Avante",
-	"AvanteSelectedFiles"
+	"AvanteSelectedFiles",
+	"qf",
 }
 
 
 local excludes = function()
 	if vim.tbl_contains(winbar_filetype_exclude, vim.bo.filetype) then
 		vim.o.winbar = nil
+		vim.wo.winbar = nil
 		return true
 	end
 	return false

@@ -52,9 +52,9 @@ vim.keymap.set("i", "<F2>", "<C-\\><C-n>:ToggleTerm<CR>", opt)
 vim.keymap.set("n", "<F2>", "<C-\\><C-n>:ToggleTerm<CR>", opt)
 
 -- Find file
-vim.keymap.set('n', '<leader>fw', ":Telescope live_grep<CR>", { desc = "Find word global" })
-vim.keymap.set('n', '<leader>fe', ':lua search_word("global")<CR>', { desc = "Find word" })
+vim.keymap.set('n', '<leader>fw', utils.search, { desc = "Find word global" })
 vim.keymap.set('n', '<leader>ff', utils.file_picker, { desc = "Find Files" })
+vim.keymap.set('n', '<leader>fr', utils.search_and_replace, { desc = "Search and replace" })
 
 -- Open stuff
 vim.keymap.set('n', '<leader>oo', function()

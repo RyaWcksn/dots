@@ -173,7 +173,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 					local lnum, filename = results[1].lnum, results[1].filename
 					for _, val in pairs(results) do
 						if val.lnum ~= lnum or val.filename ~= filename then
-							return require("telescope.builtin").lsp_definitions()
+							return vim.lsp.buf.definition()
 						end
 					end
 					vim.lsp.util.show_document(result[1], { focusable = true }, encoding)

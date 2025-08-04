@@ -1,5 +1,39 @@
 local M = {}
 
+
+function M.search()
+	local search = vim.fn.input("Search for: ")
+	-- Escape special shell characters for safe execution
+	local escaped_input = search:gsub("'", [["]])
+
+	-- Use ripgrep to search string content in files
+	local cmd = "rg --vimgrep --smart-case '" .. escaped_input .. "'"
+	local results = vim.fn.systemlist(cmd)
+
+	if vim.v.shell_error ~= 0 then
+		vim.notify("No matches found for '" .. input .. "'", vim.log.levels.WARN)
+		return
+	end
+
+	vim.fn.setqflist({}, ' ', {
+		title = 'Search Results',
+		lines = results,
+	})
+	vim.cmd("copen")
+end
+
+function M.search_and_replace()
+	local search = vim.fn.input("Search for: ")
+	if search == "" then
+		vim.notify("Nothing to search...", vim.log.levels.INFO)
+		return
+	end
+	local replace = vim.fn.input("Replace with: ")
+	local cmd = string.format('args `rg --files-with-matches "%s"` | argdo %%s/%s/%s/ge | update', search, search,
+		replace)
+	vim.cmd(cmd)
+end
+
 function M.buffers_to_quickfix()
 	local buffers = vim.api.nvim_list_bufs() -- Get all buffers
 	local quickfix_list = {}
