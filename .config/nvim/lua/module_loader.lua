@@ -7,7 +7,6 @@ local function load_modules()
 	require('options.winbar')
 	require('options.netrw')
 	require('options.sholat')
-	require('configs.lspconfig')
 end
 
 return {

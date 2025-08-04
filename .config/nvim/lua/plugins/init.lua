@@ -11,187 +11,7 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-vim.g.mapleader = " "
-local role_map = {
-	user = "human",
-	assistant = "assistant",
-	system = "system",
-}
-
-local parse_messages = function(opts)
-	local messages = {
-		{ role = "system", content = opts.system_prompt },
-	}
-	vim
-	    .iter(opts.messages)
-	    :each(function(msg) table.insert(messages, { speaker = role_map[msg.role], text = msg.content }) end)
-	return messages
-end
-
-local parse_response = function(data_stream, event_state, opts)
-	if event_state == "done" then
-		opts.on_complete()
-		return
-	end
-
-	if data_stream == nil or data_stream == "" then return end
-
-	local json = vim.json.decode(data_stream)
-	local delta = json.deltaText
-	local stopReason = json.stopReason
-
-	if stopReason == "end_turn" then return end
-
-	opts.on_chunk(delta)
-end
-
 require("lazy").setup({
-	{
-		"jonroosevelt/gemini-cli.nvim",
-		config = function()
-			require("gemini").setup()
-		end,
-	},
-	{
-		"yetone/avante.nvim",
-		build = function()
-			-- conditionally use the correct build system for the current OS
-			if vim.fn.has("win32") == 1 then
-				return "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
-			else
-				return "make"
-			end
-		end,
-		event = "VeryLazy",
-		version = false, -- Never set this value to "*"! Never!
-		---@module 'avante'
-		---@type avante.Config
-		opts = {
-			-- add any opts here
-			-- for example
-			provider = "gemini",
-			providers = {
-				ollama = {
-					model = "deepseek-coder:latest",
-				},
-				gemini = {
-					model = "gemini-2.5-flash",
-				},
-				openrouter = {
-					__inherited_from = 'openai',
-					endpoint = 'https://openrouter.ai/api/v1',
-					api_key_name =
-					'OPENROUTER_API_KEY',
-					model = 'deepseek/deepseek-chat',
-				},
-				---@type AvanteProvider
-				custom = {
-					endpoint = "https://accesstesting.onrender.com/ai/deepseek/chat/completions",
-					model = "deepseek-chat",
-					api_key_name = "CUSTOM_API_KEY",
-					---@type fun(opts: AvanteProvider, code_opts: AvantePromptOptions): AvanteCurlOutput
-					parse_curl_args = function(opts, code_opts)
-						local headers = {
-							["Content-Type"] = "application/json",
-							["Authorization"] = "Bearer " .. os.getenv(opts.api_key_name),
-						}
-
-						return {
-							url = opts.endpoint,
-							insecure = false,
-							headers = headers,
-							body = vim.tbl_deep_extend("force", {
-								model = opts.model,
-								temperature = 0,
-								topK = -1,
-								topP = -1,
-								maxTokensToSample = 4000,
-								stream = true,
-								messages = parse_messages(code_opts),
-							}, {}),
-						}
-					end,
-					parse_response = parse_response,
-					parse_messages = parse_messages,
-				}
-			},
-		},
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"MunifTanjim/nui.nvim",
-			--- The below dependencies are optional,
-			"nvim-telescope/telescope.nvim", -- for file_selector provider telescope
-			"hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
-			"ibhagwan/fzf-lua", -- for file_selector provider fzf
-			"stevearc/dressing.nvim", -- for input provider dressing
-			"folke/snacks.nvim", -- for input provider snacks
-			"nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
-			"zbirenbaum/copilot.lua", -- for providers='copilot'
-			{
-				-- Make sure to set this up properly if you have lazy=true
-				'MeanderingProgrammer/render-markdown.nvim',
-				opts = {
-					file_types = { "markdown", "Avante" },
-				},
-				ft = { "markdown", "Avante" },
-			},
-		},
-	},
-	{
-		"nyoom-engineering/oxocarbon.nvim"
-	},
-	{
-		"olimorris/codecompanion.nvim",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"nvim-treesitter/nvim-treesitter",
-		},
-		opts = {
-			strategies = {
-				chat = {
-					adapter = "gemini",
-				},
-				inline = {
-					adapter = "gemini",
-				},
-			},
-			gemini = function()
-				return require("codecompanion.adapters").extend("gemini", {
-					schema = {
-						model = {
-							default = "gemini-2.0-flash-lite",
-						},
-					},
-					env = {
-						api_key = "AIzaSyB7OC5PmZe5T8WhaHUGznJNpTRuoWroC0g",
-					},
-				})
-			end,
-			display = {
-				diff = {
-					provider = "mini_diff",
-				},
-			},
-		},
-	},
-	{
-		"MeanderingProgrammer/render-markdown.nvim",
-		ft = { "markdown", "codecompanion" }
-	},
-	{
-		"echasnovski/mini.diff",
-		config = function()
-			local diff = require("mini.diff")
-			diff.setup({
-				-- Disabled by default
-				source = diff.gen_source.none(),
-			})
-		end,
-	},
-	{
-		"simrat39/rust-tools.nvim",
-		ft = " rust"
-	},
 	{
 		"rrethy/base16-nvim"
 	},
@@ -205,21 +25,8 @@ require("lazy").setup({
 		end,
 	},
 	{
-		"numtostr/comment.nvim",
-		config = function()
-			require('configs.comment')
-		end,
-	},
-
-	{
 		"apzelos/blamer.nvim"
 	},
-	-- {
-	-- 	'neovim/nvim-lspconfig',
-	-- 	config = function()
-	-- 		require('configs.lspconfig')
-	-- 	end,
-	-- },
 	{
 		"folke/which-key.nvim",
 		config = function()
@@ -242,16 +49,6 @@ require("lazy").setup({
 			},
 		},
 	},
-	{ 'nvim-lua/plenary.nvim' },
-	{
-		'nvim-telescope/telescope.nvim',
-		config = function()
-			require('configs.telescope')
-		end,
-		lazy = true,
-		cmd = "Telescope",
-	},
-	{ 'nvim-telescope/telescope-fzf-native.nvim', make = 'make' },
 	{
 		'hrsh7th/nvim-cmp',
 		config = function()
