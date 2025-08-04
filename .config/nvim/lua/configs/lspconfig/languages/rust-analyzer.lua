@@ -1,9 +1,8 @@
 local M = {}
 
-M.rust_analyzer = function(capabilities, on_attach)
+M.rust_analyzer = function(capabilities)
 	local setup = {
 		capabilities = capabilities,
-		on_attach = on_attach,
 		cmd = { "rust-analyzer" },
 		filetypes = { "rust" },
 		root_markers = { "Cargo.toml" },

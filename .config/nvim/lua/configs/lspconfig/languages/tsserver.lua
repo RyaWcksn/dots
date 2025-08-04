@@ -1,11 +1,10 @@
 local M = {}
 
-M.tsserver = function(capabilities, on_attach)
+M.tsserver = function(capabilities)
 	local setup = {
 		capabilities = capabilities,
 		filetypes = { "typescript", "javascript", "vue", "typescriptreact" },
 		cmd = { "typescript-language-server", "--stdio" },
-		on_attach = on_attach,
 		settings = {
 			javascript = {
 				inlayHints = {

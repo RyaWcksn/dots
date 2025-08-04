@@ -1,14 +1,11 @@
 local M = {}
 
-M.texlab = function(capabilities, on_attach)
-	local lsp = require('lspconfig')
+M.texlab = function(capabilities)
 	local setup = {
 		cmd = { "texlab" },
 		filetypes = { "tex", "plaintex", "bib" },
-		--root_dir = lsp.util.root_pattern('.git', 'composer.json'),
 		single_file_support = true,
 		capabilities = capabilities,
-		on_attach = on_attach,
 		settings = {
 			texlab = {
 				auxDirectory = ".",

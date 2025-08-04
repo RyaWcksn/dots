@@ -215,7 +215,7 @@ case "$flag" in
         ;;
 
     *)
-	scrcpy --shortcut-mod=lctrl --audio-bit-rate=64K --audio-output-buffer=10 -b 1M --max-size 1024 --max-fps=60 -K
+        scrcpy --shortcut-mod=lctrl --audio-bit-rate=64K --audio-buffer=20 -b 1M --max-size=800 --max-fps=45 -K
         ;;
 esac
 }

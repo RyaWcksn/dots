@@ -1,55 +1,36 @@
-local opt = vim.opt
+require('options.autocmd')
+require('options.statusline')
+require('options.winbar')
+require('options.netrw')
+
+
+local o = vim.o
 local g = vim.g
-opt.completeopt = "menuone,noselect"
 
-opt.fillchars = { eob = " " }
+o.completeopt = "menuone,noselect"
+o.hlsearch = false
+o.undofile = true
+o.mouse = "a"
+o.signcolumn = "yes"
+o.foldenable = false
+o.foldmethod = "expr"
+o.foldexpr = "nvim_treesitter#foldexpr()"
+o.number = true
+o.relativenumber = true
+o.foldcolumn = "0"   -- <string> 'auto' or number of columns to use for the fold column
+o.foldenable = false -- <true|false> all folds closed on buffer open? (zi to toggle)
+o.foldtext = "v:lua.myfolds()"
 
--- local hour = tonumber(os.date("%H"))
 
--- if hour >= 22 or hour < 6 then
--- 	vim.opt.background = "light"
--- 	vim.cmd("colorscheme base16-one-light")
--- else
--- 	vim.opt.background = "dark"
--- 	vim.cmd("colorscheme base16-ayu-dark")
--- end
 vim.opt.termguicolors = true
 
-vim.cmd("colorscheme base16-ayu-dark")
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+vim.opt.clipboard = "unnamed"
+vim.opt.clipboard:append { "unnamedplus" }
 
-vim.notify = require("notify")
-
-g.markdown_fenced_languages = { 'html', 'python', 'lua', 'vim', 'typescript', 'javascript' }
-
-opt.hlsearch = false
-opt.undofile = true
-opt.ruler = false
-opt.hidden = true
-opt.ignorecase = true
-opt.splitbelow = true
-opt.splitright = true
-opt.cul = true
-opt.mouse = "a"
-opt.signcolumn = "yes"
-opt.cmdheight = 1
-opt.updatetime = 250 -- update interval for gitsigns
-opt.timeoutlen = 400
-opt.clipboard = "unnamed"
-opt.clipboard:append { "unnamedplus" }
-opt.foldenable = false
-opt.foldmethod = "expr"
-opt.foldexpr = "nvim_treesitter#foldexpr()"
-opt.number = true
-opt.numberwidth = 2
-opt.relativenumber = false
-opt.colorcolumn = "90"
 vim.wo.wrap = false
 
-opt.fillchars = { fold = "·" } -- see `:h 'fillchars'`
-opt.foldcolumn = "0"           -- <string> 'auto' or number of columns to use for the fold column
-opt.foldenable = false         -- <true|false> all folds closed on buffer open? (zi to toggle)
-opt.foldtext = "v:lua.myfolds()"
+
+g.mapleader = " "
 
 function _G.myfolds()
 	local line = vim.fn.getline(vim.v.foldstart)
@@ -106,9 +87,3 @@ local disabled_built_ins = {
 for _, plugin in pairs(disabled_built_ins) do
 	g["loaded_" .. plugin] = 1
 end
-
-g.gitblame_enabled = 0
-g.gitblame_message_template = "<summary> • <date> • <author>"
-g.gitblame_highlight_group = "LineNr"
-
-vim.g.gist_open_browser_after_post = 1

@@ -1,20 +1,7 @@
 local wk = require("which-key")
 wk.setup {
-	{
-		operators = { gc = "Comments" },
-		key_labels = {
-			["<space>"] = "SPC",
-			["<cr>"] = "RET",
-			["<tab>"] = "TAB",
-		},
-		triggers_blacklist = {
-			i = { "j", "k" },
-			v = { "j", "k" },
-		},
-		disable = {
-			buftypes = {},
-			filetypes = {},
-		},
+	icons = {
+		mappings = false
 	}
 }
 

@@ -1,9 +1,8 @@
 local M = {}
 
-M.gopls = function(capabilities, on_attach)
+M.gopls = function(capabilities)
 	local setup = {
 		capabilities = capabilities,
-		on_attach = on_attach,
 		cmd = { 'gopls' },
 		filetypes = { 'go' },
 		root_markers = { '.git', 'go.mod', '.' },

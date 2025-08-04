@@ -12,7 +12,7 @@ end
 local config = {
 	virtual_text = {
 		source = "always", -- Or "if_many"
-		prefix = '▎', -- Could be '●', '▎', 'x'
+		prefix = '>', -- Could be '●', '▎', 'x'
 	},
 	signs = {
 		active = signs,
@@ -25,41 +25,19 @@ local config = {
 		style = "minimal",
 		border = "rounded",
 		source = "always",
-		header = "",
-		prefix = "",
 	},
 }
 vim.diagnostic.config(config)
 
 
-local on_attach = function(client, bufnr)
-	vim.o.updatetime = 250
-
-	vim.api.nvim_create_autocmd("CursorHold", {
-		buffer = bufnr,
-		callback = function()
-			local opts = {
-				focusable = false,
-				close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
-				border = 'rounded',
-				source = 'always',
-				prefix = ' ',
-				scope = 'line',
-			}
-			vim.diagnostic.open_float(nil, opts)
-		end
-	})
-end
-
-
-vim.lsp.config.gopls = require('configs.lspconfig.languages.gopls').gopls(capabilities, on_attach)
-vim.lsp.config.golangci_lint_ls = require('configs.lspconfig.languages.golang-ci').golangci(capabilities, on_attach)
-vim.lsp.config.lua_ls = require('configs.lspconfig.languages.lua-ls').lua_ls(capabilities, on_attach)
-vim.lsp.config.rust_analyzer = require('configs.lspconfig.languages.rust-analyzer').rust_analyzer(capabilities, on_attach)
-vim.lsp.config.ts_ls = require('configs.lspconfig.languages.tsserver').tsserver(capabilities, on_attach)
-vim.lsp.config.tailwindcss = require('configs.lspconfig.languages.tailwindcss').tailwind(capabilities, on_attach)
-
-
+-- Init servers config
+vim.lsp.config.gopls = require('configs.lspconfig.languages.gopls').gopls(capabilities)
+vim.lsp.config.golangci_lint_ls = require('configs.lspconfig.languages.golang-ci').golangci(capabilities)
+vim.lsp.config.lua_ls = require('configs.lspconfig.languages.lua-ls').lua_ls(capabilities)
+vim.lsp.config.rust_analyzer = require('configs.lspconfig.languages.rust-analyzer').rust_analyzer(capabilities)
+vim.lsp.config.ts_ls = require('configs.lspconfig.languages.tsserver').tsserver(capabilities)
+vim.lsp.config.tailwindcss = require('configs.lspconfig.languages.tailwindcss').tailwind(capabilities)
+vim.lsp.config.texlab = require('configs.lspconfig.languages.texlab').texlab(capabilities)
 
 local servers = {
 	'gopls',
@@ -68,10 +46,12 @@ local servers = {
 	'tailwindcss',
 	'ts_ls',
 	'rust_analyzer',
+	'texlab',
 }
 
 
 vim.lsp.enable(servers)
+
 vim.api.nvim_create_user_command("LspStart", function()
 	vim.cmd.e()
 end, { desc = "Starts LSP clients in the current buffer" })
@@ -138,7 +118,7 @@ end, {
 })
 
 vim.api.nvim_create_user_command("LspInfo", function()
-	vim.cmd("silent checkhealth vim.lsp")
+	vim.cmd("silent checkhealth neko.lsp")
 end, {
 	desc = "Get all the information about all LSP attached",
 })
@@ -147,7 +127,10 @@ end, {
 vim.api.nvim_create_autocmd('LspAttach', {
 	group = vim.api.nvim_create_augroup('neko.lsp', {}),
 	callback = function(ev)
+		vim.o.updatetime = 250
+
 		local client = assert(vim.lsp.get_client_by_id(ev.data.client_id))
+
 		local map = function(key, action, desc)
 			vim.keymap.set('n', '<leader>' .. key, action, { desc = "LSP: " .. desc })
 		end
@@ -239,7 +222,22 @@ vim.api.nvim_create_autocmd('LspAttach', {
 			})
 		end
 
-		map("K", vim.lsp.buf.hover, "Hover")
+		vim.api.nvim_create_autocmd("CursorHold", {
+			buffer = ev.buf,
+			callback = function()
+				local opts = {
+					focusable = false,
+					close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+					border = 'rounded',
+					source = 'always',
+					prefix = ' ',
+					scope = 'line',
+				}
+				vim.diagnostic.open_float(nil, opts)
+			end
+		})
+
+
 		map('lf', vim.lsp.buf.format, "Format")
 		map('lc', vim.lsp.buf.code_action, "Code Action")
 		map('ls', vim.lsp.buf.signature_help, "Signature Help")

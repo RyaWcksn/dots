@@ -1,6 +1,6 @@
 local M = {}
 
-M.lua_ls = function(capabilities, on_attach)
+M.lua_ls = function(capabilities)
 	local default_workspace = {
 		library = {
 			vim.env.VIMRUNTIME,
@@ -13,7 +13,6 @@ M.lua_ls = function(capabilities, on_attach)
 	}
 	local setup = {
 		capabilities = capabilities,
-		on_attach = on_attach,
 		cmd = { 'lua-language-server' },
 		filetypes = { 'lua' },
 		codeLens = { enabled = true },

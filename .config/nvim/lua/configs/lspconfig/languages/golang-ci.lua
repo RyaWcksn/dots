@@ -1,9 +1,8 @@
 local M = {}
 
-M.golangci = function(capabilities, on_attach)
+M.golangci = function(capabilities)
 	local setup = {
 		capabilities = capabilities,
-		on_attach = on_attach,
 		default_config = {
 			cmd = { 'golangci-lint-langserver' },
 			root_markers = { '.golangci.yml', '.golangci.yaml', '.golangci.toml', '.golangci.json', 'go.work', 'go.mod', '.git' },

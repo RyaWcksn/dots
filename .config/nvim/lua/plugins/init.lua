@@ -1,153 +1,68 @@
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-	vim.fn.system({
-		"git",
-		"clone",
-		"--filter=blob:none",
-		"https://github.com/folke/lazy.nvim.git",
-		"--branch=stable", -- latest stable release
-		lazypath,
-	})
-end
-vim.opt.rtp:prepend(lazypath)
+local plugins = {
+	-- Theme
+	{ src = "https://github.com/rrethy/base16-nvim" },
 
-require("lazy").setup({
-	{
-		"rrethy/base16-nvim"
-	},
-	{
-		"rcarriga/nvim-notify",
-		config = function()
-			require("notify").setup({
-				stages = "fade",
-				timeout = 5000,
-			})
-		end,
-	},
-	{
-		"apzelos/blamer.nvim"
-	},
-	{
-		"folke/which-key.nvim",
-		config = function()
-			require('configs.whichkey')
-		end,
-		cmd = "Whichkey",
-		event = "VeryLazy",
-		opts = {
-			-- your configuration comes here
-			-- or leave it empty to use the default settings
-			-- refer to the configuration section below
-		},
-		keys = {
-			{
-				"<leader>?",
-				function()
-					require("which-key").show({ global = false })
-				end,
-				desc = "Buffer Local Keymaps (which-key)",
-			},
-		},
-	},
-	{
-		'hrsh7th/nvim-cmp',
-		config = function()
-			require('configs.cmp')
-		end,
-		event = { "insertenter", "cmdlineenter" },
-		dependencies = {
-			{ "hrsh7th/cmp-nvim-lsp",         lazy = true },
-			{ "saadparwaiz1/cmp_luasnip",     lazy = true },
-			{ "hrsh7th/cmp-path",             lazy = true },
-			{ "rafamadriz/friendly-snippets", lazy = true },
-		},
-	},
-	{
-		'l3mon4d3/luasnip',
-		config = function()
-			require('configs.snippet')
-		end,
-		event = "insertenter",
-		dependencies = {
-			"friendly-snippets",
-		},
-	},
-	{
-		"rcarriga/nvim-dap-ui",
-		dependencies = {
-			'mfussenegger/nvim-dap',
-			"nvim-neotest/nvim-nio",
-			"leoluz/nvim-dap-go"
-		},
-		config = function()
-			require("configs.dap")
-		end
-	},
-	{
-		"nvim-treesitter/nvim-treesitter",
-		build = ":TSUpdate",
-		config = function()
-			require('configs.treesitter')
-			local ok, hl = pcall(require, "vim.treesitter.highlighter")
-			if ok then
-				local orig = hl.new
-				hl.new = function(...)
-					local self = orig(...)
-					local orig_on_line = self.on_line
-					self.on_line = function(s, buf, line)
-						local ok, err = pcall(function()
-							local line_text = vim.api.nvim_buf_get_lines(buf, line, line + 1,
-								false)[1] or ""
-							local line_len = #line_text
-							local orig_extmark = vim.api.nvim_buf_set_extmark
-							vim.api.nvim_buf_set_extmark = function(bufnr, ns_id, lnum, col,
-												opts)
-								if opts.end_col and opts.end_col > line_len then
-									opts.end_col = line_len
-								end
-								return orig_extmark(bufnr, ns_id, lnum, col, opts)
-							end
+	-- Notifications
+	{ src = "https://github.com/rcarriga/nvim-notify" },
 
-							orig_on_line(s, buf, line)
+	-- Git Blame
+	{ src = "https://github.com/apzelos/blamer.nvim" },
 
-							vim.api.nvim_buf_set_extmark = orig_extmark -- restore
-						end)
-						if not ok then
-							vim.schedule(function()
-								vim.notify("TS highlight error: " .. err,
-									vim.log.levels.ERROR)
-							end)
-						end
-					end
+	-- Which Key
+	{ src = "https://github.com/folke/which-key.nvim" },
 
-					return self
-				end
-			end
-		end
-	},
-	{
-		"olexsmir/gopher.nvim",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"nvim-treesitter/nvim-treesitter",
-		},
-		config = function()
-			require("configs.gopher")
-		end,
-		ft = "go"
-	},
-	{
-		"akinsho/toggleterm.nvim",
-		config = function()
-			require("configs.toggleterm")
-		end
-	},
-	{
-		"windwp/nvim-autopairs",
-		wants = "nvim-treesitter",
-		module = { "nvim-autopairs.completion.cmp", "nvim-autopairs" },
-		config = function()
-			require("configs.autopairs")
-		end,
-	},
+	-- Autocompletion
+	{ src = "https://github.com/hrsh7th/nvim-cmp" },
+	{ src = "https://github.com/hrsh7th/cmp-nvim-lsp" },
+	{ src = "https://github.com/saadparwaiz1/cmp_luasnip" },
+	{ src = "https://github.com/hrsh7th/cmp-path" },
+	{ src = "https://github.com/rafamadriz/friendly-snippets" },
+
+	-- Snippets
+	{ src = "https://github.com/L3MON4D3/LuaSnip" },
+
+	-- DAP + DAP UI
+	{ src = "https://github.com/mfussenegger/nvim-dap" },
+	{ src = "https://github.com/rcarriga/nvim-dap-ui" },
+	{ src = "https://github.com/leoluz/nvim-dap-go" },
+	{ src = "https://github.com/nvim-neotest/nvim-nio" },
+
+	-- Treesitter
+	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
+
+	-- Gopher.nvim
+	{ src = "https://github.com/olexsmir/gopher.nvim" },
+
+	-- Terminal
+	{ src = "https://github.com/akinsho/toggleterm.nvim" },
+
+	-- Autopairs
+	{ src = "https://github.com/windwp/nvim-autopairs" },
+
+}
+
+vim.pack.add(plugins)
+
+-- Plugin config
+vim.cmd.colorscheme("base16-ayu-dark")
+
+require("notify").setup({
+	stages = "fade",
+	timeout = 5000,
 })
+vim.notify = require("notify")
+
+vim.g.gitblame_enabled = 0
+vim.g.gitblame_message_template = "<summary> • <date> • <author>"
+vim.g.gitblame_highlight_group = "LineNr"
+vim.g.gist_open_browser_after_post = 1
+
+require("configs.whichkey")
+require("configs.cmp")
+require("configs.snippet")
+require("configs.dap")
+require("configs.treesitter")
+require("configs.gopher")
+require("configs.toggleterm")
+require("configs.autopairs")
+require('configs.lspconfig')

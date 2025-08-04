@@ -1,10 +1,9 @@
 local M = {}
 
-M.tailwind = function(capabilities, on_attach)
+M.tailwind = function(capabilities)
 	local setup = {
 		cmd = { "tailwindcss-language-server", "--stdio" },
 		capabilities = capabilities,
-		on_attach = on_attach,
 		filetypes = { "templ", "astro", "typescript", "react", "html", "htmldjango", "typescriptreact", "javascript", "javascriptreact" },
 		root_markers = {
 			-- Generic
