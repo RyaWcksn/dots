@@ -43,24 +43,6 @@ local function fzf_ripgrep_dynamic_buffer()
 	vim.g.file_search_buffer = buf
 end
 
-function RefreshFileSearchBuffer()
-	if not vim.g.file_search_buffer then return end
-
-	local search_pattern = vim.fn.input("New search: ")
-	local cmd = "rg --files --hidden --glob '!.git'"
-	if search_pattern ~= "" then
-		cmd = cmd .. " | rg " .. vim.fn.shellescape(search_pattern)
-	end
-
-	local files = vim.fn.systemlist(cmd)
-	if #files == 0 then
-		print("No matching files")
-		return
-	end
-
-	vim.api.nvim_buf_set_lines(vim.g.file_search_buffer, 0, -1, false, files)
-end
-
 function OpenFileFromBuffer()
 	local line = vim.api.nvim_get_current_line()
 	if line ~= "" then
@@ -160,7 +142,7 @@ keymap('n', '<leader>ff', ":Telescope find_files theme=dropdown<CR>", { desc = "
 keymap('n', '<leader>oo', function()
 	vim.cmd('topleft vsplit') -- create split on the left
 	vim.cmd('vertical resize 30') -- resize to 30 columns (adjust as needed)
-	vim.cmd('edit .')       -- open filetree using netrw
+	vim.cmd('edit .')      -- open filetree using netrw
 end, { desc = "Filetree (left narrow split)" })
 
 -- DAP

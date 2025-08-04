@@ -286,48 +286,48 @@ require("lazy").setup({
 			require("configs.dap")
 		end
 	},
-	-- {
-	-- 	"nvim-treesitter/nvim-treesitter",
-	-- 	build = ":TSUpdate",
-	-- 	config = function()
-	-- 		require('configs.treesitter')
-	-- 		local ok, hl = pcall(require, "vim.treesitter.highlighter")
-	-- 		if ok then
-	-- 			local orig = hl.new
-	-- 			hl.new = function(...)
-	-- 				local self = orig(...)
-	-- 				local orig_on_line = self.on_line
-	-- 				self.on_line = function(s, buf, line)
-	-- 					local ok, err = pcall(function()
-	-- 						local line_text = vim.api.nvim_buf_get_lines(buf, line, line + 1,
-	-- 							false)[1] or ""
-	-- 						local line_len = #line_text
-	-- 						local orig_extmark = vim.api.nvim_buf_set_extmark
-	-- 						vim.api.nvim_buf_set_extmark = function(bufnr, ns_id, lnum, col,
-	-- 											opts)
-	-- 							if opts.end_col and opts.end_col > line_len then
-	-- 								opts.end_col = line_len
-	-- 							end
-	-- 							return orig_extmark(bufnr, ns_id, lnum, col, opts)
-	-- 						end
+	{
+		"nvim-treesitter/nvim-treesitter",
+		build = ":TSUpdate",
+		config = function()
+			require('configs.treesitter')
+			local ok, hl = pcall(require, "vim.treesitter.highlighter")
+			if ok then
+				local orig = hl.new
+				hl.new = function(...)
+					local self = orig(...)
+					local orig_on_line = self.on_line
+					self.on_line = function(s, buf, line)
+						local ok, err = pcall(function()
+							local line_text = vim.api.nvim_buf_get_lines(buf, line, line + 1,
+								false)[1] or ""
+							local line_len = #line_text
+							local orig_extmark = vim.api.nvim_buf_set_extmark
+							vim.api.nvim_buf_set_extmark = function(bufnr, ns_id, lnum, col,
+												opts)
+								if opts.end_col and opts.end_col > line_len then
+									opts.end_col = line_len
+								end
+								return orig_extmark(bufnr, ns_id, lnum, col, opts)
+							end
 
-	-- 						orig_on_line(s, buf, line)
+							orig_on_line(s, buf, line)
 
-	-- 						vim.api.nvim_buf_set_extmark = orig_extmark -- restore
-	-- 					end)
-	-- 					if not ok then
-	-- 						vim.schedule(function()
-	-- 							vim.notify("TS highlight error: " .. err,
-	-- 								vim.log.levels.ERROR)
-	-- 						end)
-	-- 					end
-	-- 				end
+							vim.api.nvim_buf_set_extmark = orig_extmark -- restore
+						end)
+						if not ok then
+							vim.schedule(function()
+								vim.notify("TS highlight error: " .. err,
+									vim.log.levels.ERROR)
+							end)
+						end
+					end
 
-	-- 				return self
-	-- 			end
-	-- 		end
-	-- 	end
-	-- },
+					return self
+				end
+			end
+		end
+	},
 	{
 		"olexsmir/gopher.nvim",
 		dependencies = {

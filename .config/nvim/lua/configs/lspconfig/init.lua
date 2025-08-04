@@ -143,6 +143,7 @@ end, {
 	desc = "Get all the information about all LSP attached",
 })
 
+
 vim.api.nvim_create_autocmd('LspAttach', {
 	group = vim.api.nvim_create_augroup('neko.lsp', {}),
 	callback = function(ev)
@@ -192,7 +193,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
 							return require("telescope.builtin").lsp_definitions()
 						end
 					end
-					-- vim.lsp.util.jump_to_location(result[1], encoding, false)
 					vim.lsp.util.show_document(result[1], { focusable = true }, encoding)
 				else
 					vim.lsp.util.show_document(result, { focusable = true }, encoding)
@@ -229,6 +229,15 @@ vim.api.nvim_create_autocmd('LspAttach', {
 			vim.lsp.completion.enable(true, client.id, ev.buf)
 		end
 
+		if not client:supports_method('textDocument/willSaveWaitUntil') and client:supports_method('textDocument/formatting') then
+			vim.api.nvim_create_autocmd('BufWritePre', {
+				group = vim.api.nvim_create_augroup('neko.lsp', { clear = false }),
+				buffer = ev.buf,
+				callback = function()
+					vim.lsp.buf.format({ bufnr = ev.buf, id = client.id, timeout_ms = 1000 })
+				end,
+			})
+		end
 
 		map("K", vim.lsp.buf.hover, "Hover")
 		map('lf', vim.lsp.buf.format, "Format")
