@@ -5,9 +5,6 @@ local plugins = {
 	-- Notifications
 	{ src = "https://github.com/rcarriga/nvim-notify" },
 
-	-- Git Blame
-	{ src = "https://github.com/apzelos/blamer.nvim" },
-
 	-- Which Key
 	{ src = "https://github.com/folke/which-key.nvim" },
 
@@ -33,13 +30,12 @@ local plugins = {
 	-- Gopher.nvim
 	{ src = "https://github.com/olexsmir/gopher.nvim" },
 
-	-- Terminal
-	{ src = "https://github.com/akinsho/toggleterm.nvim" },
-
 	-- Autopairs
 	{ src = "https://github.com/windwp/nvim-autopairs" },
 
 }
+
+
 
 vim.pack.add(plugins)
 
@@ -52,17 +48,11 @@ require("notify").setup({
 })
 vim.notify = require("notify")
 
-vim.g.gitblame_enabled = 0
-vim.g.gitblame_message_template = "<summary> • <date> • <author>"
-vim.g.gitblame_highlight_group = "LineNr"
-vim.g.gist_open_browser_after_post = 1
-
 require("configs.whichkey")
 require("configs.cmp")
 require("configs.snippet")
 require("configs.dap")
 require("configs.treesitter")
 require("configs.gopher")
-require("configs.toggleterm")
 require("configs.autopairs")
 require('configs.lspconfig')

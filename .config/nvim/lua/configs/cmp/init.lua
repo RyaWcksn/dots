@@ -9,6 +9,7 @@ end
 
 local cmp_window = require "cmp.config.window"
 
+
 cmp.setup({
 	snippet = {
 		expand = function(args)
@@ -20,8 +21,6 @@ cmp.setup({
 		fields = {
 			cmp.ItemField.Abbr,
 			cmp.ItemField.Kind,
-			cmp.ItemField.Menu,
-			cmp.ItemField.Info,
 		},
 		sorting = {
 			priority_weight = 2,

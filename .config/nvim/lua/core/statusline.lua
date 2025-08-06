@@ -16,7 +16,7 @@ local function filename()
 	if fname == "" then
 		return ""
 	end
-	if vim.api.nvim_buf_get_option(0, 'modified') == 1 then
+	if vim.api.nvim_get_option_value('modified', { buf = 0 }) == 1 then
 		fname = fname .. "*"
 	end
 	return fname .. " "
@@ -93,7 +93,7 @@ local function statusbar_exec(ev)
 		filepath() .. filename() .. "%r",
 		"%=%#Extra#",
 		"%#Normal#",
-		lsp_servers(ev),
+		lsp_servers(),
 		lsp(),
 		get_project_name(),
 	}

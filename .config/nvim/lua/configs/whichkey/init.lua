@@ -15,6 +15,16 @@ wk.add({
 		{ "<leader>o", group = "Open",   remap = false },
 		{ "<leader>s", group = "DB",     remap = false },
 		{ "<leader>w", group = "Window", remap = false },
+		{ "<leader>k", group = "Fold",   remap = false },
 	}
 
 }, { prefix = "<leader>", mode = "n", noremap = true })
+
+
+
+wk.add({
+	{
+		{ "<leader>b", group = "Buffer", remap = false },
+	}
+
+}, { prefix = "<leader>", mode = "v", noremap = true })

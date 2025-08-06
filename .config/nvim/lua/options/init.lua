@@ -1,8 +1,4 @@
 require('options.autocmd')
-require('options.statusline')
-require('options.winbar')
-require('options.netrw')
-
 
 local o = vim.o
 local g = vim.g
