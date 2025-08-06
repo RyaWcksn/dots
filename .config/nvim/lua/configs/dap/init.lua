@@ -1,7 +1,6 @@
-local dap, dapui = require("dap"), require("dapui")
+local dap = require("dap")
 require('dap.ext.vscode').load_launchjs(nil, {})
 require('dap').set_log_level('TRACE') -- Helps when configuring DAP, see logs with :DapShowLog
-dapui.setup()
 
 dap.adapters.delve = function(callback, config)
 	if config.mode == 'remote' and config.request == 'attach' then
@@ -125,15 +124,6 @@ dap.configurations.go = {
 }
 
 
-dap.listeners.after.event_initialized["dapui_config"] = function()
-	dapui.open()
-end
-dap.listeners.before.event_terminated["dapui_config"] = function()
-	dapui.close()
-end
-dap.listeners.before.event_exited["dapui_config"] = function()
-	dapui.close()
-end
 vim.fn.sign_define("DapBreakpoint", { text = "B=", texthl = "", linehl = "", numhl = "" })
 vim.fn.sign_define("DapStopped", { text = "S=", texthl = "", linehl = "", numhl = "" })
 

@@ -2,9 +2,6 @@ local plugins = {
 	-- Theme
 	{ src = "https://github.com/rrethy/base16-nvim" },
 
-	-- Notifications
-	{ src = "https://github.com/rcarriga/nvim-notify" },
-
 	-- Which Key
 	{ src = "https://github.com/folke/which-key.nvim" },
 
@@ -20,9 +17,6 @@ local plugins = {
 
 	-- DAP + DAP UI
 	{ src = "https://github.com/mfussenegger/nvim-dap" },
-	{ src = "https://github.com/rcarriga/nvim-dap-ui" },
-	{ src = "https://github.com/leoluz/nvim-dap-go" },
-	{ src = "https://github.com/nvim-neotest/nvim-nio" },
 
 	-- Treesitter
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
@@ -39,20 +33,39 @@ local plugins = {
 
 vim.pack.add(plugins)
 
--- Plugin config
-vim.cmd.colorscheme("base16-ayu-dark")
-
-require("notify").setup({
-	stages = "fade",
-	timeout = 5000,
+vim.api.nvim_create_autocmd("VimEnter", {
+	callback = function()
+		vim.cmd.colorscheme("base16-ayu-dark")
+	end,
 })
-vim.notify = require("notify")
 
-require("configs.whichkey")
-require("configs.cmp")
-require("configs.snippet")
-require("configs.dap")
-require("configs.treesitter")
-require("configs.gopher")
-require("configs.autopairs")
-require('configs.lspconfig')
+vim.api.nvim_create_autocmd("VimEnter", {
+	callback = function()
+		vim.defer_fn(function()
+			require("configs.whichkey")
+			require('configs.lspconfig')
+		end, 50)
+	end,
+})
+
+vim.api.nvim_create_autocmd("BufReadPre", {
+	callback = function()
+		require("configs.treesitter")
+	end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "go",
+	callback = function()
+		require("configs.gopher")
+	end,
+})
+
+vim.api.nvim_create_autocmd("InsertEnter", {
+	once = true,
+	callback = function()
+		require("configs.cmp")
+		require("configs.snippet")
+		require("configs.autopairs")
+	end,
+})
