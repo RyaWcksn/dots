@@ -236,6 +236,17 @@ vim.api.nvim_create_autocmd('LspAttach', {
 				vim.diagnostic.open_float(nil, opts)
 			end
 		})
+vim.o.omnifunc = "v:lua.vim.lsp.omnifunc"
+
+-- Auto trigger completion on typing
+vim.api.nvim_create_autocmd("TextChangedI", {
+  callback = function()
+    local col = vim.fn.col(".") - 1
+    if col > 0 then
+      vim.fn.complete(col, vim.fn.getcompletion(vim.fn.expand("<cword>"), ''))
+    end
+  end
+})
 
 
 		map('lf', vim.lsp.buf.format, "Format")

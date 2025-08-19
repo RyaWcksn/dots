@@ -2,8 +2,7 @@ local M = {}
 
 
 function M.open_file_tree()
-	vim.cmd.vsplit()
-	vim.cmd.wincmd('L') -- move the new split to the far right
+	vim.api.nvim_command('topleft vsplit')
 	vim.api.nvim_win_set_width(0, 30)
 	vim.cmd.edit('.')
 end

@@ -3,7 +3,7 @@
 )
 
 (defsrc
-  w s d
+  caps a s d f j k l ; p [ ]
 )
 
 (defvar
@@ -12,11 +12,27 @@
 )
 
 (defalias
-  w (multi f24 (tap-hold $tap-time $hold-time w lalt))
-  d (multi f24 (tap-hold $tap-time $hold-time d lctrl))
-  s (multi f24 (tap-hold $tap-time $hold-time s lsft))
+  play_pause_key (hid-key 0xCD)       ; Play/Pause
+  next_track_key (hid-key 0xB5)       ; Next Track
+  prev_track_key (hid-key 0xB6)       ; Previous Track
+)
+
+(defalias
+  escctrl (tap-hold 100 100 esc lctl)
+  a (multi f24 (tap-hold $tap-time $hold-time a lmet))
+  s (multi f24 (tap-hold $tap-time $hold-time s lalt))
+  d (multi f24 (tap-hold $tap-time $hold-time d lsft))
+  f (multi f24 (tap-hold $tap-time $hold-time f lctl))
+  j (multi f24 (tap-hold $tap-time $hold-time j rctl))
+  k (multi f24 (tap-hold $tap-time $hold-time k rsft))
+  l (multi f24 (tap-hold $tap-time $hold-time l ralt))
+  
+  ; Media keys on hold
+  p (tap-hold $tap-time $hold-time p play_pause_key)
+  bracket_open (tap-hold $tap-time $hold-time [ prev_track_key)
+  bracket_close (tap-hold $tap-time $hold-time ] next_track_key)
 )
 
 (deflayer base
-  @w @s @d
+  @escctrl @a @s @d @f @j @k @l @p @open_bracket @close_bracket @;
 )
