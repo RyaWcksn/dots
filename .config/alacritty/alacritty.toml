@@ -1,5 +1,3 @@
-# title = "Alacritty"
-# "window.opacity" = 0.5
 [window]
 decorations = "None"
 opacity = 1.0
@@ -17,11 +15,11 @@ style = "Italic"
 family = "JetBrains Mono"
 style = "Bold"
 
-[cursor]
-style = "beam"
-
 [font]
 size = 14
+
+[cursor]
+style = "beam"
 
 [colors.primary]
 background = '#181818'
@@ -31,30 +29,27 @@ foreground = '#d8d8d8'
 text = '#181818'
 cursor = '#d8d8d8'
 
-# Normal colors
+# Normal colors (grayscale)
 [colors.normal]
-black   = '#181818'
-red     = '#ab4642'
-green   = '#a1b56c'
-yellow  = '#f7ca88'
-blue    = '#7cafc2'
-magenta = '#ba8baf'
-cyan    = '#86c1b9'
+black   = '#181818' # darkest bg
+red     = '#585858' # reused for dim accents
+green   = '#888888'
+yellow  = '#aaaaaa'
+blue    = '#b0b0b0'
+magenta = '#c0c0c0'
+cyan    = '#d0d0d0'
 white   = '#d8d8d8'
 
-# Bright colors
+# Bright colors (lighter grayscale steps)
 [colors.bright]
 black   = '#585858'
-red     = '#ab4642'
-green   = '#a1b56c'
-yellow  = '#f7ca88'
-blue    = '#7cafc2'
-magenta = '#ba8baf'
-cyan    = '#86c1b9'
+red     = '#888888'
+green   = '#aaaaaa'
+yellow  = '#b0b0b0'
+blue    = '#c0c0c0'
+magenta = '#d0d0d0'
+cyan    = '#e0e0e0'
 white   = '#f8f8f8'
-
-#[font.normal]
-#family = "MesloLGS NF"
 
 [[keyboard.bindings]]
 action = "ResetFontSize"
@@ -80,4 +75,3 @@ mods = "Alt"
 action = "Paste"
 key = "V"
 mods = "Alt"
-
