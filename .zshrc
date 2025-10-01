@@ -89,6 +89,13 @@ export NVM_DIR="$HOME/.nvm"
 
 # Functions
 
+search() {
+  local query="$1"
+  rg --vimgrep --max-count=1 "$query" \
+    | fzf --multi --with-nth=4.. --delimiter=':' \
+          --bind 'enter:select-all+accept'
+}
+
 # Scrcpy
 
 function scr ()
@@ -165,7 +172,7 @@ case "$flag" in
         fi
 
         echo "[*] Launching scrcpy..."
-        scrcpy --shortcut-mod=lctrl --audio-bit-rate=64K --audio-buffer=20 -b 1M --max-size=800 --max-fps=45 -K
+		scrcpy -s $(adb devices | grep 5555 | awk '{print $1}' | cut -d: -f1):5555 --shortcut-mod=lctrl --audio-bit-rate=64K --audio-buffer=20 -b 1M --max-size=800 --max-fps=45 -K
         ;;
 
 
