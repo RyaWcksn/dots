@@ -7,7 +7,6 @@
     "wget",
     "zsh",
     "git",
-    "alacritty",
     "lazygit",
     "lazydocker",
     "postman",
@@ -29,7 +28,7 @@
     "docker",
     "docker-compose",
     "ffmpeg",
-    "sqlc"
+    "sqlc",
+	"kitty"
   ]
 }
-
